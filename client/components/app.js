@@ -1,6 +1,6 @@
 angular.module('app')
-  .controller('AppCtrl', (itemsService) => {
-    itemsService.getAll((data) => {
+  .controller('AppCtrl', function (itemsService) {
+    itemsService.getAll(function (data) {
       this.items = data;
     });
   })
