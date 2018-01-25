@@ -1,3 +1,23 @@
 {
-  "extends": "airbnb"
+    "extends": "airbnb-base",
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true,
+      "mocha": true,
+      "jquery": true
+    },
+    "rules": {
+      "no-console": 0,
+      "comma-dangle": ["error", {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "ignore"
+      }]
+    },
+    "globals": {
+      "angular": false
+    }
 }

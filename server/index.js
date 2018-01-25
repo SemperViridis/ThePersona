@@ -1,18 +1,19 @@
-var express = require('express');
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
-// var items = require('../database');
+const items = require('../database');
 
 
-var app = express();
+const app = express();
 
 // UNCOMMENT FOR ANGULAR
-// app.use(express.static(__dirname + '/../client'));
-// app.use(express.static(__dirname + '/../node_modules'));
+app.use(express.static(path.join(__dirname, '/../client')));
+app.use(express.static(path.join(__dirname, '/../node_modules')));
 
-app.get('/items', function (req, res) {
-  items.selectAll(function(err, data) {
-    if(err) {
+app.get('/items', (req, res) => {
+  items.selectAll((err, data) => {
+    if (err) {
       res.sendStatus(500);
     } else {
       res.json(data);
@@ -20,7 +21,7 @@ app.get('/items', function (req, res) {
   });
 });
 
-app.listen(3000, function() {
+app.listen(3000, () => {
   console.log('listening on port 3000!');
 });
 
