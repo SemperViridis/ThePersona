@@ -1,13 +1,13 @@
 angular.module('app')
-  .service('itemsService', ($http) => {
-    this.getAll = (callback) => {
+  .service('itemsService', function ($http) {
+    this.getAll = function (callback) {
       $http.get('/items')
-        .then((data) => {
+        .then(function (data) {
           if (callback) {
             callback(data);
           }
         })
-        .catch((err) => {
+        .catch(function (err) {
           console.log(err);
         });
     };

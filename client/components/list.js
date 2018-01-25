@@ -3,6 +3,6 @@ angular.module('app')
     bindings: {
       items: '<'
     },
-    controller: () => {}, // ask Robin about using arrow function with empty func
+    controller: function () {}, // ask Robin about using arrow function with empty func
     templateUrl: '/templates/list.html'
   });
