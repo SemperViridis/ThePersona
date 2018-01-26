@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-// comment
+
 let connection = '';
 
 if (process.env.NODE_ENV === 'production') {
@@ -24,5 +24,4 @@ const selectAll = (callback) => {
 };
 
 module.exports.selectAll = selectAll;
-
 
