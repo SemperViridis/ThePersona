@@ -3,7 +3,6 @@ var chai = require('chai');
 var expect = chai.expect;
 var request = require('supertest');
 var app = require('../server/index.js');
-var Users = require('../models/users.js');
 
 // Adds support for assertions on array elements
 // https://github.com/chaijs/Chai-Things#examples
