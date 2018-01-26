@@ -45,6 +45,7 @@ module.exports = function (config) {
       'karma-mocha',
       'karma-chrome-launcher',
       'karma-ng-html2js-preprocessor',
+      'karma-phantomjs-launcher'
     ],
 
     // list of files to exclude
