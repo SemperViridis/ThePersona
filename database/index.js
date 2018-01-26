@@ -1,27 +1,40 @@
-const mysql = require('mysql');
 const Sequelize = require('sequelize');
 
-let connection = '';
+let db = null;
 
 if (process.env.NODE_ENV === 'production') {
-  connection = process.env.CLEARDB_DATABASE_URL;
+  db = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 } else {
-  connection = mysql.createConnection({
+  db = new Sequelize('persona', 'root', '', {
     host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'persona'
+    dialect: 'mysql'
   });
 }
 
-const selectAll = (callback) => {
-  connection.query('SELECT * FROM items', (err, results, fields) => {
-    if (err) {
-      callback(err, null);
-    } else {
-      callback(null, results, fields);
-    }
+db
+  .authenticate()
+  .then(() => {
+    console.log('Database successfully connected!');
+  })
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
   });
+
+const User = db.define('users', {
+  firstName: {
+    type: Sequelize.STRING
+  },
+  lastName: {
+    type: Sequelize.STRING
+  }
+});
+
+User.sync({ force: true });
+
+const selectAll = (callback) => {
+  User.findAll({})
+    .then(callback)
+    .catch(callback);
 };
 
 module.exports.selectAll = selectAll;
