@@ -1,7 +1,7 @@
 const expect = chai.expect;
 
-describe('app', () => {
-  it('testing', () => {
+describe('app', function () {
+  it('testing', function () {
     expect(true).to.be.true;
   });
 });
