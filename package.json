@@ -6,6 +6,9 @@
   "scripts": {
     "server-dev": "nodemon server/index.js"
   },
+  "engines": {
+    "node": "8.9.1"
+  },
   "author": [
     "David Inoa",
     "Patty Kovash",
