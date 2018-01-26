@@ -27,6 +27,7 @@ describe('RESTful API', function () {
           .get('/api/items')
           .expect(200);
           done();
+          app.close();
       });
     });
   });
