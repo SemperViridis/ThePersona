@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server/index.js",
     "server-dev": "nodemon server/index.js",
-    "test": "karma start"
+    "test": "karma start --single-run --browsers PhantomJS",
+    "test-dev": "karma start"
   },
   "engines": {
     "node": "8.9.1"
