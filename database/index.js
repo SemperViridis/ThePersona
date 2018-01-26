@@ -1,11 +1,17 @@
 const mysql = require('mysql');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'test'
-});
+let connection = '';
+
+if (process.env.NODE_ENV === 'production') {
+  connection = process.env.CLEARDB_DATABASE_URL;
+} else {
+  connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'persona'
+  });
+}
 
 const selectAll = (callback) => {
   connection.query('SELECT * FROM items', (err, results, fields) => {
