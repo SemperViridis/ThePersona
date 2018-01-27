@@ -36,8 +36,12 @@ User.sync({ force: true });
 
 const selectAll = (callback) => {
   User.findAll({})
-    .then(callback)
-    .catch(callback); // Need to revisit this
+    .then((results) => {
+      callback(null, results);
+    })
+    .catch((err) => {
+      callback(err, null);
+    }); // Need to revisit this
 };
 
 module.exports.selectAll = selectAll;
