@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-let db = null;
+let db;
 
 if (process.env.NODE_ENV === 'production') {
   db = new Sequelize(process.env.CLEARDB_DATABASE_URL);
@@ -20,6 +20,8 @@ db
     console.error('Unable to connect to the database:', err);
   });
 
+
+// SAMPLE
 const User = db.define('users', {
   firstName: {
     type: Sequelize.STRING
@@ -29,12 +31,13 @@ const User = db.define('users', {
   }
 });
 
+// SAMPLE
 User.sync({ force: true });
 
 const selectAll = (callback) => {
   User.findAll({})
     .then(callback)
-    .catch(callback);
+    .catch(callback); // Need to revisit this
 };
 
 module.exports.selectAll = selectAll;
