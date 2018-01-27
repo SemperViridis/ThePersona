@@ -1,11 +1,7 @@
 const Sequelize = require('sequelize');
 
 let db;
-const createPersona = () => {
-  return db.query("DROP DATABASE IF EXISTS `persona`;")
-  .then(db.query("CREATE DATABASE `persona`;"))
-  .then(db.query("USE `persona`;"))
-};
+
 
 if (process.env.NODE_ENV === 'production') {
   db = new Sequelize(process.env.CLEARDB_DATABASE_URL);
@@ -14,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
     host: 'localhost',
     dialect: 'mysql'
   });
-  createPersona();
+  // createPersona();
 
   // return db.query("DROP DATABASE IF EXISTS `persona`;")
   //   .then(db.query("CREATE DATABASE `persona`;"))
@@ -43,16 +39,18 @@ const User = db.define('users', {
   username: {
     type: Sequelize.STRING,
     allowNull: false
-  }  
+  },  
   firstName: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: true
   },
   lastName: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: true
   }
 });
 
-const Prompts = db.define('prompts', {
+const Prompt = db.define('prompts', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -62,17 +60,10 @@ const Prompts = db.define('prompts', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-  id_user: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: User,
-      key: 'id',
-    }
-  },
   createdAt: Sequelize.DATE,
 });
 
-const Answers = db.define('answers', {
+const Answer = db.define('answers', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -82,29 +73,80 @@ const Answers = db.define('answers', {
     type: Sequelize.TEXT,
     allowNull: false,
   },
-  id_prompt: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Prompts,
-      key: 'id',
-    },
-  },
-  id_user: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: User,
-      key: 'id',
-    },
-  },
   createdAt: Sequelize.DATE,
 });
 
+const Comment = db.define('comments', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  cmnt: {
+    type: Sequelize.TEXT,
+    allowNull: false
+  }
+});
+
+const Tag = db.define('tags', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  tagname: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
+});
+
+// FOREIGN KEY CREATION
+
 // SAMPLE
 User.sync({ force: true });
+Prompt.sync({ force: true });
+Answer.sync({ force: true });
+Comment.sync({ force: true });
 
-Prompts.sync({ force: true});
+User.hasMany(Prompt, {
+  foreignKey: {
+    name: 'userid',
+    allowNull: false
+  }
+});
+User.hasMany(Answer, {
+  foreignKey: {
+    name: 'userid',
+    allowNull: false
+  }
+});
+User.hasMany(Comment, {
+  foreignKey: {
+    name: 'userid',
+    allowNull: false
+  }
+})
+User.hasMany(Tag, {
+  foreignKey: {
+    name: 'userid',
+    allowNull: false
+  }
+});
 
-Answers.sync({ force: true});
+Prompt.hasMany(Answer, {
+  foreignKey: {
+    name: 'promptid',
+    allowNull: false
+  }
+});
+
+Prompt.hasMany(Tag, {
+  foreignKey: {
+    name: 'promptid',
+    allowNull: false
+  }
+});
+
 
 const selectAll = (callback) => {
   User.findAll({})
