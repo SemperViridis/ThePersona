@@ -5,7 +5,7 @@ module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: 'client/',
+    basePath: '',
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -28,14 +28,14 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '../node_modules/jquery/dist/jquery.js',
-      '../node_modules/angular/angular.js',
-      '../node_modules/angular-mocks/angular-mocks.js',
-      '../spec/lib/chai.js',
-      'index.js',
-      '**/*.js',
-      '../spec/**/*.js',
-      'templates/*.html',
+      'node_modules/jquery/dist/jquery.js',
+      'node_modules/angular/angular.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      'spec/lib/chai.js',
+      'client/index.js',
+      'client/**/*.js',
+      'spec/**/*.js',
+      'client/templates/*.html',
     ],
 
     // app, video list, video list entry, video player, search
@@ -50,7 +50,7 @@ module.exports = function (config) {
 
     // list of files to exclude
     exclude: [
-      '../spec/serverSpec.js'
+      'spec/serverSpec.js'
     ],
 
     // preprocess matching files before serving them to the browser
