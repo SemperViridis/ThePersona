@@ -1,19 +1,27 @@
 const Sequelize = require('sequelize');
 
 let db;
+const createPersona = () => {
+  return db.query("DROP DATABASE IF EXISTS `persona`;")
+  .then(db.query("CREATE DATABASE `persona`;"))
+  .then(db.query("USE `persona`;"))
+};
 
 if (process.env.NODE_ENV === 'production') {
   db = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 } else {
-  db = new Sequelize('', 'root', '', {
+  db = new Sequelize('', 'root', 'peterw', {
     host: 'localhost',
     dialect: 'mysql'
   });
+  createPersona();
 
-  return db.query("CREATE DATABASE `persona`;").then(data => {
-    USE `persona`;
-  });
+  // return db.query("DROP DATABASE IF EXISTS `persona`;")
+  //   .then(db.query("CREATE DATABASE `persona`;"))
+  //   .then(db.query("USE `persona`;"))
 }
+
+
 
 db
   .authenticate()
@@ -35,6 +43,8 @@ const User = db.define('users', {
   }
 });
 
+
+
 // SAMPLE
 User.sync({ force: true });
 
@@ -43,6 +53,8 @@ const selectAll = (callback) => {
     .then(callback)
     .catch(callback); // Need to revisit this
 };
+
+
 
 module.exports.selectAll = selectAll;
 
