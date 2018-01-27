@@ -26,7 +26,7 @@
 --
 -- ---
 
-DROP TABLE IF EXISTS Users;
+DROP DATABASE IF EXISTS Persona;
 
 CREATE DATABASE Persona;
 

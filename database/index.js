@@ -5,9 +5,13 @@ let db;
 if (process.env.NODE_ENV === 'production') {
   db = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 } else {
-  db = new Sequelize('persona', 'root', '', {
+  db = new Sequelize('', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
+  });
+
+  return db.query("CREATE DATABASE `persona`;").then(data => {
+    USE `persona`;
   });
 }
 
