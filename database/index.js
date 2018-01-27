@@ -100,6 +100,14 @@ const Tag = db.define('tags', {
   }
 });
 
+const Vote = db.define('votes', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },  
+})
+
 // FOREIGN KEY CREATION
 
 // SAMPLE
@@ -107,6 +115,7 @@ User.sync({ force: true });
 Prompt.sync({ force: true });
 Answer.sync({ force: true });
 Comment.sync({ force: true });
+Vote.sync({ force: true });
 
 User.hasMany(Prompt, {
   foreignKey: {
@@ -114,24 +123,35 @@ User.hasMany(Prompt, {
     allowNull: false
   }
 });
+
 User.hasMany(Answer, {
   foreignKey: {
     name: 'userid',
     allowNull: false
   }
 });
+
 User.hasMany(Comment, {
   foreignKey: {
     name: 'userid',
     allowNull: false
   }
 })
+
 User.hasMany(Tag, {
   foreignKey: {
     name: 'userid',
     allowNull: false
   }
 });
+
+User.hasMany(Vote, {
+  foreignKey: {
+    name: 'userid',
+    allowNull: false
+  }
+});
+
 
 Prompt.hasMany(Answer, {
   foreignKey: {
@@ -147,6 +167,9 @@ Prompt.hasMany(Tag, {
   }
 });
 
+Vote.hasOne(Answer);
+Vote.hasOne(Comment);
+Vote.hasOne(Prompt);
 
 const selectAll = (callback) => {
   User.findAll({})
