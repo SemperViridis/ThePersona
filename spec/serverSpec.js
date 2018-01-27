@@ -13,7 +13,11 @@ describe('RESTful API', () => {
         chai.request(server)
           .get('/api/users')
           .end((err, res) => {
-            res.should.have.status(200);
+            if (err) {
+              res.should.have.status(500);
+            } else {
+              res.should.have.status(200);
+            }
             done();
           });
       });
