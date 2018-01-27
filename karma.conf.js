@@ -19,7 +19,7 @@ module.exports = function (config) {
     },
 
     preprocessors: {
-      'src/templates/*.html': ['ng-html2js']
+      '**/*.html': ['ng-html2js']
     },
 
     ngHtml2JsPreprocessor: {
@@ -31,12 +31,11 @@ module.exports = function (config) {
       'node_modules/jquery/dist/jquery.js',
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'node_modules/sinon/pkg/sinon-1.17.7.js',
       'spec/lib/chai.js',
-      'src/index.js',
-      'src/**/*.js',
+      'client/index.js',
+      'client/**/*.js',
       'spec/**/*.js',
-      'src/templates/*.html',
+      'client/templates/*.html',
     ],
 
     // app, video list, video list entry, video player, search
