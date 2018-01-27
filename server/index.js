@@ -9,11 +9,11 @@ app.use(express.static(path.join(__dirname, '/../client')));
 app.use(express.static(path.join(__dirname, '/../node_modules')));
 
 app.get('/api/users', (req, res) => {
-  db.selectAll((err, data) => {
+  db.selectAll((err, results) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(200).json(data);
+      res.status(200).json(results);
     }
   });
 });
