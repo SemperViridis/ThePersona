@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server/index.js",
     "server-dev": "nodemon server/index.js",
-    "test": "mocha spec/serverSpec.js --exit"
+    "test": "mocha spec/serverSpec.js --exit",
+    "test-dev": "karma start"
   },
   "engines": {
     "node": "8.9.1"
