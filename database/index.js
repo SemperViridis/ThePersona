@@ -92,14 +92,18 @@ const Tag = db.define('tags', {
     autoIncrement: true,
   },
   tagname: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
+});
 
 const Vote = db.define('votes', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-  },
-})
+  }
+});
 
 // FOREIGN KEY CREATION
 
