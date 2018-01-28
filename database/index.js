@@ -17,8 +17,6 @@ if (process.env.NODE_ENV === 'production') {
   //   .then(db.query("USE `persona`;"))
 }
 
-
-
 db
   .authenticate()
   .then(() => {
@@ -27,7 +25,6 @@ db
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   });
-
 
 // SAMPLE
 const User = db.define('users', {
@@ -39,7 +36,7 @@ const User = db.define('users', {
   username: {
     type: Sequelize.STRING,
     allowNull: false
-  },  
+  },
   firstName: {
     type: Sequelize.STRING,
     allowNull: true
@@ -95,17 +92,13 @@ const Tag = db.define('tags', {
     autoIncrement: true,
   },
   tagname: {
-    type: Sequelize.STRING,
-    allowNull: false
-  }
-});
 
 const Vote = db.define('votes', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-  },  
+  },
 })
 
 // FOREIGN KEY CREATION
@@ -172,17 +165,14 @@ Vote.hasOne(Comment);
 Vote.hasOne(Prompt);
 
 const selectAll = (callback) => {
-  User.findAll({})
+  Users.findAll()
     .then((results) => {
       callback(null, results);
     })
     .catch((err) => {
       callback(err, null);
-    }); // Need to revisit this
+    });
 };
 
-
-
-
-
 module.exports.selectAll = selectAll;
+
