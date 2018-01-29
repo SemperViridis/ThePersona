@@ -1,9 +1,9 @@
 angular.module('app')
   .controller('speechController', function () {
-    this.finalTranscript = '';
+    this.finalTranscript = ' ';
     this.recognizing = false;
-    // this.ignoreOnEnd;
-    // this.startTimestamp;
+    this.ignoreOnEnd;
+    this.startTimestamp;
 
     if ('webkitSpeechRecognition' in window) {
       // initialize speech interface
@@ -18,16 +18,16 @@ angular.module('app')
         this.recognizing = true;
       };
 
-      this.recognition.onerror = function () {
+      this.recognition.onerror = () => {
         this.ignoreOnEnd = true;
       };
 
-      this.recognition.onend = function () {
+      this.recognition.onend = () => {
         this.recognizing = false;
         if (this.ignoreOnEnd) {
           return;
         }
-        if (!finalTranscript) {
+        if (!this.finalTranscript) {
           return;
         }
         if (window.getSelection) {
@@ -37,21 +37,38 @@ angular.module('app')
           window.getSelection().addRange(range);
         }
       };
-
-      this.recognition.onresult = function (event) {
-        console.log('result', event);
+      this.recognition.onresult = (event) => {
+        let interimTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          if (event.results[i].isFinal) {
+            this.finalTranscript += event.results[i][0].transcript;
+            // console.log('final Transcript?:', this.finalTranscript);
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+          }
+        }
+        console.log('final Transcript?:', this.finalTranscript);
+        interim_span.innerHTML = interimTranscript;
+        final_span.innerHTML = this.finalTranscript;
       };
     } else {
       // upgrade
       console.log('need upgrade');
     }
 
-    this.startButton = function () {
+
+    this.startButton = (event) => {
+      console.log('START', event);
       if (this.recognizing) {
         this.recognition.stop();
         return;
       }
+      this.finalTranscript = '';
       this.recognition.start();
+      this.ignoreOnend = false;
+      final_span.innerHTML = '';
+      interim_span.innerHTML = '';
+      startTimestamp = event.timeStamp;
     };
   })
 
