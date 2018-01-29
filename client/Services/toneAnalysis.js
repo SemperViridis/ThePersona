@@ -1,7 +1,6 @@
 angular.module('app')
   .service('toneAnalysis', ($http) => {
     this.toneAnalysis = (transcription, callback) => {
-      // NEED TO VERIFY ENDPOINT FOR TONE ANALYSIS
       $http.post('http://localhost:3000/ibmtone', {
         data: {
           text: transcription
