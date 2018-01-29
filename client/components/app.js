@@ -1,5 +1,11 @@
 angular.module('app')
+  .controller('AppCtrl', function() {
+
+    this.submitToWatson = () => {
+      // service logic
+    };
+  })
   .component('app', {
-    bindings: {},
+    controller: 'AppCtrl',
     templateUrl: 'templates/app.html'
   });
