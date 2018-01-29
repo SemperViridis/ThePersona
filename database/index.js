@@ -105,15 +105,15 @@ const Vote = db.define('votes', {
   }
 });
 
-// FOREIGN KEY CREATION
 
-// SAMPLE
+// CREATE ENTRIES
 User.sync({ force: true });
 Prompt.sync({ force: true });
 Answer.sync({ force: true });
 Comment.sync({ force: true });
 Vote.sync({ force: true });
 
+// FOREIGN KEY CREATION
 User.hasMany(Prompt, {
   foreignKey: {
     name: 'userid',
