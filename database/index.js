@@ -179,4 +179,3 @@ const selectAll = (callback) => {
 };
 
 module.exports.selectAll = selectAll;
-
