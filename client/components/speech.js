@@ -5,6 +5,10 @@ angular.module('app')
     this.ignoreOnEnd;
     this.startTimestamp;
 
+    this.handleSubmission = () => {
+      this.submitToWatson;
+    };
+
     if ('webkitSpeechRecognition' in window) {
       // initialize speech interface
       this.recognition = new webkitSpeechRecognition();
@@ -73,6 +77,9 @@ angular.module('app')
   })
 
   .component('speech', {
+    bindings: {
+      submitToWatson: '&'
+    },
     controller: 'speechController',
     templateUrl: 'templates/speech.html'
   });
