@@ -6,7 +6,7 @@ let db;
 if (process.env.NODE_ENV === 'production') {
   db = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 } else {
-  db = new Sequelize('persona', 'root', '', {
+  db = new Sequelize('persona', 'root', 'peterw', {
     host: 'localhost',
     dialect: 'mysql'
   });
@@ -105,15 +105,15 @@ const Vote = db.define('votes', {
   }
 });
 
-// FOREIGN KEY CREATION
 
-// SAMPLE
+// CREATE ENTRIES
 User.sync({ force: true });
 Prompt.sync({ force: true });
 Answer.sync({ force: true });
 Comment.sync({ force: true });
 Vote.sync({ force: true });
 
+// FOREIGN KEY CREATION
 User.hasMany(Prompt, {
   foreignKey: {
     name: 'userid',
@@ -179,4 +179,3 @@ const selectAll = (callback) => {
 };
 
 module.exports.selectAll = selectAll;
-
