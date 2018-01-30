@@ -1,6 +1,10 @@
 <div id="appContainer">
   <div>
-    <prompts prompts="$ctrl.prompts"></prompts>
-    <speech service="$ctrl.toneAnalysis" submitToWatson="$ctrl.submitToWatson"/></speech>
+    <prompts prompt="$ctrl.currentPrompt"></prompts>
+    <speech
+      service="$ctrl.toneAnalysis"
+      submitToWatson="$ctrl.submitToWatson"
+      select="$ctrl.select"/>
+    </speech>
   </div>
 </div>
