@@ -6,7 +6,9 @@ angular.module('app')
     this.startTimestamp;
 
     this.handleSubmission = () => {
-      this.submitToWatson;
+      this.service.toneAnalysis(this.finalTranscript, function (err, results) {
+        console.log(results);
+      });
     };
 
     if ('webkitSpeechRecognition' in window) {
@@ -51,7 +53,6 @@ angular.module('app')
             interimTranscript += event.results[i][0].transcript;
           }
         }
-        console.log('final Transcript?:', this.finalTranscript);
         interim_span.innerHTML = interimTranscript;
         final_span.innerHTML = this.finalTranscript;
       };
@@ -61,8 +62,7 @@ angular.module('app')
     }
 
 
-    this.startButton = (event) => {
-      console.log('START', event);
+    this.startButton = () => {
       if (this.recognizing) {
         this.recognition.stop();
         return;
@@ -72,13 +72,14 @@ angular.module('app')
       this.ignoreOnend = false;
       final_span.innerHTML = '';
       interim_span.innerHTML = '';
-      startTimestamp = event.timeStamp;
+      startTimestamp = Date.now();
     };
   })
 
   .component('speech', {
     bindings: {
-      submitToWatson: '&'
+      submitToWatson: '&',
+      service: '<'
     },
     controller: 'speechController',
     templateUrl: 'templates/speech.html'
