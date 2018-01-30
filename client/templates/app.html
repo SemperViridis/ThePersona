@@ -1,5 +1,10 @@
-<div>
+<div id="appContainer">
   <div>
-    <speech service="$ctrl.toneAnalysis" submitToWatson="$ctrl.submitToWatson"/>
+    <prompts prompts="$ctrl.currentPrompts"></prompts>
+    <speech
+      service="$ctrl.toneAnalysis"
+      submitToWatson="$ctrl.submitToWatson"
+      select="$ctrl.select"/>
+    </speech>
   </div>
 </div>

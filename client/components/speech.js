@@ -73,13 +73,16 @@ angular.module('app')
       final_span.innerHTML = '';
       interim_span.innerHTML = '';
       startTimestamp = Date.now();
+      this.select(3);
+
     };
   })
 
   .component('speech', {
     bindings: {
       submitToWatson: '&',
-      service: '<'
+      service: '<',
+      select: '<'
     },
     controller: 'speechController',
     templateUrl: 'templates/speech.html'

@@ -11,7 +11,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '/../client')));
 app.use(express.static(path.join(__dirname, '/../node_modules')));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
@@ -22,7 +22,6 @@ app.get('/api/users', (req, res) => {
 app.post('/api/ibmtone', (req, res) => {
   console.log('REQ.BODY.DATA.TEXT:', req.body.data.text);
   toneAnalyzer(req.body.data.text)
-
     .then((tone) => {
       console.log(tone);
     });
