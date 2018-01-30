@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
-    "server-dev": "nodemon --inspect server/index.js",
+    "server-dev": "nodemon --inspect -r dotenv/config server/index.js",
     "test-dev": "karma start",
     "test": "mocha spec/serverSpec.js --exit"
   },
@@ -23,6 +23,7 @@
     "angular-mocks": "^1.6.2",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
+    "dotenv": "^5.0.0",
     "eslint": "^4.16.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
