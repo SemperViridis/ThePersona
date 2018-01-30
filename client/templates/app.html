@@ -1,5 +1,9 @@
 <div>
   <div>
-    <speech service="$ctrl.toneAnalysis" submitToWatson="$ctrl.submitToWatson"/>
+    <speech service="$ctrl.toneAnalysis" submitToWatson="$ctrl.submitToWatson"
+    result="$ctrl.showAnalysis"/>
+  </div>
+  <div>
+  <analysis results="$ctrl.analysis"/>
   </div>
 </div>
