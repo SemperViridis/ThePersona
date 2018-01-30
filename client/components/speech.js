@@ -73,7 +73,8 @@ angular.module('app')
       final_span.innerHTML = '';
       interim_span.innerHTML = '';
       startTimestamp = Date.now();
-      this.select();
+      this.select(3);
+
     };
   })
 
