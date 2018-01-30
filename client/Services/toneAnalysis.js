@@ -1,7 +1,7 @@
 angular.module('app')
-  .service('toneAnalysis', ($http) => {
+  .service('toneAnalysis', function ($http) {
     this.toneAnalysis = (transcription, callback) => {
-      $http.post('http://localhost:3000/ibmtone', {
+      $http.post('http://localhost:3000/api/ibmtone', {
         data: {
           text: transcription
         }
