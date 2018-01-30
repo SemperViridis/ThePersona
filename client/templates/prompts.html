@@ -1,3 +1,33 @@
-<h1>Questions</h1>
- <prompt-entry prompt="prompt"/>
-<button type="button">Start</button>
+<div ng-controller="app">
+  <h1>Questions</h1>
+    <div>
+      <form name="promptOptions">
+        <label for="modeName">Mode: </label>
+          <select
+            name="modeName"
+            ng-options="mode.name for mode in prompts.mode track by mode.id"
+            ng-model="prompts.selectedMode">
+          </select>
+        <select class="promptType">
+          <option value="behavorial">Behavorial</option>
+          <option value="technical">Technical</option>
+        </select>
+      </form>
+    </div>
+</div>
+<!--  <prompt-entry prompt="prompt"/> -->
+
+
+angular.module('defaultValueSelect', [])
+ .controller('ExampleController', ['$scope', function($scope) {
+   $scope.data = {
+    availableOptions: [
+      {id: '1', name: 'Option A'},
+      {id: '2', name: 'Option B'},
+      {id: '3', name: 'Option C'}
+    ],
+    selectedOption: {id: '3', name: 'Option C'} //This sets the default value of the select in the ui
+    };
+}]);
+
+ng-model="prompts.selectedMode"

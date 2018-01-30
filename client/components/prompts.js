@@ -1,7 +1,7 @@
 angular.module('app')
-  .component('prompt', {
+  .component('prompts', {
     bindings: {
       prompts: '<'
     },
-    templateUrl: 'templates/prompt.html'
+    templateUrl: 'templates/prompts.html'
   });
