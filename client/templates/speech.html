@@ -1,7 +1,7 @@
 <div>
   <button id="start_button" ng-click="$ctrl.startButton()">{{$ctrl.recognizing ? 'Stop' : 'Start'}}</button>
-  <button ng-if="!$ctrl.recognizing" ng-click="$ctrl.select(1)">Next</button>
-  <button ng-if="$ctrl.responses.length === 3" ng-click="$ctrl.handleSubmission()">Submit</button>
+  <button ng-click="$ctrl.select(1)">Next</button>
+  <button ng-click="$ctrl.handleSubmission()">Submit</button>
 </div>
 <div id="results">
   <span id="final_span"></span>
