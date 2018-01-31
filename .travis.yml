@@ -15,3 +15,4 @@ test:
   encoding: utf8
 before_install:
   - mysql -e 'CREATE DATABASE persona;'
+

@@ -1,7 +1,7 @@
-<div>
+<div id="appContainer">
   <div>
-    <speech service="$ctrl.toneAnalysis" submitToWatson="$ctrl.submitToWatson"
-    result="$ctrl.showAnalysis"/>
+    <prompts prompts="$ctrl.currentPrompts"></prompts>                 
+    <speech service="$ctrl.toneAnalysis" result="$ctrl.showAnalysis" select="$ctrl.select"/>
   </div>
   <div>
   <analysis results="$ctrl.analysis"/>
