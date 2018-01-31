@@ -23,7 +23,8 @@ app.post('/api/ibmtone', (req, res) => {
   console.log('REQ.BODY.DATA.TEXT:', req.body.data.text);
   toneAnalyzer(req.body.data.text)
     .then((tone) => {
-      console.log(tone);
+      console.log('Watson tone:', tone);
+      res.send(tone);
     });
 });
 

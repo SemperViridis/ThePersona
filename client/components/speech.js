@@ -1,13 +1,15 @@
 angular.module('app')
   .controller('speechController', function () {
-    this.finalTranscript = ' ';
+    this.finalTranscript = '';
     this.recognizing = false;
+    this.analysis = ''
     this.ignoreOnEnd;
     this.startTimestamp;
 
     this.handleSubmission = () => {
-      this.service.toneAnalysis(this.finalTranscript, function (err, results) {
-        console.log(results);
+      this.service.toneAnalysis(this.finalTranscript,  (err, results) => {
+        console.log('are the results on the front end:', results);
+        this.result(results);
       });
     };
 
@@ -82,6 +84,7 @@ angular.module('app')
     bindings: {
       submitToWatson: '&',
       service: '<',
+      result: '<',
       select: '<'
     },
     controller: 'speechController',
