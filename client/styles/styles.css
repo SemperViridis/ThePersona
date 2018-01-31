@@ -1,0 +1,48 @@
+body {
+  background: #f4f4f4;
+  font: 1em 'Quicksand', sans-serif;
+}
+
+#appContainer {
+  width: 100%;
+/*  max-width: 100%;*/
+  margin: auto;
+}
+
+#header {
+  background: #0f2d37;
+  padding-bottom: 50px;
+  margin-top: 0;
+}
+
+#header h1 {
+  background: #13ed9a;
+  padding-left: 20px;
+  color: #fff;
+  width: 20%;
+}
+
+#prompts {
+  position: relative;
+  width: 60%;
+  margin: auto;
+}
+
+div.promptsScreen {
+  background: #fff;
+  /*min-height: 400px;*/
+  margin: 70px auto 0 auto;
+  border: 1px solid #bfc1c1;
+}
+
+ul {
+  list-style: none;
+}
+
+li.prompt {
+  text-align: center;
+  font: 2em 'Quicksand', sans-serif;
+  margin: auto;
+  padding-top: 20%;
+  padding-bottom: 20%;
+}

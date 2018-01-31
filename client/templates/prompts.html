@@ -1,9 +1,9 @@
-<div>
-  <h1>Questions</h1>
-    <div>
-      <ul>
-        <li ng-repeat="prompt in $ctrl.prompts">{{ prompt }}</li>
-      </ul>
-    </div>
+<div id="prompts">
+  <div class="promptsScreen">
+    <ul>
+      <li class="prompt">Some sample test to help me render this component</li>
+      <li class="prompt" ng-repeat="prompt in $ctrl.prompts">{{ prompt }}</li>
+    </ul>
+  </div>
 </div>
 
