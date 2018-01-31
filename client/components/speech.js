@@ -1,14 +1,12 @@
 angular.module('app')
-  .controller('speechController', function () {
+  .controller('speechController', function ($scope) {
+    this.responses = [];
     this.finalTranscript = '';
     this.recognizing = false;
-    this.analysis = ''
-    this.ignoreOnEnd;
-    this.startTimestamp;
+    this.analysis = '';
 
     this.handleSubmission = () => {
-      this.service.toneAnalysis(this.finalTranscript,  (err, results) => {
-        console.log('are the results on the front end:', results);
+      this.service.toneAnalysis(this.responses.join('.'), (err, results) => {
         this.result(results);
       });
     };
@@ -24,6 +22,7 @@ angular.module('app')
       // set event handlers
       this.recognition.onstart = () => {
         this.recognizing = true;
+        $scope.$apply();
       };
 
       this.recognition.onerror = () => {
@@ -32,25 +31,21 @@ angular.module('app')
 
       this.recognition.onend = () => {
         this.recognizing = false;
+        this.responses.push(this.finalTranscript);
+        $scope.$apply();
         if (this.ignoreOnEnd) {
           return;
         }
         if (!this.finalTranscript) {
           return;
         }
-        if (window.getSelection) {
-          window.getSelection().removeAllRanges();
-          const range = document.createRange();
-          range.selectNode(document.getElementById('final_span'));
-          window.getSelection().addRange(range);
-        }
       };
+
       this.recognition.onresult = (event) => {
         let interimTranscript = '';
-        for (let i = event.resultIndex; i < event.results.length; i++) {
+        for (let i = event.resultIndex; i < event.results.length; i += 1) {
           if (event.results[i].isFinal) {
             this.finalTranscript += event.results[i][0].transcript;
-            // console.log('final Transcript?:', this.finalTranscript);
           } else {
             interimTranscript += event.results[i][0].transcript;
           }
@@ -65,24 +60,24 @@ angular.module('app')
 
 
     this.startButton = () => {
-      if (this.recognizing) {
+      if (!this.recognizing) {
+        if (!this.responses.length) {
+          this.select(1);
+        }
+        this.finalTranscript = '';
+        this.ignoreOnend = false;
+        final_span.innerHTML = '';
+        interim_span.innerHTML = '';
+        this.startTimestamp = Date.now();
+        this.recognition.start();
+      } else {
         this.recognition.stop();
-        return;
       }
-      this.finalTranscript = '';
-      this.recognition.start();
-      this.ignoreOnend = false;
-      final_span.innerHTML = '';
-      interim_span.innerHTML = '';
-      startTimestamp = Date.now();
-      this.select(3);
-
     };
   })
 
   .component('speech', {
     bindings: {
-      submitToWatson: '&',
       service: '<',
       result: '<',
       select: '<'
