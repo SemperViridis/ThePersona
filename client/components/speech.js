@@ -1,5 +1,6 @@
 angular.module('app')
   .controller('speechController', function ($scope) {
+    this.responses = [];
     this.finalTranscript = '';
     this.recognizing = false;
     this.analysis = '';
@@ -30,6 +31,7 @@ angular.module('app')
 
       this.recognition.onend = () => {
         this.recognizing = false;
+        this.responses.push(this.finalTranscript);
         $scope.$apply();
         if (this.ignoreOnEnd) {
           return;
@@ -59,12 +61,14 @@ angular.module('app')
 
     this.startButton = () => {
       if (!this.recognizing) {
+        if (!this.responses.length) {
+          this.select(1);
+        }
         this.finalTranscript = '';
         this.ignoreOnend = false;
         final_span.innerHTML = '';
         interim_span.innerHTML = '';
         this.startTimestamp = Date.now();
-        this.select(3);
         this.recognition.start();
       } else {
         this.recognition.stop();
