@@ -6,6 +6,7 @@ angular.module('app')
     this.analysis = '';
 
     this.handleSubmission = () => {
+      this.select();
       console.log('response', this.responses);
       this.service.toneAnalysis(this.responses.join('.'), (err, results) => {
         this.result(results);
