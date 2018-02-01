@@ -1,7 +1,6 @@
-<div id="analysis">
-  <ul>
-    <div ng-repeat="tone in $ctrl.results">
-      <li>{{ tone }}</li>
-    </div>
-  </ul>
+<div ng-if="$ctrl.results.length !== 0" id="analysis">
+  <h1>Your Analysis</h1>
+  <p ng-repeat="tone in $ctrl.results">{{ tone }}</p>
 </div>
+
+

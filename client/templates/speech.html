@@ -1,6 +1,8 @@
 <div id="results">
-  <button ng-if="$ctrl.recognizing" class="circular ui red right floated icon button flashing">
-    <i class="large unmute icon"></i>
+  <button
+    ng-if="$ctrl.recognizing"
+    class="circular ui red left floated icon button flashing">
+    <i class="unmute icon"></i>
   </button>
   <span id="final_span"></span>
   <span id="interim_span"></span>
@@ -19,7 +21,8 @@
     class="large ui right labeled icon button"
     >
     <i class="step forward icon"></i>
-    Next</button>
+    Next
+  </button>
   <button
     ng-click="$ctrl.handleSubmission()"
     class="large ui right floated button submit"
