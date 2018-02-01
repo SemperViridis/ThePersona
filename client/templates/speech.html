@@ -21,8 +21,10 @@
     <i class="step forward icon"></i>
     Next</button>
   <button
-    ng-if="!$ctrl.recognizing && $ctrl.responses.length !== 0"
     ng-click="$ctrl.handleSubmission()"
-    class="large ui right floated button submit">Submit</button>
+    class="large ui right floated button submit"
+    disabled="disabled">
+    Submit
+  </button>
 </div>
 
