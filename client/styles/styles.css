@@ -1,6 +1,7 @@
 body {
   background: #f4f4f4;
-  font: 1em 'Quicksand', sans-serif;
+  font: 1em 'Lato', sans-serif;
+  height: 100%;
 }
 
 #appContainer {
@@ -22,17 +23,22 @@ body {
   width: 20%;
 }
 
-#prompts {
-  position: relative;
-  width: 60%;
+/*#prompts {
+  width: 65%;
   margin: auto;
+}*/
+
+#prompts, #speech, #results{
+  margin: auto;
+  width: 65%;
 }
 
 div.promptsScreen {
-  background: #fff;
-  /*min-height: 400px;*/
+  background: #494949;
+  min-height: 350px;
   margin: 70px auto 0 auto;
   border: 1px solid #bfc1c1;
+  text-align: center;
 }
 
 ul {
@@ -40,9 +46,24 @@ ul {
 }
 
 li.prompt {
-  text-align: center;
-  font: 2em 'Quicksand', sans-serif;
   margin: auto;
-  padding-top: 20%;
-  padding-bottom: 20%;
+  font-size: 2.5em;
+  padding: 15% 0;
+  color: #fff;
+}
+
+#speech {
+  margin-top: 0;
+}
+
+#speech button.submit {
+  background: #13ed9a;
+  color: #fff;
+}
+
+#results {
+  background: #fff;
+  min-height: 350px;
+  margin: 2% auto 1% auto;
+  border: 1px solid #bfc1c1;
 }

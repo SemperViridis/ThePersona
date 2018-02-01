@@ -1,10 +1,23 @@
-<div>
-  <button id="start_button" ng-click="$ctrl.startButton()">{{$ctrl.recognizing ? 'Stop' : 'Start'}}</button>
-  <button ng-click="$ctrl.select(1)">Next</button>
-  <button ng-click="$ctrl.handleSubmission()">Submit</button>
-</div>
 <div id="results">
-  <span id="final_span"></span>
-  <span id="interim_span"></span>
-  <p>
+  <p class="final_span"></p>
+  <p class="interim_span"></p>
 </div>
+<div id="speech">
+  <button
+    id="start_button"
+    ng-click="$ctrl.startButton()"
+    class="large ui right labeled icon button">
+    <i class="play icon"></i>
+    {{$ctrl.recognizing ? 'Stop' : 'Start'}}
+  </button>
+  <button
+    ng-click="$ctrl.select(1)"
+    class="large ui right labeled icon button"
+    >
+    <i class="step forward icon"></i>
+    Next</button>
+  <button
+    ng-click="$ctrl.handleSubmission()"
+    class="large ui right floated button submit">Submit</button>
+</div>
+
