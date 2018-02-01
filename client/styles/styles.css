@@ -1,0 +1,67 @@
+body {
+  background: #f4f4f4;
+  font: 1em 'Lato', sans-serif;
+  height: 100%;
+}
+
+#appContainer {
+  width: 100%;
+/*  max-width: 100%;*/
+  margin: auto;
+}
+
+#header {
+  background: #0f2d37;
+  padding-bottom: 50px;
+  margin-top: 0;
+}
+
+#header h1 {
+  background: #13ed9a;
+  padding-left: 20px;
+  color: #fff;
+  width: 20%;
+}
+
+#prompts, #speech, #results{
+  margin: auto;
+  width: 65%;
+}
+
+div.promptsScreen {
+  background: #494949;
+  min-height: 340px;
+  margin: 70px auto 0 auto;
+  border: 1px solid #bfc1c1;
+  text-align: center;
+  list-style: none;
+}
+
+p.prompt {
+  margin: auto;
+  font-size: 2.5em;
+  padding: 15% 5%;
+  color: #fff;
+}
+
+#speech {
+  margin-top: 0;
+}
+
+#speech button.submit {
+  background: #13ed9a;
+  color: #fff;
+}
+
+#results {
+  background: #fff;
+  min-height: 340px;
+  margin: 2% auto 1% auto;
+  border: 1px solid #bfc1c1;
+}
+
+#final_span, #interim_span {
+  font-size: 5em;
+  padding-top: 50px;
+  display: inline-block;
+}
