@@ -4,12 +4,16 @@ angular.module('app')
     this.finalTranscript = '';
     this.recognizing = false;
     this.analysis = '';
+    this.submitButton = $('button.large.ui.right.floated.button.submit');
 
     this.handleSubmission = () => {
+      this.select();
       console.log('response', this.responses);
+      this.submitButton.attr('disabled', 'disabled');
       this.service.toneAnalysis(this.responses.join('.'), (err, results) => {
         this.result(results);
       });
+      this.responses = [];
     };
 
     if ('webkitSpeechRecognition' in window) {
@@ -34,6 +38,7 @@ angular.module('app')
         this.recognizing = false;
         this.responses.push(this.finalTranscript);
         final_span.innerHTML = '';
+        this.submitButton.removeAttr('disabled');
         $scope.$apply();
         if (this.ignoreOnEnd) {
           return;
