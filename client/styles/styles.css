@@ -23,11 +23,6 @@ body {
   width: 20%;
 }
 
-/*#prompts {
-  width: 65%;
-  margin: auto;
-}*/
-
 #prompts, #speech, #results{
   margin: auto;
   width: 65%;
