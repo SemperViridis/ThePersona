@@ -4,9 +4,12 @@ angular.module('app')
     this.analysis = [];
 
     this.showAnalysis = (results) => {
+      console.log('results in app:', results);
       const { tones } = results;
+      console.log('tones in app:', tones);
       const renderedTones = tones.map(tone => `${tone.tone_name} - ${tone.score * 100} %`);
       this.analysis = renderedTones;
+      console.log(this.analysis);
     };
 
     this.select = (numPrompts) => {

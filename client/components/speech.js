@@ -6,6 +6,7 @@ angular.module('app')
     this.analysis = '';
 
     this.handleSubmission = () => {
+      console.log('response', this.responses);
       this.service.toneAnalysis(this.responses.join('.'), (err, results) => {
         this.result(results);
       });
@@ -32,6 +33,7 @@ angular.module('app')
       this.recognition.onend = () => {
         this.recognizing = false;
         this.responses.push(this.finalTranscript);
+        final_span.innerHTML = '';
         $scope.$apply();
         if (this.ignoreOnEnd) {
           return;
@@ -57,6 +59,16 @@ angular.module('app')
       // upgrade
       console.log('need upgrade');
     }
+
+    this.getNextPrompt = () => {
+      this.recognition.stop();
+      this.responses.push(this.finalTranscript);
+      final_span.innerHTML = '';
+      this.select(1);
+      setTimeout(() => {
+        this.recognition.start();
+      }, 1000);
+    };
 
 
     this.startButton = () => {
