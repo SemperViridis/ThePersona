@@ -4,8 +4,8 @@ const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 module.exports = function analyzeInput(input) {
   return new Promise((resolve, reject) => {
     const request = new ToneAnalyzerV3({
-      username: process.env.WATSON_USERNAME,
-      password: process.env.WATSON_PASSWORD,
+      username: '',
+      password: '',
       version_date: '2017-09-21',
     });
 
