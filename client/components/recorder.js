@@ -25,10 +25,22 @@ angular.module('app')
       this.recorderVideo.srcObject = stream;
     };
 
+    this.toggleRecording = () => {
+      console.log('line 29')
+      if (this.recordButton.textContent === 'Record') {
+        this.startRecording();
+      } else {
+        this.mediaRecorder.stop();
+        this.recordButton.textContent = 'Record';
+        debugger;
+      }
+    };
+
     this.startRecording = () => {
       this.mediaRecorder = new MediaRecorder(this.stream, { mimeType: 'video/webm;codecs=vp9' });
       this.mediaRecorder.ondataavailable = this.handleDataAvailable;
       this.mediaRecorder.start(10);
+      this.recordButton.textContent = 'Stop';
     };
   })
 
