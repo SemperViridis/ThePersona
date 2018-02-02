@@ -10,6 +10,24 @@ angular.module('app')
       const renderedTones = tones.map(tone => `${tone.tone_name} - ${tone.score * 100} %`);
       this.analysis = renderedTones;
       console.log(this.analysis);
+
+    this.fillerAnalysis = [];
+    this.showFillers = (result) => {
+      console.log('show Fillers hit:', result);
+      this.fillerAnalysis = result;
+    };
+      this.analysis = renderedTones;
+      console.log('rendered:', this.analysis)
+    };
+
+    this.toneAnalysis = toneAnalysis;
+    // this.wordAnalysis = wordAnalysis;
+    this.submitToWatson = (text) => {
+      // service logic
+      console.log('triggered:', text);
+      toneAnalysis(text, function (err, results) {
+        console.log(results);
+      });
     };
 
     this.select = (numPrompts) => {
@@ -34,5 +52,6 @@ angular.module('app')
     controller: 'AppCtrl',
     templateUrl: 'templates/app.html'
   });
+
 
 //'Tell me about yourself.', 'What excites you about joining our team?', 'How would co-workers describe the role you play on the team?', 'What\'s the difference between dot and bracket notation in a javascript object?', 'What is your favorite data structure and why?', 'In Javascript, what does the keyword \'new\' do?', 'What are your hobbies?', 'Explain how `JSON.stringify(something)` is different than `something.toString()`', 'What are the differences between == and ===?', 'What is the difference between "call" and "apply"? What are their purposes?', 'What is Event Delegation?', 'Why did you choose to learn Javascript over another language?', 'What is a closure? How might we use closure to our advantage?', 'Tell me about a recent project you worked on', 'Tell me about a technical challenge you ran into recently.', 'Give an example of a goal you reached and tell me how you achieved it.',

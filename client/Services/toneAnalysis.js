@@ -17,4 +17,21 @@ angular.module('app')
           }
         });
     };
+    this.wordAnalysis = (transcription, callback) => {
+      $http.post('http://localhost:3000/api/wordanalysis', {
+        data: {
+          text: transcription
+        }
+      })
+        .then(({ data }) => {
+          // NEED TO VERIFY FORMAT OF DATA
+          if (callback) {
+            callback(null, data);
+          }
+        }, ({ data }) => {
+          if (callback) {
+            callback(data, null);
+          }
+        })
+    };
   });

@@ -14,6 +14,11 @@ angular.module('app')
         this.result(results);
       });
       this.responses = [];
+
+      this.service.wordAnalysis(this.finalTranscript, (err, results) => {
+        console.log('filler word analysis:', results);
+        this.fillers(results);
+      });
     };
 
     if ('webkitSpeechRecognition' in window) {
@@ -99,6 +104,16 @@ angular.module('app')
       } else {
         this.recognition.stop();
       }
+<<<<<<< HEAD
+=======
+      this.finalTranscript = '';
+      this.recognition.start();
+      this.ignoreOnend = false;
+      final_span.innerHTML = '';
+      interim_span.innerHTML = '';
+      startTimestamp = Date.now();
+      this.select(3);
+>>>>>>> integrate filler word algo
     };
   })
 

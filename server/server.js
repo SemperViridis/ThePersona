@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('../database');
 const toneAnalyzer = require('./helpers/toneAnalyzer');
+const wordAnalyzer = require('./helpers/fillerWords');
 
 const app = express();
 
@@ -27,5 +28,14 @@ app.post('/api/ibmtone', (req, res) => {
       res.send(tone);
     });
 });
+
+app.post('/api/wordanalysis', (req, res) => {
+  console.log('REQ.BODY:', req.body);
+  var analysis = wordAnalyzer(req.body.data.text);
+  console.log('speech analysis:', analysis);
+  var test = {data:'this thing is this thing'}
+  res.send(test);
+});
+
 
 module.exports = app;
