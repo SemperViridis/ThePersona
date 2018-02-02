@@ -79,10 +79,6 @@ const selectAll = (callback) => {
     });
 };
 
-<<<<<<< 046bd0122da5a5e95839365725b96c52aed76104
-module.exports.selectAll = selectAll;
-=======
 module.exports.User = User;
 module.exports.selectAll = selectAll;
 module.exports.sequelize = sequelize;
->>>>>>> database restructure and auth
