@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const FacebookStrategy = require('passport-facebook').Strategy;
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+// const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const session = require('express-session');
 const jwtoken = require('jsonwebtoken');
 const Sequelize = require('sequelize');
@@ -111,10 +111,10 @@ module.exports = function (app, passport) {
 
   // Google OAuth Routes
 
-  app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'profile', 'email'] }));
-  app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/googleerror' }), 
-    (req, res) => {res.redirect('/');
-  });
+  // app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'profile', 'email'] }));
+  // app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/googleerror' }), 
+  //   (req, res) => {res.redirect('/');
+  // });
 
   return passport;  
 };
