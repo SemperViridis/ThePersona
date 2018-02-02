@@ -38,6 +38,7 @@
     "sinon": "1.17.7"
   },
   "dependencies": {
+    "@uirouter/angularjs": "^1.0.14",
     "angular": "^1.6.3",
     "angular-mocks": "^1.6.2",
     "bluebird": "^3.5.1",

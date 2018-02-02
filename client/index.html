@@ -6,20 +6,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
   <link rel="stylesheet" href="./styles/styles.css"/>
   <script src="angular/angular.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
 </head>
 <body>
   <div ng-app="app">
-    <app />
+    <ui-view></ui-view>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
   <script type="text/javascript" src="index.js"></script>
+  <script type="text/javascript" src="routing.js"></script>
+  <script type="text/javascript" src="components/analysis.js"></script>
+  <script type="text/javascript" src="components/tone.js"></script>
   <script type="text/javascript" src="services/toneAnalysis.js"></script>
   <script type="text/javascript" src="components/app.js"></script>
   <script type="text/javascript" src="components/recorder.js"></script>
-  <script type="text/javascript" src="components/analysis.js"></script>
-  <script type="text/javascript" src="components/tone.js"></script>
   <script type="text/javascript" src="components/prompts.js"></script>
   <script type="text/javascript" src="components/speech.js"></script>
+  <script type="text/javascript" src="components/home.js"></script>
 </body>
 </html>
