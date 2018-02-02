@@ -1,23 +1,16 @@
 const Sequelize = require('sequelize');
-
-let db;
-
+let sequelize;
 
 if (process.env.NODE_ENV === 'production') {
-  db = new Sequelize(process.env.CLEARDB_DATABASE_URL);
+  sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 } else {
-  db = new Sequelize('persona', 'root', '', {
+  sequelize = new Sequelize('persona', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
   });
-  // createPersona();
-
-  // return db.query("DROP DATABASE IF EXISTS `persona`;")
-  //   .then(db.query("CREATE DATABASE `persona`;"))
-  //   .then(db.query("USE `persona`;"))
 }
 
-db
+sequelize
   .authenticate()
   .then(() => {
     console.log('Database successfully connected!');
@@ -26,150 +19,58 @@ db
     console.error('Unable to connect to the database:', err);
   });
 
-// SAMPLE
-const User = db.define('users', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  username: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: true
-  },
-  lastName: {
-    type: Sequelize.STRING,
-    allowNull: true
-  }
+// INITIALIZE TABLES
+
+const User = sequelize.import('./models/User.js');
+const Prompt = sequelize.import('./models/Prompt.js');
+const Answer = sequelize.import('./models/Answer.js');
+const Comment = sequelize.import('./models/Comment.js');
+const Tag = sequelize.import('./models/Tag.js');
+const Vote = sequelize.import('./models/Vote.js');
+
+
+// // FOREIGN KEY CREATION
+
+Answer.belongsTo(User, {
+  targetKey: `id`,
+  constraints: false,
+  onDelete: `CASCADE`,
 });
 
-const Prompt = db.define('prompts', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  question: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-  },
-  createdAt: Sequelize.DATE,
+Prompt.belongsTo(User, {
+  targetKey: `id`,
+  constraints: false,
+  onDelete: `CASCADE`,
 });
 
-const Answer = db.define('answers', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  response: {
-    type: Sequelize.TEXT,
-    allowNull: false,
-  },
-  createdAt: Sequelize.DATE,
+Comment.belongsTo(User, {
+  targetKey: `id`,
+  constraints: false,
+  onDelete: `CASCADE`,
 });
 
-const Comment = db.define('comments', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  cmnt: {
-    type: Sequelize.TEXT,
-    allowNull: false
-  }
+Vote.belongsTo(User, {
+  targetKey: `id`,
+  constraints: false,
+  onDelete: `CASCADE`,
 });
 
-const Tag = db.define('tags', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  tagname: {
-    type: Sequelize.STRING,
-    allowNull: false
-  }
+Answer.belongsTo(Prompt, {
+  targetKey: `id`,
+  constraints: false,
+  onDelete: `CASCADE`,
 });
 
-const Vote = db.define('votes', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  }
+Tag.belongsTo(Prompt, {
+  targetKey: `id`,
+  constraints: false,
+  onDelete: `CASCADE`,
 });
 
-
-// CREATE ENTRIES
-User.sync({ force: true });
-Prompt.sync({ force: true });
-Answer.sync({ force: true });
-Comment.sync({ force: true });
-Vote.sync({ force: true });
-
-// FOREIGN KEY CREATION
-User.hasMany(Prompt, {
-  foreignKey: {
-    name: 'userid',
-    allowNull: false
-  }
-});
-
-User.hasMany(Answer, {
-  foreignKey: {
-    name: 'userid',
-    allowNull: false
-  }
-});
-
-User.hasMany(Comment, {
-  foreignKey: {
-    name: 'userid',
-    allowNull: false
-  }
-})
-
-User.hasMany(Tag, {
-  foreignKey: {
-    name: 'userid',
-    allowNull: false
-  }
-});
-
-User.hasMany(Vote, {
-  foreignKey: {
-    name: 'userid',
-    allowNull: false
-  }
-});
-
-
-Prompt.hasMany(Answer, {
-  foreignKey: {
-    name: 'promptid',
-    allowNull: false
-  }
-});
-
-Prompt.hasMany(Tag, {
-  foreignKey: {
-    name: 'promptid',
-    allowNull: false
-  }
-});
-
-Vote.hasOne(Answer);
-Vote.hasOne(Comment);
-Vote.hasOne(Prompt);
+sequelize.sync();
 
 const selectAll = (callback) => {
-  Users.findAll()
+  User.findAll()
     .then((results) => {
       callback(null, results);
     })
@@ -178,4 +79,6 @@ const selectAll = (callback) => {
     });
 };
 
+module.exports.User = User;
 module.exports.selectAll = selectAll;
+module.exports.sequelize = sequelize;
