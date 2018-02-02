@@ -18,8 +18,9 @@ angular.module('app')
 
     if ('webkitSpeechRecognition' in window) {
       // initialize speech interface
-      this.recognition = new webkitSpeechRecognition();
 
+      this.recognition = new webkitSpeechRecognition();
+      debugger;
       // set attributes
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
@@ -29,6 +30,12 @@ angular.module('app')
         this.recognizing = true;
         $scope.$apply();
       };
+      this.recognition.audiostart = () => {
+        console.log('sound started!');
+      };
+      this.recognition.audioend = () => {
+        console.log('sound ended!');
+      };
 
       this.recognition.onerror = () => {
         this.ignoreOnEnd = true;
@@ -37,7 +44,7 @@ angular.module('app')
       this.recognition.onend = () => {
         this.recognizing = false;
         this.responses.push(this.finalTranscript);
-        final_span.innerHTML = '';
+        // final_span.innerHTML = '';
         this.submitButton.removeAttr('disabled');
         $scope.$apply();
         if (this.ignoreOnEnd) {
@@ -52,9 +59,10 @@ angular.module('app')
         let interimTranscript = '';
         for (let i = event.resultIndex; i < event.results.length; i += 1) {
           if (event.results[i].isFinal) {
-            this.finalTranscript += event.results[i][0].transcript;
+            this.finalTranscript += event.results[i][0].transcript + '.';
           } else {
             interimTranscript += event.results[i][0].transcript;
+
           }
         }
         interim_span.innerHTML = interimTranscript;
@@ -68,6 +76,7 @@ angular.module('app')
     this.getNextPrompt = () => {
       this.recognition.stop();
       this.responses.push(this.finalTranscript);
+      this.finalTranscript = '';
       final_span.innerHTML = '';
       this.select(1);
       setTimeout(() => {
