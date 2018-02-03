@@ -1,10 +1,22 @@
  <div>
-  <a ui-sref="/">Home</a>
-  <h1>INTERVIEW!!!!!</h1>
-  <div
-    ui-view="prompts"
+  <h1>INTERVIEW</h1>
+  <prompts
+    prompts="$ctrl.currentPrompts">
+  </prompts>
+  <speech
     service="$ctrl.toneAnalysis"
     result="$ctrl.showAnalysis"
+    fillers="$ctrl.showFillers"
     select="$ctrl.select">
-  </div>
+  </speech>
+
+  <div class="ui divider"></div>
+
+  <recorder></recorder>
+
+  <analysis
+    results="$ctrl.analysis"
+    fillers="$ctrl.fillerAnalysis"
+    total="$ctrl.total">
+  </analysis>
 </div>

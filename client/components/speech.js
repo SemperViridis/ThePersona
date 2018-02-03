@@ -17,7 +17,6 @@ angular.module('app')
       this.service.wordAnalysis(this.responses.join(' '), (err, results) => {
         this.fillers(results);
       });
-
     };
 
     if ('webkitSpeechRecognition' in window) {
@@ -65,7 +64,6 @@ angular.module('app')
             this.finalTranscript += event.results[i][0].transcript + '.';
           } else {
             interimTranscript += event.results[i][0].transcript;
-
           }
         }
         interim_span.innerHTML = interimTranscript;
@@ -86,7 +84,6 @@ angular.module('app')
         this.recognition.start();
       }, 1000);
     };
-
 
     this.startButton = () => {
       if (!this.recognizing) {
@@ -110,7 +107,7 @@ angular.module('app')
       service: '<',
       result: '<',
       select: '<',
-      fillers:'<'
+      fillers: '<'
     },
     controller: 'speechController',
     templateUrl: 'templates/speech.html'
