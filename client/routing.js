@@ -18,9 +18,30 @@ angular.module('app', ['ui.router'])
       component: 'interview'
     };
 
+    const communityState = {
+      name: 'app.community',
+      url: 'community',
+      component: 'community'
+    };
+
+    const practiceState = {
+      name: 'app.interview.practice',
+      url: '/practice',
+      component: 'practice'
+    };
+
+    const mockState = {
+      name: 'app.interview.mock',
+      url: '/mock',
+      component: 'mock'
+    };
+
     $urlRouterProvider.otherwise('/');
     $stateProvider.state(appState);
     $stateProvider.state(logInState);
     $stateProvider.state(interviewState);
+    $stateProvider.state(communityState);
+    $stateProvider.state(practiceState);
+    $stateProvider.state(mockState);
   });
 

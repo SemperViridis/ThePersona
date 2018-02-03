@@ -1,22 +1,6 @@
  <div>
   <h1>INTERVIEW</h1>
-  <prompts
-    prompts="$ctrl.currentPrompts">
-  </prompts>
-  <speech
-    service="$ctrl.toneAnalysis"
-    result="$ctrl.showAnalysis"
-    fillers="$ctrl.showFillers"
-    select="$ctrl.select">
-  </speech>
-
-  <div class="ui divider"></div>
-
-  <recorder></recorder>
-
-  <analysis
-    results="$ctrl.analysis"
-    fillers="$ctrl.fillerAnalysis"
-    total="$ctrl.total">
-  </analysis>
+  <button class="large ui button"><a ui-sref="app.interview.practice">Practice</a></button>
+  <button class="large ui button"><a ui-sref="app.interview.mock">Mock Interview</a></button>
 </div>
+<ui-view></ui-view>
