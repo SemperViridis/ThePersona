@@ -49,7 +49,7 @@ angular.module('app')
         dupPrompts.splice(index, 1);
       }
     };
-    this.prompts = ['Tell me about a recent project you worked on','How did you handle meeting a tight deadline?'];
+    this.prompts = ['Tell me about a recent project you worked on', 'How did you handle meeting a tight deadline?'];
   })
 
   .component('app', {
