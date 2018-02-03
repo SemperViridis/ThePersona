@@ -13,15 +13,9 @@ angular.module('app', ['ui.router'])
     };
 
     const interviewState = {
-      name: 'interview',
-      url: '/interview',
-      views: {
-        '': { templateUrl: 'templates/interview.html' },
-        prompts: {
-          templateUrl: 'templates/prompts.html',
-          controller: 'Appctrl'
-        }
-      }
+      name: 'app.interview',
+      url: 'interview',
+      component: 'interview'
     };
 
     $urlRouterProvider.otherwise('/');

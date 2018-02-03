@@ -1,2 +1,4 @@
 angular.module('app')
-  .component('login', {});
+  .component('login', {
+    templateUrl: 'templates/login.html'
+  });
