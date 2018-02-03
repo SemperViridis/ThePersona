@@ -3,7 +3,6 @@ angular.module('app')
     this.recordedBlobs = [];
     this.mediaSource = new MediaSource();
     this.mediaSource.addEventListener('sourceopen', this.handleSourceOpen, false);
-
     this.recorderVideo = document.querySelector('video#recorder');
     this.recordButton = document.querySelector('button#record');
 
@@ -11,7 +10,7 @@ angular.module('app')
       .then(stream => this.handleSuccess(stream));
 
     this.handleSourceOpen = () => {
-      this.sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
+      this.sourceBuffer = mediaSource.addSourceBuffer('video/webm');
     };
 
     this.handleDataAvailable = (event) => {
@@ -23,6 +22,16 @@ angular.module('app')
     this.handleSuccess = (stream) => {
       this.stream = stream;
       this.recorderVideo.srcObject = stream;
+      this.recorderVideo.onloadedmetadata = () => {
+        this.recorderVideo.play();
+      };
+    };
+
+    this.startRecording = () => {
+      this.mediaRecorder = new MediaRecorder(this.stream);
+      this.mediaRecorder.ondataavailable = this.handleDataAvailable;
+      this.mediaRecorder.start(10);
+      this.recordButton.textContent = 'Stop';
     };
 
     this.toggleRecording = () => {
@@ -32,13 +41,6 @@ angular.module('app')
         this.mediaRecorder.stop();
         this.recordButton.textContent = 'Record';
       }
-    };
-
-    this.startRecording = () => {
-      this.mediaRecorder = new MediaRecorder(this.stream, { mimeType: 'video/webm;codecs=vp9' });
-      this.mediaRecorder.ondataavailable = this.handleDataAvailable;
-      this.mediaRecorder.start(10);
-      this.recordButton.textContent = 'Stop';
     };
   })
 
