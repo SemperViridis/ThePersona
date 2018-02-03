@@ -13,14 +13,17 @@ angular.module('app')
       this.service.toneAnalysis(this.responses.join('.'), (err, results) => {
         this.result(results);
       });
-      this.responses = [];
+
+      this.service.wordAnalysis(this.responses.join(' '), (err, results) => {
+        this.fillers(results);
+      });
+
     };
 
     if ('webkitSpeechRecognition' in window) {
       // initialize speech interface
 
       this.recognition = new webkitSpeechRecognition();
-      debugger;
       // set attributes
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
@@ -106,7 +109,8 @@ angular.module('app')
     bindings: {
       service: '<',
       result: '<',
-      select: '<'
+      select: '<',
+      fillers:'<'
     },
     controller: 'speechController',
     templateUrl: 'templates/speech.html'

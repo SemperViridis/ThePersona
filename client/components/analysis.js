@@ -1,7 +1,9 @@
 angular.module('app')
   .component('analysis', {
     bindings: {
-      results: '<'
+      results: '<',
+      fillers: '<',
+      total: '<'
     },
     templateUrl: 'templates/analysis.html'
   });

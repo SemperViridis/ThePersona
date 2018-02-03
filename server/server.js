@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('../database');
 const toneAnalyzer = require('./helpers/toneAnalyzer');
+const wordAnalyzer = require('./helpers/fillerWords').fillerWords;
+
 const app = express();
 const sequelize = require('../database/index.js').sequelize;
 const User = require('../database/models/User.js');
@@ -39,5 +41,13 @@ app.post('/api/ibmtone', (req, res) => {
       res.send(tone);
     });
 });
+
+app.post('/api/wordanalysis', (req, res) => {
+  console.log('REQ.BODY:', req.body);
+  wordAnalyzer(req.body.data.text, (analysis) => {
+    res.send(JSON.stringify(analysis));
+  }, req.body.data.fillers);
+});
+
 
 module.exports = app;
