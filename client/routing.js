@@ -30,12 +30,20 @@ angular.module('app', ['ui.router'])
         name: 'app.user',
         url: '/{ id }',
         component: 'user'
-        // NEED TO ADD RESOLVE SERVICE TO RETRIEVE USER ID
+        // NEED TO ADD SERVICE TO RETRIEVE USER ID
+        // resolve: (UserService) => {
+        // return PeopleService.getUser();
+        // }
       },
       {
         name: 'login',
         url: '/login',
         component: 'login'
+      },
+      {
+        name: 'logout',
+        url: '/logout',
+        component: 'logout'
       }
     ];
 
