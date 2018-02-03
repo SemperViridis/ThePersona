@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const FacebookStrategy = require('passport-facebook').Strategy;
-// const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const session = require('express-session');
 const jwtoken = require('jsonwebtoken');
 const Sequelize = require('sequelize');
@@ -41,7 +41,7 @@ module.exports = function (app, passport) {
     });
   });
 
-  // Facebook Strategy
+  // FACEBOOK STRATEGY
 
   passport.use(new FacebookStrategy({ // travis is getting it from the .travis.yml so it's probably looking for it in there
     clientID: `1840741019270677`,
@@ -71,34 +71,34 @@ module.exports = function (app, passport) {
   }
   ));
 
-  // Google Strategy
+  // GOOGLE STRATEGY
 
-  // passport.use(new GoogleStrategy({
-  //   clientID: ``,
-  //   clientSecret: ``,
-  //   callbackURL: ""
-  // },
-  // (accessToken, refreshToken, profile, done) => {
-  //   User.find({ where: {email: profile.emails[0].value} })
-  //     .then((user) => {
-  //     if (!user) {
-  //       User.create({
-  //         name: profile.given_name || '',
-  //         email: profile.email,
-  //         username: profile.name || '',
-  //         provider: 'google',
-  //         googleUserId: profile.sub
-  //       }).then((u)=> {
-  //         done(null, u);
-  //       })
-  //     } else {
-  //       done(null, user);
-  //     }
-  //   }).catch((err) => {
-  //     done(err, null);
-  //   });
-  // }
-  // ));
+  passport.use(new GoogleStrategy({
+    clientID: process.env.googleID,
+    clientSecret: process.env.googleSECRET,
+    callbackURL: "http://localhost:3000/auth/google/callback"
+  },
+  (accessToken, refreshToken, profile, done) => {
+    User.find({ where: {email: profile.emails[0].value} })
+      .then((user) => {
+      if (!user) {
+        User.create({
+          name: profile.name.givenName || '',
+          email: profile.email,
+          username: profile.name.givenName + ' ' + profile.name.familyName || '',
+          provider: 'google',
+          googleUserId: profile.sub
+        }).then((u)=> {
+          done(null, u);
+        })
+      } else {
+        done(null, user);
+      }
+    }).catch((err) => {
+      done(err, null);
+    });
+  }
+  ));
 
 
   // Facebook Auth Routes
@@ -111,10 +111,10 @@ module.exports = function (app, passport) {
 
   // Google OAuth Routes
 
-  // app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'profile', 'email'] }));
-  // app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/googleerror' }), 
-  //   (req, res) => {res.redirect('/');
-  // });
+  app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/googleerror' }), 
+    (req, res) => {res.redirect('/');
+  });
+  app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'profile', 'email'] }));
 
   return passport;  
 };
