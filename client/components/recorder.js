@@ -26,13 +26,11 @@ angular.module('app')
     };
 
     this.toggleRecording = () => {
-      console.log('line 29')
       if (this.recordButton.textContent === 'Record') {
         this.startRecording();
       } else {
         this.mediaRecorder.stop();
         this.recordButton.textContent = 'Record';
-        debugger;
       }
     };
 
