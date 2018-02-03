@@ -13,19 +13,17 @@ angular.module('app')
       this.service.toneAnalysis(this.responses.join('.'), (err, results) => {
         this.result(results);
       });
-      this.responses = [];
 
-      this.service.wordAnalysis(this.finalTranscript, (err, results) => {
-        console.log('filler word analysis:', results);
+      this.service.wordAnalysis(this.responses.join(' '), (err, results) => {
         this.fillers(results);
       });
+
     };
 
     if ('webkitSpeechRecognition' in window) {
       // initialize speech interface
 
       this.recognition = new webkitSpeechRecognition();
-      debugger;
       // set attributes
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
@@ -104,16 +102,6 @@ angular.module('app')
       } else {
         this.recognition.stop();
       }
-<<<<<<< HEAD
-=======
-      this.finalTranscript = '';
-      this.recognition.start();
-      this.ignoreOnend = false;
-      final_span.innerHTML = '';
-      interim_span.innerHTML = '';
-      startTimestamp = Date.now();
-      this.select(3);
->>>>>>> integrate filler word algo
     };
   })
 
@@ -121,7 +109,8 @@ angular.module('app')
     bindings: {
       service: '<',
       result: '<',
-      select: '<'
+      select: '<',
+      fillers:'<'
     },
     controller: 'speechController',
     templateUrl: 'templates/speech.html'

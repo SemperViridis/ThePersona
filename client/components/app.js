@@ -2,22 +2,26 @@ angular.module('app')
   .controller('AppCtrl', function (toneAnalysis) {
     this.toneAnalysis = toneAnalysis;
     this.analysis = [];
+    this.fillerAnalysis = [];
+    this.total = '';
 
     this.showAnalysis = (results) => {
       console.log('results in app:', results);
       const { tones } = results;
       console.log('tones in app:', tones);
-      const renderedTones = tones.map(tone => `${tone.tone_name} - ${tone.score * 100} %`);
+      const renderedTones = tones.map(tone => `${tone.tone_name} - ${Math.round(tone.score * 100)} %`);
       this.analysis = renderedTones;
       console.log(this.analysis);
-
-    this.fillerAnalysis = [];
-    this.showFillers = (result) => {
-      console.log('show Fillers hit:', result);
-      this.fillerAnalysis = result;
-    };
       this.analysis = renderedTones;
       console.log('rendered:', this.analysis)
+    };
+
+    this.showFillers = (result) => {
+      this.fillerAnalsis = [];
+      for (let j in result[1]) {
+        this.fillerAnalysis.push(`You used the word '${j}' ${result[1][j]} times`);
+      }
+      this.total = `Total word count: ${result[2]}`;
     };
 
     this.toneAnalysis = toneAnalysis;

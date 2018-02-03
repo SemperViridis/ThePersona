@@ -1,39 +1,52 @@
-const Promise = require('bluebird');
+const _ = require('lodash');
 
-let wordCount = function (str) {
-  //split the string into a space delimited array
-  //then loop through the array counting the frequency of each word in an object
-  //return the count Object
-  let count = {};
-  let words = str.split(' ');
-  for (var j = 0; j < words.length; j++) {
+const wordCount = function (str, callback) {
+  const count = {};
+  const input = str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+  const words = input.split(' ');
+  for (let j = 0; j < words.length; j += 1) {
     if (count[words[j]]) {
-      count[words[j]]++
+      count[words[j]] += 1;
     } else {
       count[words[j]] = 1;
     }
   }
-  return count;
-}
+  const sortedKeys = Object.keys(count).sort(function (a, b) {
+    return count[b] - count[a];
+  });
+  const sorted = {};
+  for (let k = 0; k < sortedKeys.length; k += 1) {
+    sorted[sortedKeys[k]] = count[sortedKeys[k]];
+  }
+  if (callback) {
+    callback(sorted);
+  }
+  return sorted;
+};
 
 
-var fillerWords = function (str, fillerWords) {
-  //create an array with the filler words you would like to check for
-  //split the string into an array using the space delimitor
-  //count the frequency of each filler word in the input string, put the counts in an object
-  //return the object
+const fillerWords = function (str, callback, fillers) {
+  fillers = fillers || ['like', 'so', 'mean', 'order', 'basically', 'essentially', 'totally', 'completely', 'absolutely', 'literally', 'actually', 'simply', 'pretty', 'okay', 'well', 'seriously', 'guess', 'suppose', 'slighty', 'somehow', 'maybe', 'perhaps', 'definitely', 'alright'];
 
-   fillerWords = fillerWords || ['like', 'so', 'mean', 'know', 'order', 'basically', 'essentially', 'totally', 'completely', 'absolutely', 'literally', 'actually', 'simply', 'pretty', 'kind']
+  const counts = wordCount(str);
+  const total = _.reduce(counts, (sum, n) => {
+    return sum + n;
+  }, 0);
+  const fillerCounts = {};
 
-  let counts = wordCount(str);
-  let fillerCounts = {};
-
-  for (let k = 0; k < fillerWords.length; k++) {
-    if (counts[fillerWords[k]]) {
-      fillerCounts[fillerWords[k]] = counts[fillerWords[k]];
+  for (let k = 0; k < fillers.length; k += 1) {
+    if (counts[fillers[k]]) {
+      fillerCounts[fillers[k]] = counts[fillers[k]];
     }
   }
+  const output = [counts, fillerCounts, total];
+  console.log(output);
+  if (callback) {
+    callback(output);
+  }
   return fillerCounts;
-}
+};
 
-module.exports = fillerWords;
+module.exports.fillerWords = fillerWords;
+
+module.exports.wordCount = wordCount;
