@@ -1,21 +1,23 @@
-var expect = chai.expect;
+const expect = chai.expect;
 
 describe('app', function () {
-  var element;
+  let element;
 
-  beforeEach(module('app'));
+  // beforeEach(angular.mock.module('ui.router'));
 
-  beforeEach(module('templates'));
+  beforeEach(angular.mock.module('app'));
 
-  beforeEach(inject(function ($rootScope, $compile) {
-    var scope = $rootScope.$new();
-    element = angular.element('<app></app>');
+  beforeEach(angular.mock.module('templates'));
+
+  beforeEach(angular.mock.inject(function ($rootScope, $compile) {
+    const scope = $rootScope.$new();
+    element = angular.element('<speech></speech>');
     element = $compile(element)(scope);
     $rootScope.$digest();
   }));
 
   it('should render a speech element', function () {
-    var speech = element.find('speech');
+    const speech = element.find('speech');
     expect(speech.length).to.equal(1);
   });
 });

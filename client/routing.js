@@ -1,4 +1,4 @@
-angular.module('app')
+angular.module('app', ['ui.router'])
   .config(function ($stateProvider, $urlRouterProvider) {
     const appState = {
       name: 'app',
@@ -6,14 +6,27 @@ angular.module('app')
       component: 'app'
     };
 
-    const homeState = {
-      name: 'home',
-      url: '/home',
-      component: 'home'
+    const logInState = {
+      name: 'login',
+      url: '/login',
+      component: 'login'
+    };
+
+    const interviewState = {
+      name: 'interview',
+      url: '/interview',
+      views: {
+        '': { templateUrl: 'templates/interview.html' },
+        prompts: {
+          templateUrl: 'templates/prompts.html',
+          controller: 'Appctrl'
+        }
+      }
     };
 
     $urlRouterProvider.otherwise('/');
     $stateProvider.state(appState);
-    $stateProvider.state(homeState);
+    $stateProvider.state(logInState);
+    $stateProvider.state(interviewState);
   });
 
