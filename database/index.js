@@ -4,7 +4,7 @@ let sequelize;
 if (process.env.NODE_ENV === 'production') {
   sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 } else {
-  sequelize = new Sequelize('persona', 'root', 'peterw', {
+  sequelize = new Sequelize('persona', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
   });
