@@ -43,7 +43,6 @@ module.exports = (sequelize, DataTypes) =>{
 
   });
 
-  User.sync({ force: true });
   
   User.associate = function(models) {
     models.User.hasMany(models.Prompt);

@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) =>{
     createdAt: DataTypes.DATE,
   });
 
-  Prompt.sync({ force: true });
 
   return Prompt;
 };

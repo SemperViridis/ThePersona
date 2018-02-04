@@ -67,7 +67,7 @@ Tag.belongsTo(Prompt, {
   onDelete: `CASCADE`,
 });
 
-sequelize.sync();
+sequelize.sync( { force: true } );
 
 const selectAll = (callback) => {
   User.findAll()

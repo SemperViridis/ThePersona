@@ -13,7 +13,6 @@ module.exports = (sequelize, Sequelize) => {
     }
   });
 
-  Comment.sync({ force: true });
 
   return Comment;
 };

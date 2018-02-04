@@ -13,7 +13,6 @@ module.exports = (sequelize, Sequelize) => {
     }
   });
 
-  Tag.sync({ force: true });
 
   return Tag;
 };
