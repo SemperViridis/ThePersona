@@ -1,4 +1,4 @@
-angular.module('app', ['ui.router'])
+angular.module('app')
   .config(function ($stateProvider, $urlRouterProvider) {
     const states = [
       {
