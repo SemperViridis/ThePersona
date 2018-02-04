@@ -4,7 +4,7 @@ let sequelize;
 if (process.env.NODE_ENV === 'production') {
   sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 } else {
-  sequelize = new Sequelize('persona', 'root', '', {
+  sequelize = new Sequelize('persona', 'root', 'peterw', {
     host: 'localhost',
     dialect: 'mysql'
   });
@@ -67,7 +67,7 @@ Tag.belongsTo(Prompt, {
   onDelete: `CASCADE`,
 });
 
-sequelize.sync();
+sequelize.sync( { force: true } );
 
 const selectAll = (callback) => {
   User.findAll()

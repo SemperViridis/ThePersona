@@ -9,7 +9,6 @@ module.exports = (sequelize, Sequelize) => {
     }
   });
 
-  Vote.sync({ force: true });
 
   return Vote;
 };

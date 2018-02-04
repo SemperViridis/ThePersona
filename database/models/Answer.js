@@ -14,7 +14,6 @@ module.exports = (sequelize, Sequelize) => {
     createdAt: Sequelize.DATE,
   });
 
-  Answer.sync({ force: true });
 
   return Answer;
 };
