@@ -6,7 +6,6 @@ angular.module('app')
     // properties
     this.recordedBlobs = [...this.recordingService.recording];
     this.recordedVideo = document.querySelector('video#recorded');
-    this.playButton = document.querySelector('button#play');
     this.downloadButton = document.querySelector('button#download');
 
     // methods
@@ -18,15 +17,16 @@ angular.module('app')
         if (video.duration === Infinity) {
           video.currentTime = 1e101;
           video.ontimeupdate = () => {
-            recordedVideo.currentTime = 0;
+            video.currentTime = 0;
             video.ontimeupdate = () => {
               delete video.ontimeupdate;
-              video.play();
             };
           };
         }
       });
     };
+
+    this.play();
 
     this.download = () => {
       const blob = new Blob(this.recordedBlobs, { type: 'video/webm' });
