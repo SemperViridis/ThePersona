@@ -1,5 +1,8 @@
 angular.module('app')
-  .controller('playbackController', function () {
+  .controller('playbackController', function (recordingService) {
+    this.recordingService = recordingService;
+    console.log(this.recordingService.recording);
+
     // properties
     this.recorderBlobs = []; // need to retrieve this from recorder
     this.recorderVideo = document.querySelector('video#recorded');
@@ -26,5 +29,6 @@ angular.module('app')
     };
   })
   .component('playback', {
+    controller: 'playbackController',
     templateUrl: 'templates/playback.html'
   });
