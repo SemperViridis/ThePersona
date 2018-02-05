@@ -1,7 +1,6 @@
 angular.module('app')
   .controller('recorderController', function (recordingService) {
     this.recordingService = recordingService;
-    this.recordingService.recording.push('testing');
 
     this.recordedBlobs = [];
     this.mediaSource = new MediaSource();
@@ -42,6 +41,7 @@ angular.module('app')
       } else {
         this.mediaRecorder.stop();
         this.recordButton.textContent = 'Record';
+        this.recordingService.recording = this.recordedBlobs;
       }
     };
   })
