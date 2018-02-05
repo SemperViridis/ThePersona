@@ -44,6 +44,11 @@ angular.module('app')
         name: 'logout',
         url: '/logout',
         component: 'logout'
+      },
+      {
+        name: 'playback',
+        url: '/playback',
+        component: 'playback'
       }
     ];
 

@@ -1,11 +1,12 @@
 angular.module('app')
-  .controller('recorderController', function () {
+  .controller('recorderController', function (recordingService) {
+    this.recordingService = recordingService;
+
     this.recordedBlobs = [];
     this.mediaSource = new MediaSource();
     this.mediaSource.addEventListener('sourceopen', this.handleSourceOpen, false);
     this.recorderVideo = document.querySelector('video#recorder');
     this.recordButton = document.querySelector('button#record');
-
     navigator.mediaDevices.getUserMedia({ audio: true, video: true })
       .then(stream => this.handleSuccess(stream));
 
@@ -40,11 +41,15 @@ angular.module('app')
       } else {
         this.mediaRecorder.stop();
         this.recordButton.textContent = 'Record';
+        this.recordingService.recording = this.recordedBlobs;
       }
     };
   })
 
   .component('recorder', {
+    bindings: {
+      getRecording: '<'
+    },
     controller: 'recorderController',
     templateUrl: 'templates/recorder.html'
   });
