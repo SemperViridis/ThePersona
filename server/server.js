@@ -34,61 +34,6 @@ app.get('/api/prompts', (req, res) => {
   console.log(query);
 });
 
-app.post('/api/prompts', (req, res) => {
-
-  const prompts = req.body;
-  // for (var i = 0; i < prompts.length; i += 1) {
-  //   db.addPrompt(prompts[i], (err) => {
-  //     if (err) {
-  //       throw err;
-  //     }
-  //   });
-  // }
-  // for (var i = 0; i < prompts.length; i += 1) {
-  //   for (var j = 0; j < prompts[i].tags.length; j +=1) {
-  //     db.addTag(prompts[i].tags[j], (err) => {
-  //       if (err) {
-  //         throw err;
-  //       }
-  //     });
-  //   }
-  // }
-
-  // for (var i = 0; i < prompts.length; i += 1) {
-  //   for (var j = 0; j < prompts[i].tags.length; j +=1) {
-  //     db.addPromptToTag(prompts[i], prompts[i].tags[j], (err) => {
-  //       if (err) {
-  //         throw err;
-  //       }
-  //     });
-  //   }
-  // }
-
-  prompts.forEach((prompt) => {
-    db.addPrompt(prompt, (err, newPrompt, isPromptCreated) => {
-      if (err) {
-        throw err;
-      } else {
-        prompt.tags.forEach((tag) => {
-          db.addTag(tag, (err, newTag, isTagCreated) => {
-            if (err) {
-              throw err;
-            } else {
-              db.addPromptToTag(newTag.dataValues, newPrompt.dataValues, (err) => {
-                if (err) {
-                  throw err;
-                }
-                next;
-              });
-            }
-          });
-        });
-      }
-    });
-  });
-  res.sendStatus(200);
-});
-
 app.post('/api/ibmtone', (req, res) => {
   toneAnalyzer(req.body.data.text)
     .then((tone) => {

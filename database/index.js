@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const prompts = require('./prompts');
+const seedPrompts = require('./prompts');
 let sequelize;
 
 if (process.env.NODE_ENV === 'production') {
@@ -69,45 +69,9 @@ Answer.belongsTo(Prompt, {
   onDelete: `CASCADE`,
 });
 
-Prompt.belongsToMany(Tag, {
-  through: PromptToTag,
-  as: 'tags',
-  foreignKey: 'promptID',
-  otherKey: 'tagID',
-  constraints: false,
-  onDelete: 'CASCADE',
-});
-
-Tag.belongsToMany(Prompt, {
-  through: PromptToTag,
-  as: 'prompts',
-  foreignKey: 'tagID',
-  otherKey: 'promptID',
-  constraints: false,
-  onDelete: 'CASCADE',
-});
-
 sequelize.sync({ force: true })
   .then(() => {
-    prompts.forEach((prompt) => {
-      return Prompt.findOrCreate({
-        where: { question: prompt.question }
-      })
-        .spread((newPrompt, isPromptCreated) => {
-          console.log('newPrompt:', newPrompt);
-          return prompt.tags.forEach((tag) => {
-            Tag.findOrCreate({
-              where: { tagname: tag }
-            })
-              .spread((newTag, isTagCreated) => {
-                return newTag.addPrompt([newPrompt.id])
-                  .then(() => {
-                    console.log('AAAAHHHHHH');
-                  });
-              });
-          });
-        });
-    });
+    Prompt.bulkCreate(seedPrompts.prompts);
   });
 
 const selectAll = (callback) => {
@@ -120,68 +84,7 @@ const selectAll = (callback) => {
     });
 };
 
-// const addPrompt = (prompt, callback) => {
-//   Prompt.findOrCreate({
-//     where: { question: prompt.question }
-//   })
-//     .spread((newPrompt, isPromptCreated) => {
-//       if (callback) {
-//         callback(null, newPrompt, isPromptCreated);
-//       }
-//     })
-//     .catch((err) => {
-//       if (callback) {
-//         callback(err);
-//       }
-//     });
-// };
-
-// const addTag = (tag, callback) => {
-//   Tag.findOrCreate({
-//     where: { tagname: tag }
-//   })
-//     .spread((newTag, isTagCreated) => {
-//       if (callback) {
-//         callback(null, newTag, isTagCreated);
-//       }
-//     })
-//     .catch((err) => {
-//       if (callback) {
-//         callback(err);
-//       }
-//     });
-// };
-
-// const addPromptToTag = (prompt, tag, callback) => {
-//   console.log('prompt:', prompt);
-//   console.log('tag:', tag);
-
-
-
-//   Prompt.find({
-//     where: {
-//       question: prompt.question
-//     }
-//   })
-//     .then((foundPrompt) => {
-
-//       Tag.find({
-//         where: {
-//           tagname: tag
-//         }
-//       })
-//         .then((foundTag) => {
-//           foundPrompt.addTag([foundTag.id])
-//             .then(callback)
-//             .catch(callback);
-//         });
-//     })
-//     .catch(callback);
-// };
-
 module.exports.User = User;
 module.exports.selectAll = selectAll;
 module.exports.sequelize = sequelize;
-// module.exports.addPrompt = addPrompt;
-// module.exports.addTag = addTag;
-// module.exports.addPromptToTag = addPromptToTag;
+

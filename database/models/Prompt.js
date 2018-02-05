@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    tags: DataTypes.STRING,
     createdAt: DataTypes.DATE
   });
 
