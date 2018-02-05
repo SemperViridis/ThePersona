@@ -7,6 +7,7 @@
           name="promptType"
           ng-options="type.value for type in $ctrl.options.type track by type.id"
           ng-model="$ctrl.options.selectedType">
+          on-Change="$ctrl."
         </select>
         <label for="prompts">Select Question(s)</label>
         <select

@@ -1,5 +1,5 @@
 angular.module('app')
-  .service('PromptsService', function ($http) {
+  .service('interviewService', function ($http) {
     this.getPrompts = (tag, numPrompts, callback) => {
       $http.get('http://localhost:3000/api/prompts?', {
         params: {
@@ -8,7 +8,6 @@ angular.module('app')
         }
       })
         .then(({ data }) => {
-          // NEED TO VERIFY FORMAT OF DATA
           if (callback) {
             callback(null, data);
           }
