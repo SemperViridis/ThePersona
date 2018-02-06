@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const seedPrompts = require('./prompts');
 let sequelize;
 
 if (process.env.NODE_ENV === 'production') {
@@ -6,7 +7,13 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   sequelize = new Sequelize('persona', 'root', '', {
     host: 'localhost',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    pool: {
+      max: 20,
+      min: 0,
+      acquire: 30000,
+      idle: 5000
+    }
   });
 }
 
@@ -27,6 +34,7 @@ const Answer = sequelize.import('./models/Answer.js');
 const Comment = sequelize.import('./models/Comment.js');
 const Tag = sequelize.import('./models/Tag.js');
 const Vote = sequelize.import('./models/Vote.js');
+const PromptToTag = sequelize.import('./models/PromptToTag');
 
 
 // // FOREIGN KEY CREATION
@@ -61,13 +69,10 @@ Answer.belongsTo(Prompt, {
   onDelete: `CASCADE`,
 });
 
-Tag.belongsTo(Prompt, {
-  targetKey: `id`,
-  constraints: false,
-  onDelete: `CASCADE`,
-});
-
-sequelize.sync( { force: true } );
+sequelize.sync({ force: true })
+  .then(() => {
+    Prompt.bulkCreate(seedPrompts.prompts);
+  });
 
 const selectAll = (callback) => {
   User.findAll()
@@ -79,6 +84,20 @@ const selectAll = (callback) => {
     });
 };
 
+const getPrompts = (query, callback) => {
+  Prompt.findAll({
+    where: query
+  })
+    .then((found) => {
+      if (callback) {
+        callback(null, found);
+      }
+    })
+    .catch(callback);
+};
+
 module.exports.User = User;
 module.exports.selectAll = selectAll;
 module.exports.sequelize = sequelize;
+module.exports.getPrompts = getPrompts;
+
