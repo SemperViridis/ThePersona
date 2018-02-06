@@ -23,14 +23,18 @@ angular.module('app')
         });
     };
 
-    this.setPrompt = (tag, numPrompts) => {
+    this.setPrompt = (tag, numPrompts, callback) => {
       this.getPrompts(tag, numPrompts, (err, data) => {
         if (err) {
           throw err;
         } else {
+          console.log('DATA======', data);
           this.prompts = data;
+          console.log('this.prompts after:', this.prompts);
+          callback(data);
         }
       });
+
     };
 
     this.selectPrompt = (prompt) => {

@@ -1,12 +1,11 @@
 angular.module('app')
   .controller('interviewCtrl', function (interviewService) {
     this.interviewService = interviewService;
-    this.prompts = this.interviewService.prompts;
     this.setPrompts = () => {
-      console.log('option:', this.options.selectedType);
       let tag = this.options.selectedType.name;
-      this.interviewService.setPrompt(tag, 10);
-      console.log(this.prompts);
+      this.interviewService.setPrompt(tag, 10, (data) => {
+        this.prompts = this.interviewService.prompts;
+      });
     };
     this.options = {
       type: [
