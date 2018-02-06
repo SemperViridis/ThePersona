@@ -40,20 +40,12 @@ angular.module('app')
       return this.getPrompts();
     };
 
-    // this.setPrompts = (tag, numPrompts, callback) => {
-    //   this.queryPrompts(tag, (err, data) => {
-    //     if (err) {
-    //       throw err;
-    //     } else if (tag === 'all') {
-    //       this.prompts = data;
-    //     } else {
-    //       this.prompts = this.selectNumPrompts(numPrompts, data);
-    //     }
-    //     if (callback) {
-    //       callback(data);
-    //     }
-    //   });
-    // };
+    this.runMock = () => {
+      this.selectPrompt(this.prompts.shift());
+      console.log('prompts after run', this.prompts);
+      console.log('selected', this.selectedPrompt);
+
+    };
 
     this.selectPrompt = (prompt) => {
       this.selectedPrompt = prompt;
