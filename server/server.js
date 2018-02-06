@@ -21,7 +21,6 @@ const social = require('./passport/authRoute.js')(app, passport);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 app.use(express.static(path.join(__dirname, '/../client')));
 app.use(express.static(path.join(__dirname, '/../node_modules')));
 
@@ -62,6 +61,11 @@ app.post('/api/insight', (req, res) => {
     .then((personality) => {
       res.send(personality);
     });
+});
+
+app.post('/api/cloudinary', (req, res) => {
+  console.log(req.body.video);
+  res.end();
 });
 
 module.exports = app;
