@@ -1,17 +1,13 @@
 'use strict';
 
 module.exports = (sequelize, Sequelize) => {
-  const Tag = sequelize.define('tags', {
+  const PromptToTag = sequelize.define('promptsToTags', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-    },
-    tagname: {
-      type: Sequelize.STRING,
-      allowNull: false
     }
   });
 
-  return Tag;
+  return PromptToTag;
 };
