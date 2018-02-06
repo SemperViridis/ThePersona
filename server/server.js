@@ -18,6 +18,13 @@ const social = require('./passport/authRoute.js')(app, passport);
 //   }
 //   next();
 // });
+var checkAuthentication = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.redirect('/login');
+  }
+};
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -27,6 +34,11 @@ app.use(express.static(path.join(__dirname, '/../node_modules')));
 app.get('/api/users', (req, res) => {
   res.sendStatus(200);
 });
+
+app.get('/api/dashboard', checkAuthentication, (req, res) => {
+  res.sendStatus(200);
+});
+
 
 app.get('/api/prompts', (req, res) => {
   const tag = req.query.tags;
