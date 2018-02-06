@@ -49,9 +49,6 @@ angular.module('app')
   })
 
   .component('recorder', {
-    bindings: {
-      getRecording: '<'
-    },
     controller: 'recorderController',
     templateUrl: 'templates/recorder.html'
   });

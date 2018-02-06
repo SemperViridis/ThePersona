@@ -1,7 +1,12 @@
 angular.module('app')
   .controller('interviewCtrl', function (interviewService, $location) {
     this.interviewService = interviewService;
-    this.prompts = [];
+
+    this.prompts = ['question 1', 'question 2', 'question 3'];
+    this.currentPromptIndex = 0;
+    this.currentPrompt = this.prompts[this.currentPromptIndex];
+    this.interviewStarted = false;
+
     this.selectedPracticePrompt = this.interviewService.selectedPrompt;
     this.options = {
       type: [

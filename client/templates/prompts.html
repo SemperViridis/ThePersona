@@ -1,6 +1,6 @@
 <div id="prompts">
   <div class="promptsScreen">
-      <p class="prompt">{{ $ctrl.prompt.question }}</p>
+      <p ng-if="$ctrl.interviewStarted" class="prompt">{{ $ctrl.currentPrompt }}</p>
   </div>
 </div>
 
