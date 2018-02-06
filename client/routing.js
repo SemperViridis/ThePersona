@@ -36,6 +36,12 @@ angular.module('app')
         // }
       },
       {
+        name: 'app.analysis',
+        url: 'analysis/{ id }',
+        component: 'analysis'
+        // NEED TO ADD RESOLVE TO RETRIEVE ID
+      },
+      {
         name: 'login',
         url: '/login',
         component: 'login'

@@ -1,6 +1,7 @@
 angular.module('app')
-  .controller('recorderController', function (recordingService) {
+  .controller('recorderController', function (recordingService, interviewService) {
     this.recordingService = recordingService;
+    this.interviewService = interviewService;
 
     this.recordedBlobs = [];
     this.mediaSource = new MediaSource();
@@ -36,6 +37,7 @@ angular.module('app')
     };
 
     this.toggleRecording = () => {
+      this.interviewService.runMock();
       if (this.recordButton.textContent === 'Record') {
         this.startRecording();
       } else {

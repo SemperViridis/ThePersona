@@ -1,13 +1,8 @@
 angular.module('app')
-  .controller('interviewCtrl', function (interviewService) {
+  .controller('interviewCtrl', function (interviewService, $location) {
     this.interviewService = interviewService;
-    this.selectedPrompt = this.interviewService.selectedPrompt;
-    this.setPrompts = () => {
-      const tag = this.options.selectedType.name;
-      this.interviewService.setPrompt(tag, 10, () => {
-        this.prompts = this.interviewService.prompts;
-      });
-    };
+    this.prompts = [];
+    this.selectedPracticePrompt = this.interviewService.selectedPrompt;
     this.options = {
       type: [
         { id: 0, name: '', value: '' },
@@ -15,10 +10,34 @@ angular.module('app')
         { id: 2, name: 'non-technical', value: 'Non-Technical' },
         { id: 3, name: 'technical', value: 'Technical' }
       ],
-      selectedType: { id: 0, name: '', value: '' }
+      selectedType: { id: 1, name: 'all', value: 'All' }
     };
+
+    this.init = () => {
+      if ($location.path() === '/interview/practice') {
+        this.setPrompts();
+      }
+      if ($location.path() === '/interview/mock') {
+        this.interviewService.queryPrompts('all', (err, data) => {
+          this.prompts = this.interviewService.selectNumPrompts(10, data);
+        });
+      }
+    };
+
+    this.setPrompts = () => {
+      const tag = this.options.selectedType.name;
+      this.interviewService.queryPrompts(tag, (err, data) => {
+        this.prompts = this.interviewService.selectNumPrompts(null, data);
+      });
+    };
+
+    this.selectPrompt = () => {
+      this.selectedPrompt = this.interviewService.selectPrompt(this.selectedPrompt);
+    };
+
+    this.init();
   })
   .component('interview', {
-    controller: 'AppCtrl',
+    controller: 'interviewCtrl',
     templateUrl: 'templates/interview.html'
   });
