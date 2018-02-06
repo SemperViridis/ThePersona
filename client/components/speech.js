@@ -50,6 +50,21 @@ angular.module('app')
       final_span.innerHTML = this.finalTranscript;
     };
 
+    this.toggleRecognition = () => {
+      if (!this.recognizing) {
+        if (!this.responses.length) {
+          // this.select(1);
+        }
+        this.finalTranscript = '';
+        this.ignoreOnend = false;
+        final_span.innerHTML = '';
+        interim_span.innerHTML = '';
+        this.recognition.start();
+      } else {
+        this.recognition.stop();
+      }
+    };
+  
     this.handleSubmission = () => {
       this.select();
       console.log('response', this.responses);
@@ -78,20 +93,6 @@ angular.module('app')
       this.interviewStarted = true;
     };
 
-    this.toggleRecognition = () => {
-      if (!this.recognizing) {
-        if (!this.responses.length) {
-          // this.select(1);
-        }
-        this.finalTranscript = '';
-        this.ignoreOnend = false;
-        final_span.innerHTML = '';
-        interim_span.innerHTML = '';
-        this.recognition.start();
-      } else {
-        this.recognition.stop();
-      }
-    };
   })
 
   .component('speech', {

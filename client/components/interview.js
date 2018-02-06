@@ -3,9 +3,16 @@ angular.module('app')
     this.interviewService = interviewService;
 
     this.prompts = ['question 1', 'question 2', 'question 3'];
-    this.currentPromptIndex = 0;
+    this.currentPromptIndex = -1;
     this.currentPrompt = this.prompts[this.currentPromptIndex];
-    this.interviewStarted = false;
+    this.interviewStarted = true;
+
+    this.getNextPrompt = () => {
+      this.currentPromptIndex = this.currentPromptIndex + 1;
+      this.currentPrompt = this.prompts[this.currentPromptIndex];
+    };
+
+    this.getNextPrompt();
 
     this.selectedPracticePrompt = this.interviewService.selectedPrompt;
     this.options = {
