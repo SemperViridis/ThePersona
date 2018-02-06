@@ -1,5 +1,6 @@
 angular.module('app')
   .controller('speechController', function ($scope) {
+    this.interviewStarted = false;
     this.responses = [];
     this.finalTranscript = '';
     this.recognizing = false;
@@ -85,10 +86,14 @@ angular.module('app')
       }, 1000);
     };
 
-    this.startButton = () => {
+    this.startInterview = () => {
+      this.interviewStarted = true;
+    };
+
+    this.toggleRecognition = () => {
       if (!this.recognizing) {
         if (!this.responses.length) {
-          this.select(1);
+          // this.select(1);
         }
         this.finalTranscript = '';
         this.ignoreOnend = false;

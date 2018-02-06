@@ -1,4 +1,4 @@
-<div id="results">
+<!-- <div id="results">
   <button
     ng-if="$ctrl.recognizing"
     class="circular ui red left floated icon button flashing">
@@ -6,17 +6,18 @@
   </button>
   <span id="final_span"></span>
   <span id="interim_span"></span>
-</div>
+</div> -->
 <div id="speech">
   <button
+    ng-if="!$ctrl.interviewStarted"
     id="start_button"
-    ng-click="$ctrl.startButton()"
+    ng-click="$ctrl.startInterview()"
     class="large ui right labeled icon button">
     <i ng-if="!$ctrl.recognizing" class="play icon"></i>
     <i ng-if="$ctrl.recognizing" class="stop icon"></i>
     {{$ctrl.recognizing ? 'Stop' : 'Start'}}
   </button>
-  <button
+  <!-- <button
     ng-click="$ctrl.getNextPrompt()"
     class="large ui right labeled icon button"
     >
@@ -28,6 +29,6 @@
     class="large ui right floated button submit"
     disabled="disabled">
     Submit
-  </button>
+  </button> -->
 </div>
 
