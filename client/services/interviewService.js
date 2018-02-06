@@ -1,6 +1,6 @@
 angular.module('app')
   .service('interviewService', function ($http) {
-    this.prompts = [];
+    this.prompts = ['question 1', 'question 2', 'question 3'];
     this.selectedPrompt = {};
     this.queryPrompts = (tag, callback) => {
       $http.get('http://localhost:3000/api/prompts', {
@@ -53,4 +53,8 @@ angular.module('app')
     };
 
     this.getPrompts = () => this.prompts;
+
+    this.getNextPrompt = () => {
+      console.log('line 58');
+    };
   });

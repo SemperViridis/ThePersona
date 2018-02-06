@@ -8,11 +8,10 @@ angular.module('app')
     this.interviewStarted = true;
 
     this.getNextPrompt = () => {
+      console.log('getting next prompt');
       this.currentPromptIndex = this.currentPromptIndex + 1;
       this.currentPrompt = this.prompts[this.currentPromptIndex];
     };
-
-    this.getNextPrompt();
 
     this.selectedPracticePrompt = this.interviewService.selectedPrompt;
     this.options = {

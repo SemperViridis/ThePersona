@@ -1,5 +1,7 @@
 angular.module('app')
-  .controller('speechController', function ($scope) {
+  .controller('speechController', function ($scope, interviewService) {
+    this.interviewService = interviewService;
+
     this.interviewStarted = false;
     this.responses = [];
     this.finalTranscript = '';
@@ -57,14 +59,14 @@ angular.module('app')
         }
         this.finalTranscript = '';
         this.ignoreOnend = false;
-        final_span.innerHTML = '';
-        interim_span.innerHTML = '';
+        // final_span.innerHTML = '';
+        // interim_span.innerHTML = '';
         this.recognition.start();
       } else {
         this.recognition.stop();
       }
     };
-  
+
     this.handleSubmission = () => {
       this.select();
       console.log('response', this.responses);
@@ -78,30 +80,24 @@ angular.module('app')
       });
     };
 
-    this.getNextPrompt = () => {
-      this.recognition.stop();
-      this.responses.push(this.finalTranscript);
-      this.finalTranscript = '';
-      final_span.innerHTML = '';
-      this.select(1);
-      setTimeout(() => {
-        this.recognition.start();
-      }, 1000);
-    };
+    // this.getNextPrompt = () => {
+    //   this.recognition.stop();
+    //   this.responses.push(this.finalTranscript);
+    //   this.finalTranscript = '';
+    //   final_span.innerHTML = '';
+    //   this.select(1);
+    //   setTimeout(() => {
+    //     this.recognition.start();
+    //   }, 1000);
+    // };
 
     this.startInterview = () => {
       this.interviewStarted = true;
+      this.interviewService.getNextPrompt();
     };
-
   })
 
   .component('speech', {
-    bindings: {
-      service: '<',
-      result: '<',
-      select: '<',
-      fillers: '<'
-    },
     controller: 'speechController',
     templateUrl: 'templates/speech.html'
   });
