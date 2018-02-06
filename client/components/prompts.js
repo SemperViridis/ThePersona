@@ -1,7 +1,7 @@
 angular.module('app')
   .component('prompts', {
     bindings: {
-      selectedPrompt: '<'
+      prompt: '<'
     },
     controller: 'interviewCtrl',
     templateUrl: 'templates/prompts.html'
