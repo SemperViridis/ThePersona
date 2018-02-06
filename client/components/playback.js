@@ -35,7 +35,7 @@ angular.module('app')
     // method to turn video data into a URL
     this.generateVideoURL = () => {
       const reader = new FileReader();
-      reader.addEventListener('loadend', function () {
+      reader.addEventListener('loadend', () => {
         this.uploadVideo(reader.result);
       });
       reader.readAsDataURL(this.recordingBlob);

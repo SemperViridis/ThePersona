@@ -42,7 +42,7 @@ app.post('/api/insight', (req, res) => {
 });
 
 app.post('/api/cloudinary', (req, res) => {
-  console.log('************ REQUEST BODY ************', req.body);
+  console.log(req.body.video);
   res.end();
 });
 
