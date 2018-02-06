@@ -85,7 +85,6 @@ const selectAll = (callback) => {
 };
 
 const getPrompts = (query, callback) => {
-  console.log('DB QUERY: ', query);
   Prompt.findAll({
     where: query
   })

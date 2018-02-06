@@ -31,7 +31,11 @@ app.get('/api/users', (req, res) => {
 
 app.get('/api/prompts', (req, res) => {
   const tag = req.query.tags;
-  db.getPrompts({ tags: tag }, (err, results) => {
+  let query = { tags: tag };
+  if (tag === 'all') {
+    query = {};
+  }
+  db.getPrompts(query, (err, results) => {
     if (err) {
       res.status(500).send(err);
     } else {
