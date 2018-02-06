@@ -4,13 +4,15 @@ angular.module('app')
     this.recordingService = recordingService;
     this.videoUploader = videoUploader;
 
-    // properties
+    // state properties
     this.recordedBlobs = [...this.recordingService.recording];
     this.recordingBlob = new Blob(this.recordedBlobs, { type: 'video/webm' });
+
+    // cache DOM elements
     this.recordedVideo = document.querySelector('video#recorded');
     this.downloadButton = document.querySelector('button#download');
 
-    // methods
+    // method to allow rendering of playback
     this.play = () => {
       const video = this.recordedVideo;
       const superBuffer = new Blob(this.recordedBlobs);
@@ -27,8 +29,10 @@ angular.module('app')
         }
       });
     };
+    // invoke on compononent mount
     this.play();
 
+    // method to turn video data into a URL
     this.generateVideoURL = () => {
       const reader = new FileReader();
       reader.addEventListener('loadend', function () {
@@ -36,12 +40,21 @@ angular.module('app')
       });
       reader.readAsDataURL(this.recordingBlob);
     };
+    // invoke on compononent mount
     this.generateVideoURL();
 
+    // method that utilizes service to send video to the server
     this.uploadVideo = (videoURL) => {
-      this.videoUploader.upload(videoURL);
+      this.videoUploader.upload(videoURL, (err, data) => {
+        if (data) {
+          console.log('Video successfully uploaded', data);
+        } else {
+          console.log('Video could not be uploaded', err);
+        }
+      });
     };
 
+    // method to allow user to download the recording
     this.download = () => {
       const url = window.URL.createObjectURL(this.recordingBlob);
       const a = document.createElement('a');
