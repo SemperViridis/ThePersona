@@ -84,7 +84,21 @@ const selectAll = (callback) => {
     });
 };
 
+const getPrompts = (query, callback) => {
+  console.log('DB QUERY: ', query);
+  Prompt.findAll({
+    where: query
+  })
+    .then((found) => {
+      if (callback) {
+        callback(null, found);
+      }
+    })
+    .catch(callback);
+};
+
 module.exports.User = User;
 module.exports.selectAll = selectAll;
 module.exports.sequelize = sequelize;
+module.exports.getPrompts = getPrompts;
 

@@ -30,8 +30,14 @@ app.get('/api/users', (req, res) => {
 });
 
 app.get('/api/prompts', (req, res) => {
-  const query = req.query;
-  console.log(query);
+  const tag = req.query.tags;
+  db.getPrompts({ tags: tag }, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).json(results);
+    }
+  });
 });
 
 app.post('/api/ibmtone', (req, res) => {
