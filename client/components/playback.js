@@ -1,10 +1,12 @@
 angular.module('app')
-  .controller('playbackController', function (recordingService) {
-    // service
+  .controller('playbackController', function (recordingService, videoUploader) {
+    // services
     this.recordingService = recordingService;
+    this.videoUploader = videoUploader;
 
     // properties
     this.recordedBlobs = [...this.recordingService.recording];
+    this.recordingBlob = new Blob(this.recordedBlobs, { type: 'video/webm' });
     this.recordedVideo = document.querySelector('video#recorded');
     this.downloadButton = document.querySelector('button#download');
 
@@ -25,12 +27,23 @@ angular.module('app')
         }
       });
     };
-
     this.play();
 
+    this.generateVideoURL = () => {
+      const reader = new FileReader();
+      reader.addEventListener('loadend', function () {
+        this.uploadVideo(reader.result);
+      });
+      reader.readAsDataURL(this.recordingBlob);
+    };
+    this.generateVideoURL();
+
+    this.uploadVideo = (videoURL) => {
+      this.videoUploader.upload(videoURL);
+    };
+
     this.download = () => {
-      const blob = new Blob(this.recordedBlobs, { type: 'video/webm' });
-      const url = window.URL.createObjectURL(blob);
+      const url = window.URL.createObjectURL(this.recordingBlob);
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = url;
