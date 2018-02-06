@@ -18,7 +18,7 @@ const social = require('./passport/authRoute.js')(app, passport);
 //   }
 //   next();
 // });
-var checkAthentication = (req, res, next) => {
+var checkAuthentication = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
   } else {
@@ -35,7 +35,7 @@ app.get('/api/users', (req, res) => {
   res.sendStatus(200);
 });
 
-app.get('/api/dashboard', checkAthentication, (req, res) => {
+app.get('/api/dashboard', checkAuthentication, (req, res) => {
   res.sendStatus(200);
 });
 
