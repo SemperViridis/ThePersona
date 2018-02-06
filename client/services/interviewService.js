@@ -54,5 +54,6 @@ angular.module('app')
 
     this.selectPrompt = (prompt) => {
       this.selectedPrompt = prompt;
+      return this.selectedPrompt;
     };
   });
