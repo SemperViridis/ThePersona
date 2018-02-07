@@ -17,14 +17,15 @@
     <i ng-if="$ctrl.recognizing" class="stop icon"></i>
     {{$ctrl.recognizing ? 'Stop' : 'Start'}}
   </button>
-  <!-- <button
+  <button
+    ng-if="$ctrl.interviewStarted"
     ng-click="$ctrl.getNextPrompt()"
     class="large ui right labeled icon button"
     >
     <i class="step forward icon"></i>
     Next
   </button>
-  <button
+<!--   <button
     ng-click="$ctrl.handleSubmission()"
     class="large ui right floated button submit"
     disabled="disabled">
