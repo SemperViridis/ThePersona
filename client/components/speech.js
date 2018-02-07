@@ -68,7 +68,6 @@ angular.module('app')
     };
 
     this.handleSubmission = () => {
-      this.select();
       console.log('response', this.responses);
       this.submitButton.attr('disabled', 'disabled');
       this.service.toneAnalysis(this.responses.join('.'), (err, results) => {
@@ -81,12 +80,14 @@ angular.module('app')
     };
 
     this.getNextPrompt = () => {
+      this.promptCount = this.promptCount + 1 || 1;
+      this.reachedLastQuestion = (this.promptCount === 9);
       this.recognition.stop();
       this.responses.push(this.finalTranscript);
       this.interviewService.getNextPrompt();
       setTimeout(() => {
         this.recognition.start();
-      }, 500);
+      }, 100);
     };
 
     this.startInterview = () => {

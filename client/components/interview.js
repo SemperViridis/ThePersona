@@ -11,7 +11,6 @@ angular.module('app')
     this.prompts = [];
     this.currentPromptIndex = -1;
     this.currentPrompt = '';
-    this.interviewStarted = true;
 
     this.selectedPracticePrompt = this.interviewService.selectedPrompt;
     this.options = {
@@ -31,7 +30,6 @@ angular.module('app')
       if ($location.path() === '/interview/mock') {
         this.interviewService.queryPrompts('all', (err, data) => {
           this.prompts = this.interviewService.selectNumPrompts(10, data);
-          console.log(this.prompts);
         });
       }
     };
