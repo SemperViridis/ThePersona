@@ -1,29 +1,31 @@
 angular.module('app')
   .controller('recorderController', function (recordingService, interviewService, $scope) {
+    // services
     this.recordingService = recordingService;
     this.interviewService = interviewService;
 
+    // broadcast listeners
     $scope.$on('recording', () => {
       this.startRecording();
     });
+    $scope.$on('submit', () => {
+      this.toggleRecording();
+    });
 
+    // state properties
     this.recordedBlobs = [];
+
+    // initialize media source
     this.mediaSource = new MediaSource();
     this.mediaSource.addEventListener('sourceopen', this.handleSourceOpen, false);
+
+    // cache HTML elements
     this.recorderVideo = document.querySelector('video#recorder');
     this.recordButton = document.querySelector('button#record');
+
+    // initialize stream
     navigator.mediaDevices.getUserMedia({ audio: true, video: true })
       .then(stream => this.handleSuccess(stream));
-
-    this.handleSourceOpen = () => {
-      this.sourceBuffer = mediaSource.addSourceBuffer('video/webm');
-    };
-
-    this.handleDataAvailable = (event) => {
-      if (event.data && event.data.size > 0) {
-        this.recordedBlobs.push(event.data);
-      }
-    };
 
     this.handleSuccess = (stream) => {
       this.stream = stream;
@@ -31,6 +33,17 @@ angular.module('app')
       this.recorderVideo.onloadedmetadata = () => {
         this.recorderVideo.play();
       };
+    };
+
+    this.handleSourceOpen = () => {
+      this.sourceBuffer = mediaSource.addSourceBuffer('video/webm');
+    };
+
+    // state methods
+    this.handleDataAvailable = (event) => {
+      if (event.data && event.data.size > 0) {
+        this.recordedBlobs.push(event.data);
+      }
     };
 
     this.startRecording = () => {
