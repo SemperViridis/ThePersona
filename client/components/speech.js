@@ -80,16 +80,14 @@ angular.module('app')
       });
     };
 
-    // this.getNextPrompt = () => {
-    //   this.recognition.stop();
-    //   this.responses.push(this.finalTranscript);
-    //   this.finalTranscript = '';
-    //   final_span.innerHTML = '';
-    //   this.select(1);
-    //   setTimeout(() => {
-    //     this.recognition.start();
-    //   }, 1000);
-    // };
+    this.getNextPrompt = () => {
+      this.recognition.stop();
+      this.responses.push(this.finalTranscript);
+      this.interviewService.getNextPrompt();
+      setTimeout(() => {
+        this.recognition.start();
+      }, 500);
+    };
 
     this.startInterview = () => {
       this.interviewStarted = true;
