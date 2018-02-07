@@ -1,7 +1,9 @@
 angular.module('app')
-  .controller('speechController', function ($scope, interviewService, watsonService) {
+  .controller('speechController', function ($scope, interviewService, watsonService, recordingService) {
+    // services
     this.interviewService = interviewService;
     this.watsonService = watsonService;
+    this.recordingService = recordingService;
 
     this.interviewStarted = false;
     this.recognizing = false;
@@ -27,12 +29,6 @@ angular.module('app')
     this.recognition.onend = () => {
       this.recognizing = false;
       $scope.$apply();
-      // if (this.ignoreOnEnd) {
-      //   return;
-      // }
-      // if (!this.finalTranscript) {
-      //   return;
-      // }
     };
     this.recognition.onresult = (event) => {
       for (let i = event.resultIndex; i < event.results.length; i += 1) {
@@ -57,12 +53,10 @@ angular.module('app')
     this.handleSubmission = () => {
       this.watsonService.toneAnalysis(this.responses.join('.'), (err, results) => {
         if (err) { throw new Error(err); }
-        console.log(results);
         this.result = results;
       });
 
       this.watsonService.wordAnalysis(this.responses.join(' '), (err, results) => {
-        console.log(results);
         this.fillers = results;
       });
     };
@@ -80,6 +74,7 @@ angular.module('app')
 
     this.startInterview = () => {
       this.interviewStarted = true;
+      this.recordingService.startRecording();
       this.interviewService.getNextPrompt();
       this.toggleRecognition();
     };
