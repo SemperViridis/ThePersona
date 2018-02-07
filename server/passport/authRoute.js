@@ -41,12 +41,13 @@ module.exports = function (app, passport) {
   // FACEBOOK STRATEGY
 
   passport.use(new FacebookStrategy({ // travis is getting it from the .travis.yml so it's probably looking for it in there
-    clientID: '403488566768775',
+    clientID: '313429909180196',
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: 'http://localhost:3000/auth/facebook/callback',
     profileFields: ['id', 'displayName', 'photos', 'email']
   },
   (accessToken, refreshToken, profile, done) => {
+    console.log('profile', profile);
     User.find({ where: { email: profile.emails[0].value } })
       .then((user) => {
         if (!user) {

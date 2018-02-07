@@ -1,5 +1,7 @@
 angular.module('app')
-  .controller('speechController', function ($scope, interviewService, watsonService, recordingService) {
+  .controller('speechController', function ($scope, $animate, interviewService, watsonService, recordingService) {
+    $animate.enabled(false, 'speech');
+
     // services
     this.interviewService = interviewService;
     this.watsonService = watsonService;
@@ -51,6 +53,8 @@ angular.module('app')
     };
 
     this.handleSubmission = () => {
+      this.recordingService.submitRecording();
+
       this.watsonService.toneAnalysis(this.responses.join('.'), (err, results) => {
         if (err) { throw new Error(err); }
         this.result = results;
