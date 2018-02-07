@@ -42,9 +42,8 @@ angular.module('app')
       },
       {
         name: 'app.analysis',
-        url: 'analysis/{ id }',
+        url: 'analysis',
         component: 'analysis'
-        // NEED TO ADD RESOLVE TO RETRIEVE ID
       },
       {
         name: 'logout',
