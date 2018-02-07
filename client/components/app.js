@@ -38,4 +38,3 @@ angular.module('app')
     controller: 'AppCtrl',
     templateUrl: 'templates/app.html'
   });
-
