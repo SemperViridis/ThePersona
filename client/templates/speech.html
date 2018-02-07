@@ -10,7 +10,7 @@
     class="large ui right labeled icon button">
     <i ng-if="!$ctrl.recognizing" class="play icon"></i>
     <i ng-if="$ctrl.recognizing" class="stop icon"></i>
-    {{$ctrl.recognizing ? 'Stop' : 'Start'}}
+    Start
   </button>
   <button
     ng-if="$ctrl.interviewStarted && !$ctrl.reachedLastQuestion"
@@ -22,6 +22,7 @@
   <button
     ng-if="$ctrl.reachedLastQuestion"
     ng-click="$ctrl.handleSubmission()"
+    ui-sref="app.analysis"
     class="large ui right floated button submit">
     Submit
   </button>
