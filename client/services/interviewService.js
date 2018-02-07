@@ -1,5 +1,5 @@
 angular.module('app')
-  .service('interviewService', function ($http) {
+  .service('interviewService', function ($http, broadcastService) {
     this.prompts = ['question 1', 'question 2', 'question 3'];
     this.currentPromptsIndex = -1;
     this.currentPrompt = this.prompts[this.currentPromptsIndex];
@@ -58,6 +58,6 @@ angular.module('app')
 
     this.getNextPrompt = () => {
       this.currentPromptsIndex = this.currentPromptsIndex + 1;
-      console.log(this.currentPromptsIndex);
+      broadcastService.send('update', this.currentPromptsIndex);
     };
   });

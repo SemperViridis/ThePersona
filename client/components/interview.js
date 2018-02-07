@@ -1,6 +1,11 @@
 angular.module('app')
-  .controller('interviewCtrl', function (interviewService, $location) {
+  .controller('interviewCtrl', function (interviewService, $location, $scope) {
     this.interviewService = interviewService;
+
+    // broadcast event
+    $scope.$on('update', function (event, args) {
+      console.log(args);
+    });
 
     this.prompts = ['question 1', 'question 2', 'question 3'];
     this.currentPromptIndex = 0;
