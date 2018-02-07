@@ -1,6 +1,5 @@
 angular.module('app')
-  .controller('AppCtrl', function (toneAnalysis) {
-    this.toneAnalysis = toneAnalysis;
+  .controller('AppCtrl', function () {
     this.analysis = [];
     this.fillerAnalysis = [];
     this.total = '';

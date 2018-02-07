@@ -33,6 +33,6 @@ angular.module('app')
           if (callback) {
             callback(data, null);
           }
-        })
+        });
     };
   });

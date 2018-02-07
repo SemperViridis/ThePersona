@@ -57,10 +57,12 @@ angular.module('app')
     this.handleSubmission = () => {
       this.watsonService.toneAnalysis(this.responses.join('.'), (err, results) => {
         if (err) { throw new Error(err); }
+        console.log(results);
         this.result = results;
       });
 
       this.watsonService.wordAnalysis(this.responses.join(' '), (err, results) => {
+        console.log(results);
         this.fillers = results;
       });
     };
