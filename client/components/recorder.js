@@ -20,7 +20,7 @@ angular.module('app')
     this.mediaSource.addEventListener('sourceopen', this.handleSourceOpen, false);
 
     // cache HTML elements
-    this.recorderVideo = document.querySelector('video#recorder');
+    // this.recorderVideo = document.querySelector('video#recorder');
     this.recordButton = document.querySelector('button#record');
 
     // initialize stream
@@ -29,15 +29,15 @@ angular.module('app')
 
     this.handleSuccess = (stream) => {
       this.stream = stream;
-      this.recorderVideo.srcObject = stream;
-      this.recorderVideo.onloadedmetadata = () => {
-        this.recorderVideo.play();
-      };
+      // this.recorderVideo.srcObject = stream;
+      // this.recorderVideo.onloadedmetadata = () => {
+      //   this.recorderVideo.play();
+      // };
     };
 
-    this.handleSourceOpen = () => {
-      this.sourceBuffer = mediaSource.addSourceBuffer('video/webm');
-    };
+    // this.handleSourceOpen = () => {
+    //   this.sourceBuffer = mediaSource.addSourceBuffer('video/webm');
+    // };
 
     // state methods
     this.handleDataAvailable = (event) => {
