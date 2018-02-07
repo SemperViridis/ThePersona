@@ -1,6 +1,6 @@
 angular.module('app')
   .controller('speechController', function ($scope, $animate, interviewService, watsonService, recordingService) {
-    $animate.enabled(false);
+    $animate.enabled(false, 'speech');
 
     // services
     this.interviewService = interviewService;
