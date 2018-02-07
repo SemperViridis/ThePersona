@@ -1,32 +1,28 @@
-<div id="results">
-  <button
-    ng-if="$ctrl.recognizing"
-    class="circular ui red left floated icon button flashing">
-    <i class="unmute icon"></i>
-  </button>
-  <span id="final_span"></span>
-  <span id="interim_span"></span>
-</div>
+<button
+  ng-if="$ctrl.recognizing"
+  class="circular ui red left floated icon button flashing">
+  <i class="unmute icon"></i>
+</button>
 <div id="speech">
   <button
-    id="start_button"
-    ng-click="$ctrl.startButton()"
+    ng-if="!$ctrl.interviewStarted"
+    ng-click="$ctrl.startInterview()"
     class="large ui right labeled icon button">
     <i ng-if="!$ctrl.recognizing" class="play icon"></i>
     <i ng-if="$ctrl.recognizing" class="stop icon"></i>
     {{$ctrl.recognizing ? 'Stop' : 'Start'}}
   </button>
   <button
+    ng-if="$ctrl.interviewStarted && !$ctrl.reachedLastQuestion"
     ng-click="$ctrl.getNextPrompt()"
-    class="large ui right labeled icon button"
-    >
+    class="large ui right labeled icon button">
     <i class="step forward icon"></i>
     Next
   </button>
   <button
+    ng-if="$ctrl.reachedLastQuestion"
     ng-click="$ctrl.handleSubmission()"
-    class="large ui right floated button submit"
-    disabled="disabled">
+    class="large ui right floated button submit">
     Submit
   </button>
 </div>

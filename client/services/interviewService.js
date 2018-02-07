@@ -1,7 +1,10 @@
 angular.module('app')
-  .service('interviewService', function ($http) {
+  .service('interviewService', function ($http, broadcastService) {
     this.prompts = [];
+    this.currentPromptsIndex = -1;
+    this.currentPrompt = this.prompts[this.currentPromptsIndex];
     this.selectedPrompt = {};
+
     this.queryPrompts = (tag, callback) => {
       $http.get('http://localhost:3000/api/prompts', {
         headers: {
@@ -40,17 +43,15 @@ angular.module('app')
       return this.getPrompts();
     };
 
-    this.runMock = () => {
-      this.selectPrompt(this.prompts.shift());
-      console.log('prompts after run', this.prompts);
-      console.log('selected', this.selectedPrompt);
-
-    };
-
     this.selectPrompt = (prompt) => {
       this.selectedPrompt = prompt;
       return this.selectedPrompt;
     };
 
     this.getPrompts = () => this.prompts;
+
+    this.getNextPrompt = () => {
+      this.currentPromptsIndex = this.currentPromptsIndex + 1;
+      broadcastService.send('update', this.currentPromptsIndex);
+    };
   });

@@ -33,26 +33,26 @@ angular.module('app')
     this.play();
 
     // method to turn video data into a URL
-    this.generateVideoURL = () => {
-      const reader = new FileReader();
-      reader.addEventListener('loadend', () => {
-        this.uploadVideo(reader.result);
-      });
-      reader.readAsDataURL(this.recordingBlob);
-    };
+    // this.generateVideoURL = () => {
+    //   const reader = new FileReader();
+    //   reader.addEventListener('loadend', () => {
+    //     this.uploadVideo(reader.result);
+    //   });
+    //   reader.readAsDataURL(this.recordingBlob);
+    // };
     // invoke on compononent mount
-    this.generateVideoURL();
+    // this.generateVideoURL();
 
     // method that utilizes service to send video to the server
-    this.uploadVideo = (videoURL) => {
-      this.videoUploader.upload(videoURL, (err, data) => {
-        if (data) {
-          console.log('Video successfully uploaded', data);
-        } else {
-          console.log('Video could not be uploaded', err);
-        }
-      });
-    };
+    // this.uploadVideo = (videoURL) => {
+    //   this.videoUploader.upload(videoURL, (err, data) => {
+    //     if (data) {
+    //       console.log('Video successfully uploaded', data);
+    //     } else {
+    //       console.log('Video could not be uploaded', err);
+    //     }
+    //   });
+    // };
 
     // method to allow user to download the recording
     this.download = () => {

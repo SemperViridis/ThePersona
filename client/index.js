@@ -1,1 +1,1 @@
-angular.module('app', ['ui.router', 'chart.js']);
+angular.module('app', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'chart.js']);

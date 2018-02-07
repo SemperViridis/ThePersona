@@ -1,5 +1,5 @@
 angular.module('app')
-  .service('toneAnalysis', function ($http) {
+  .service('watsonService', function ($http) {
     this.toneAnalysis = (transcription, callback) => {
       $http.post('http://localhost:3000/api/ibmtone', {
         data: {
@@ -32,6 +32,6 @@ angular.module('app')
           if (callback) {
             callback(data, null);
           }
-        })
+        });
     };
   });

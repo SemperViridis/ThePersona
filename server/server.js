@@ -28,6 +28,19 @@ app.get('/api/users', (req, res) => {
   res.sendStatus(200);
 });
 
+function checkAuthentication (req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.redirect('/login');
+  }
+};
+
+app.get('/api/dashboard', checkAuthentication, (req, res) => {
+  res.sendStatus(200);
+});
+
+
 app.get('/api/prompts', (req, res) => {
   const tag = req.query.tags;
   let query = { tags: tag };
