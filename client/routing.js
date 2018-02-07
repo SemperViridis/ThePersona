@@ -22,6 +22,11 @@ angular.module('app')
         component: 'mock'
       },
       {
+        name: 'app.interview.results',
+        url: '/results',
+        component: 'results'
+      },
+      {
         name: 'app.community',
         url: 'community',
         component: 'community'
@@ -64,4 +69,3 @@ angular.module('app')
       $stateProvider.state(state);
     });
   });
-
