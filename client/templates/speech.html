@@ -2,12 +2,12 @@
   <span id="final_span"></span>
   <span id="interim_span"></span>
 </div> -->
+<button
+  ng-if="$ctrl.recognizing"
+  class="circular ui red left floated icon button flashing">
+  <i class="unmute icon"></i>
+</button>
 <div id="speech">
-  <button
-    ng-if="$ctrl.recognizing"
-    class="circular ui red left floated icon button flashing">
-    <i class="unmute icon"></i>
-  </button>
   <button
     ng-if="!$ctrl.interviewStarted"
     id="start_button"

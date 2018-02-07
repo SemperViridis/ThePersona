@@ -4,10 +4,10 @@ angular.module('app')
     this.toneAnalysisService = toneAnalysis;
 
     this.interviewStarted = false;
+    this.recognizing = false;
     this.responses = [];
     this.finalTranscript = '';
     this.interimTranscript = '';
-    this.recognizing = false;
     this.analysis = '';
     this.submitButton = $('button.large.ui.right.floated.button.submit');
 
@@ -47,6 +47,7 @@ angular.module('app')
     };
 
     this.toggleRecognition = () => {
+      console.log('recognition started');
       if (!this.recognizing) {
         this.finalTranscript = '';
         this.ignoreOnend = false;
@@ -72,6 +73,7 @@ angular.module('app')
       this.reachedLastQuestion = (this.promptCount === 9);
       this.recognition.stop();
       this.responses.push(this.finalTranscript);
+      // console.log(this.responses);
       this.interviewService.getNextPrompt();
       setTimeout(() => {
         this.recognition.start();
@@ -81,6 +83,7 @@ angular.module('app')
     this.startInterview = () => {
       this.interviewStarted = true;
       this.interviewService.getNextPrompt();
+      this.toggleRecognition();
     };
   })
 
