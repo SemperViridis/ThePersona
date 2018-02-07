@@ -57,7 +57,7 @@ angular.module('app')
       }
     ];
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/home');
 
     states.forEach((state) => {
       $stateProvider.state(state);

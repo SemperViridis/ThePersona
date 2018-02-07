@@ -49,7 +49,6 @@ app.get('/api/dashboard', checkAuthentication, (req, res) => {
   res.redirect('/#!/interview/practice');
 });
 
-
 app.get('/api/prompts', (req, res) => {
   const tag = req.query.tags;
   let query = { tags: tag };

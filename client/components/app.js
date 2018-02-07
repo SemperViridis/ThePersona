@@ -1,7 +1,7 @@
 angular.module('app')
   .controller('AppCtrl', function ($uibModal) {
     this.animationsEnabled = true;
-
+    this.isLoggedIn = false;
     this.openComponentModal = function () {
       const modalInstance = $uibModal.open({
         animation: this.animationsEnabled,
