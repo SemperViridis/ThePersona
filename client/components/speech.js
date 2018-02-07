@@ -1,7 +1,7 @@
 angular.module('app')
-  .controller('speechController', function ($scope, interviewService, toneAnalysis) {
+  .controller('speechController', function ($scope, interviewService, watsonService) {
     this.interviewService = interviewService;
-    this.toneAnalysisService = toneAnalysis;
+    this.watsonService = watsonService;
 
     this.interviewStarted = false;
     this.recognizing = false;
@@ -27,12 +27,12 @@ angular.module('app')
     this.recognition.onend = () => {
       this.recognizing = false;
       $scope.$apply();
-      if (this.ignoreOnEnd) {
-        return;
-      }
-      if (!this.finalTranscript) {
-        return;
-      }
+      // if (this.ignoreOnEnd) {
+      //   return;
+      // }
+      // if (!this.finalTranscript) {
+      //   return;
+      // }
     };
     this.recognition.onresult = (event) => {
       for (let i = event.resultIndex; i < event.results.length; i += 1) {
@@ -55,15 +55,14 @@ angular.module('app')
     };
 
     this.handleSubmission = () => {
-      this.submitButton.attr('disabled', 'disabled');
-      this.toneAnalysisService.toneAnalysis(this.responses.join('.'), (err, results) => {
+      this.watsonService.toneAnalysis(this.responses.join('.'), (err, results) => {
         if (err) { throw new Error(err); }
         this.result = results;
       });
 
-      // this.service.wordAnalysis(this.responses.join(' '), (err, results) => {
-      //   this.fillers(results);
-      // });
+      this.watsonService.wordAnalysis(this.responses.join(' '), (err, results) => {
+        this.fillers = results;
+      });
     };
 
     this.getNextPrompt = () => {
