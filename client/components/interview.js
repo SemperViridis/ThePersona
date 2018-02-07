@@ -3,13 +3,14 @@ angular.module('app')
     this.interviewService = interviewService;
 
     // broadcast event
-    $scope.$on('update', function (event, args) {
-      console.log(args);
+    $scope.$on('update', (event, args) => {
+      const currentPromptIndex = args;
+      this.currentPrompt = this.prompts[currentPromptIndex].question;
     });
 
-    this.prompts = ['question 1', 'question 2', 'question 3'];
-    this.currentPromptIndex = 0;
-    this.currentPrompt = this.prompts[this.currentPromptIndex];
+    this.prompts = [];
+    this.currentPromptIndex = -1;
+    this.currentPrompt = '';
     this.interviewStarted = true;
 
     this.selectedPracticePrompt = this.interviewService.selectedPrompt;
@@ -30,6 +31,7 @@ angular.module('app')
       if ($location.path() === '/interview/mock') {
         this.interviewService.queryPrompts('all', (err, data) => {
           this.prompts = this.interviewService.selectNumPrompts(10, data);
+          console.log(this.prompts);
         });
       }
     };
