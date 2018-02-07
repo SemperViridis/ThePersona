@@ -26,15 +26,13 @@ angular.module('app')
     };
     this.recognition.onend = () => {
       this.recognizing = false;
-      this.responses.push(this.finalTranscript);
-      this.submitButton.removeAttr('disabled');
       $scope.$apply();
-      // if (this.ignoreOnEnd) {
-      //   return;
-      // }
-      // if (!this.finalTranscript) {
-      //   return;
-      // }
+      if (this.ignoreOnEnd) {
+        return;
+      }
+      if (!this.finalTranscript) {
+        return;
+      }
     };
     this.recognition.onresult = (event) => {
       for (let i = event.resultIndex; i < event.results.length; i += 1) {
@@ -47,7 +45,6 @@ angular.module('app')
     };
 
     this.toggleRecognition = () => {
-      console.log('recognition started');
       if (!this.recognizing) {
         this.finalTranscript = '';
         this.ignoreOnend = false;
@@ -60,12 +57,13 @@ angular.module('app')
     this.handleSubmission = () => {
       this.submitButton.attr('disabled', 'disabled');
       this.toneAnalysisService.toneAnalysis(this.responses.join('.'), (err, results) => {
-        this.result(results);
+        if (err) { throw new Error(err); }
+        this.result = results;
       });
 
-      this.service.wordAnalysis(this.responses.join(' '), (err, results) => {
-        this.fillers(results);
-      });
+      // this.service.wordAnalysis(this.responses.join(' '), (err, results) => {
+      //   this.fillers(results);
+      // });
     };
 
     this.getNextPrompt = () => {
@@ -73,7 +71,6 @@ angular.module('app')
       this.reachedLastQuestion = (this.promptCount === 9);
       this.recognition.stop();
       this.responses.push(this.finalTranscript);
-      // console.log(this.responses);
       this.interviewService.getNextPrompt();
       setTimeout(() => {
         this.recognition.start();
