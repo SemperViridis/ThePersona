@@ -42,11 +42,6 @@ angular.module('app')
         // NEED TO ADD RESOLVE TO RETRIEVE ID
       },
       {
-        name: 'login',
-        url: '/login',
-        component: 'login'
-      },
-      {
         name: 'logout',
         url: '/logout',
         component: 'logout'
@@ -64,4 +59,3 @@ angular.module('app')
       $stateProvider.state(state);
     });
   });
-
