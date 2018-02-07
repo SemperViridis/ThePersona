@@ -1,6 +1,6 @@
 angular.module('app')
   .service('interviewService', function ($http, broadcastService) {
-    this.prompts = ['question 1', 'question 2', 'question 3'];
+    this.prompts = [];
     this.currentPromptsIndex = -1;
     this.currentPrompt = this.prompts[this.currentPromptsIndex];
     this.selectedPrompt = {};
@@ -41,12 +41,6 @@ angular.module('app')
       }
       this.prompts = currentPrompts;
       return this.getPrompts();
-    };
-
-    this.runMock = () => {
-      this.selectPrompt(this.prompts.shift());
-      console.log('prompts after run', this.prompts);
-      console.log('selected', this.selectedPrompt);
     };
 
     this.selectPrompt = (prompt) => {
