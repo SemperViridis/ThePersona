@@ -7,12 +7,12 @@ angular.module('app')
     this.watsonService = watsonService;
     this.recordingService = recordingService;
 
+    // state properties
     this.interviewStarted = false;
     this.recognizing = false;
     this.responses = [];
     this.finalTranscript = '';
     this.interimTranscript = '';
-    this.analysis = '';
     this.submitButton = $('button.large.ui.right.floated.button.submit');
 
     // initialize speech interface
@@ -54,12 +54,10 @@ angular.module('app')
 
     this.handleSubmission = () => {
       this.recordingService.submitRecording();
-
       this.watsonService.toneAnalysis(this.responses.join('.'), (err, results) => {
         if (err) { throw new Error(err); }
         this.result = results;
       });
-
       this.watsonService.wordAnalysis(this.responses.join(' '), (err, results) => {
         this.fillers = results;
       });
@@ -73,7 +71,7 @@ angular.module('app')
       this.interviewService.getNextPrompt();
       setTimeout(() => {
         this.recognition.start();
-      }, 100);
+      }, 50);
     };
 
     this.startInterview = () => {
