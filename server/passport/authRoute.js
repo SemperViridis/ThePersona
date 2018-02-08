@@ -6,31 +6,38 @@ const jwtoken = require('jsonwebtoken');
 const Sequelize = require('sequelize');
 const sequelize = require('../../database/index.js').sequelize;
 const User = require('../../database/index.js').User;
+const sequelizeStore = require('express-sequelize-session')(session.Store);
 var secret = 'starwars';
 
 module.exports = function (app, passport) {
+  app.use(session({ 
+    secret: 'darkside', 
+    resave: true, 
+    saveUninitialized: true,
+    store: new sequelizeStore(sequelize), 
+    cookie: { maxAge:1000*24*7 },
+
+  }));
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(session({ secret: 'darkside', resave: false, saveUninitialized: true, cookie: { secure: false } }));
 
   passport.serializeUser(function (user, done) {
     
-    if (user) {
-      if (user.error) {
-        token = 'unconfirmed/error';
-      } else {
-        token = jwtoken.sign({ username: user.username, email: user.email }, secret, { expiresIn: '24h' });
-      }
-    } else {
-      token = 'inactive/error';
-    }
+    // if (user) {
+    //   if (user.error) {
+    //     token = 'unconfirmed/error';
+    //   } else {
+    //     token = jwtoken.sign({ username: user.username, email: user.email }, secret, { expiresIn: '24h' });
+    //   }
+    // } else {
+    //   token = 'inactive/error';
+    // }
    
     done(null, user.id);
   });
 
 
   passport.deserializeUser(function(id, done) {
-    debugger;
     User.find({ where: {id: id}}).then((user) => {
       if (!user) {
         return done(null,false);
@@ -54,7 +61,7 @@ module.exports = function (app, passport) {
       .then((user) => {
       if (!user) {
         User.create({
-          name: profile.name.givenName || '',
+          name: profile._json.name || '',
           email: profile.emails[0].value,
           username: profile.name.givenName || '',
           provider: 'facebook',
