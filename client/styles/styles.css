@@ -104,33 +104,6 @@ h1.logo {
   color: #494949;
 }
 
-div.header-img {
-  background-image: url(images/header2.jpg);
-  max-height: 30%;
-}
-
-
-.header-img img.bg {
-  /* Set rules to fill background */
-  min-height: 100%;
-  min-width: 1024px;
-
-  /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
-
-  /* Set up positioning */
-  top: 0;
-  left: 0;
-}
-
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-  img.bg {
-    left: 50%;
-    margin-left: -512px;   /* 50% */
-  }
-}
-
 #prompts, #speech, #results, #analysis{
   margin: auto;
   width: 65%;
@@ -249,7 +222,7 @@ button.circular.ui.red.flashing{
   filter: alpha(opacity=80); /* For IE8 and earlier */
 }
 
-login.ng-scope.ng-isolate-scope {
+.login.ng-scope.ng-isolate-scope {
   height: auto;
   background-color: rgba(250, 250, 250, .90);
 }
@@ -272,3 +245,97 @@ button {
   -ms-user-select:none;
   user-select:none;
 }
+
+.right.arrow.icon {
+  color: #fff;
+}
+
+.ui.huge.primary.button {
+  background-color: #13ed9a;
+}
+
+.ui.inverted.header {
+  margin-top: 50px;
+}
+
+.ui.container.header-image{
+  height: calc(50vh);
+  width: 100%;
+  flex: 1 0 auto;
+  font-family: 'Roboto', helvetica, sans-serif;
+  background-image: url("../images/header2.png");
+  background-size: 100%;
+  background-position: center;
+  margin-bottom: 60px;
+  /*position: relative;*/
+}
+
+.header-message {
+  margin: 200px 0 35px 35px;
+  width: 60%;
+  font-family: 'Raleway', sans-serif;
+}
+
+h1.ui.inverted {
+  font-size: 3.5em;
+  color: #5a5a5a;
+}
+
+.ui.huge.primary.button {
+  margin-left: 35px
+}
+
+.ui.container.content {
+  margin-bottom: 60px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.four.wide.column {
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+h2.four.wide.column, h3.four.wide.column {
+  font-family: 'Raleway', sans-serif;
+}
+
+.ui.footer.segment {
+  width: 100%;
+  margin-bottom: 0;
+  background-color: #0f2d37;
+  max-height: 300px;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 20px;
+}
+
+.ui.divided.grid {
+  margin: auto;
+  max-width: 75%;
+}
+
+.ui.footer.basic.segment p {
+  margin-top: 40px;
+}
+
+.content {
+  text-align: center;
+}
+
+h2.ui.inverted.header, h3.ui.inverted.header{
+  font-family: 'Roboto', helvetica, sans-serif;
+}
+
+h2.ui.inverted.header {
+  font-size: 1.4em;
+  margin-bottom: 5px;
+  letter-spacing: 2px;
+}
+
+h3.ui.inverted.header {
+  font-size: 1.2em;
+  margin-top: 0;
+}
+
+
+
