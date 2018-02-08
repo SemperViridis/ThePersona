@@ -3,15 +3,14 @@
 
     <h1 class="logo"><a ui-sref="app">Persona</a></h1>
       <div class="generalNav">
-        <a ui-sref="app.interview">Interview</a>
-          <div class="dropdown">
+        <a ui-sref="app.interview.mock">Interview</a>
+<!--           <div class="dropdown">
             <div class="dropdownItem">
               <a ui-sref="app.interview.practice">Practice</a>
               <a ui-sref="app.interview.mock">Mock Interview</a>
             </div>
-          </div>
+          </div> -->
         <a ui-sref="app.community">Community</a>
-        <a ui-sref="playback">Testing</a>
       </div>
       <div class="loginNav">
         <a ng-if="$ctrl.isLoggedin" ui-sref="app.user">My Dashboard</a> <!-- Add ng-if show if isLoggin -->
@@ -19,8 +18,8 @@
         <a ng-if="$ctrl.isLoggedin" ui-sref="logout">Log Out</a> <!-- Add ng-if show if isLoggin -->
       </div>
   </div>
-  <div class="bg">
-    <img src="./images/header2.jpg" class="bg">
+  <div class="header-img">
+    <!-- <img class="bg" src="./images/header2.jpg" class="bg"> -->
   </div>
   <ui-view></ui-view>
 </div>

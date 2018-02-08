@@ -27,7 +27,7 @@ h1 {
 #header {
   /*background: #0f2d37;*/
   background: #fff;
-  padding-bottom: 20px;
+  padding: 15px 30px 30px 20px;
   text-align: center;
   list-style: none;
 }
@@ -46,16 +46,20 @@ h1 {
 
 .generalNav a, .loginNav a {
   margin: 10px 20px 0 20px;
-  padding-bottom: 15px
-  font-size: 2em;
 }
 
-a, a:hover, a:active {
+a, a:hover, a:active, a:focus {
   text-decoration: none;
   color: #494949;
+  font-size: 1.2em;
 }
 
-.generalNav a:hover, .loginNav a:hover, .generalNav a:active, .loginNav a:active {
+.generalNav a:hover,
+.loginNav a:hover,
+.generalNav a:visited,
+.loginNav a:visited,
+.generalNav a:focus,
+.loginNav a:focus {
   border-bottom: 2px solid #13ed9a;
 }
 
@@ -95,7 +99,18 @@ h1.logo {
   font-size: 3em;
 }
 
-img.bg {
+.logo a:active, .logo a:visited {
+  text-decoration: none;
+  color: #494949;
+}
+
+div.header-img {
+  background-image: url(images/header2.jpg);
+  max-height: 30%;
+}
+
+
+.header-img img.bg {
   /* Set rules to fill background */
   min-height: 100%;
   min-width: 1024px;
