@@ -129,7 +129,7 @@ h1.logo {
   color: #494949;
 }
 
-#prompts, #speech, #results, #analysis{
+#prompts, #speech, #results {
   margin: auto;
   width: 65%;
 }
@@ -181,8 +181,9 @@ p.prompt {
 }
 
 #analysis {
-  margin-top: 40px;
-  margin-bottom: 200px;
+  margin: 150px auto 0 auto;
+  width: 90%;
+  height: 100%;
 }
 
 #analysis h1 {
@@ -204,6 +205,15 @@ p.prompt {
   font-size: 1.5em;
   opacity: .70;
   filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+#playback, #graph {
+  margin: auto;
+  width: 100%;
+}
+
+#playback {
+  margin-left: 100px;
 }
 
 .login.ng-scope.ng-isolate-scope {
@@ -258,7 +268,7 @@ a:hover.ui.huge.primary.button {
 }
 
 .header-message {
-  margin: 9% 0 5% 5%;
+  margin: 12% 0 5% 5%;
   width: 55%;
   font-family: 'Raleway', sans-serif;
 }
@@ -407,3 +417,18 @@ button:active, button:focus, button:selected, i:active, i:focus, i:selected {
   border: none;
   text-decoration: none;
 }
+
+video {
+  width: 80%;
+  height: auto;
+  border: 1px solid grey;
+}
+
+#download {
+  margin-top: 15px;
+}
+
+#recorded {
+  background-color: #fff;
+}
+
