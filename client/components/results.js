@@ -1,19 +1,27 @@
 angular.module('app')
-  .controller('resultsCtrl', function (interviewService) {
+  .controller('resultsCtrl', function (interviewService, watsonService) {
+    this.interviewService = interviewService;
+    this.watsonService = watsonService;
 
     this.questions = ['Who are you', 'What do you like to do'];
     this.answers = ['I am the truth', 'I like to play soccer'];
     this.tones = [[
       {
-        "score": 61,
-        "tone_id": "sadness",
-        "tone_name": "Sadness"
+        "score": 91,
+        "tone_id": "confident",
+        "tone_name": "Confident"
       },
       {
         "score": 83,
         "tone_id": "analytical",
         "tone_name": "Analytical"
+      },
+      {
+        "score": 78,
+        "tone_id": "joy",
+        "tone_name": "Joy"
       }
+
     ], [
       {
         "score": 62,

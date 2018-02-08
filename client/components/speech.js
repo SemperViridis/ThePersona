@@ -54,23 +54,19 @@ angular.module('app')
 
     this.handleSubmission = () => {
       this.recordingService.submitRecording();
-      this.watsonService.toneAnalysis(this.responses.join('.'), (err, results) => {
-        if (err) { throw new Error(err); }
-        this.result = results;
-      });
-      this.watsonService.wordAnalysis(this.responses.join(' '), (err, results) => {
-        this.fillers = results;
-      });
+      this.watsonService.analyzeAnswer(this.finalTranscript);
+      this.watsonService.analyzeInterview(this.responses.join('.'));
     };
 
     this.getNextPrompt = () => {
       this.promptCount = this.promptCount + 1 || 1;
-      this.reachedLastQuestion = (this.promptCount === 9);
-      this.recognition.stop();
+      this.reachedLastQuestion = (this.promptCount === 2);
+      this.watsonService.analyzeAnswer(this.finalTranscript);
       this.responses.push(this.finalTranscript);
+      this.toggleRecognition();
       this.interviewService.getNextPrompt();
       setTimeout(() => {
-        this.recognition.start();
+        this.toggleRecognition();
       }, 50);
     };
 
