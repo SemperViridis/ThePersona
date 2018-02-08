@@ -28,7 +28,7 @@ angular.module('app')
       }
       if ($location.path() === '/interview/mock') {
         this.interviewService.queryPrompts('all', (err, data) => {
-          this.prompts = this.interviewService.selectNumPrompts(10, data);
+          this.prompts = this.interviewService.selectNumPrompts(2, data);
         });
       }
     };

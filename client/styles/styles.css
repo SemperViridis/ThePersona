@@ -135,25 +135,27 @@ h1.logo {
 }
 
 div.promptsScreen {
-  background: #fff;
+  background: transparent;
   min-height: 500px;
   /*height: 100%;*/
   margin: 70px auto 0 auto;
-  border: 1px solid #bfc1c1;
+  /*border: 1px solid #bfc1c1;*/
   text-align: center;
   list-style: none;
 }
 
 #prompts h1 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
   margin-top: 15px;
 }
 
 p.prompt {
   padding: 12% 5%;
   margin: 2% auto 0 auto;
-  font-size: 3em;
-  color: #393939;
+  font-size: 5em;
+  /*color: #393939;*/
+  color: #ECEBEB;
+  text-shadow: 4px 5px 5px #000;
 }
 
 #speech {
@@ -283,7 +285,7 @@ h1.ui.inverted {
 }
 
 .ui.container.content {
-  margin-bottom: 60px;
+  margin-bottom: 100px;
   font-family: 'Raleway', sans-serif;
 }
 
@@ -398,6 +400,9 @@ button.play {
   left: 500px;
   opacity: .6;
   filter: alpha(opacity=60);
+  width: 10%;
+  display: block;
+  text-align: center;
 }
 
 .fa.fa-play {
@@ -406,10 +411,13 @@ button.play {
   color: #464646;
 }
 
-button.large.ui.right.labeled.icon.button {
-  margin-top:10px;
-  width: 10%;
-  display: inline-block;
+button.huge.ui.right.labeled.icon.button {
+/*  top: -370px;
+  left: 500px*/
+  margin: auto;
+  width: 15%;
+  display: block;
+  text-align: center;
 }
 
 button:active, button:focus, button:selected, i:active, i:focus, i:selected {
@@ -432,3 +440,27 @@ video {
   background-color: #fff;
 }
 
+.ui.horizontal.header.divider {
+  font-size: 1.5em;
+  margin-bottom: 25px;
+}
+
+.ui.container.content {
+  margin-bottom: 100px;
+  font-family: 'Raleway', sans-serif;
+}
+
+p.bodyContent {
+  font-size: 1.3em;
+  text-align: left;
+  margin-bottom: 15px;
+  line-height: 1.5em;
+}
+
+#record {
+  color: transparent;
+}
+
+.modal.body {
+  color: #fff;
+}
