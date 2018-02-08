@@ -7,6 +7,11 @@ angular.module('app')
         component: 'app'
       },
       {
+        name: 'app.home',
+        url: 'home',
+        component: 'home'
+      },
+      {
         name: 'app.interview',
         url: 'interview',
         component: 'interview'
@@ -49,11 +54,6 @@ angular.module('app')
         name: 'logout',
         url: '/logout',
         component: 'logout'
-      },
-      {
-        name: 'playback',
-        url: '/playback',
-        component: 'playback'
       }
     ];
 
