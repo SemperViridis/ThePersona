@@ -12,6 +12,11 @@ angular.module('app')
         component: 'home'
       },
       {
+        name: 'app.login',
+        url: 'login',
+        component: 'login'
+      },
+      {
         name: 'app.interview',
         url: 'interview',
         component: 'interview'
