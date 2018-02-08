@@ -30,14 +30,23 @@ app.get('/api/users', (req, res) => {
 
 function checkAuthentication (req, res, next) {
   if (req.isAuthenticated()) {
+    console.log('You are authenticated!');
     next();
   } else {
-    res.redirect('/login');
+    console.log('You are not Authenticated!')
+    res.redirect('/#!/login');
   }
 };
 
 app.get('/api/dashboard', checkAuthentication, (req, res) => {
-  res.sendStatus(200);
+  // if (req.isAuthenticated()) {
+  //   console.log('You are authenticated!');
+  //   res.redirect('/#!/login');
+  // } else {
+  //   console.log('You are not Authenticated!')
+  //   res.redirect('/#!/interview/practice');
+  // }
+  res.redirect('/#!/interview/practice');
 });
 
 
