@@ -36,6 +36,7 @@ angular.module('app')
         output.question = this.questions[i];
         output.answer = this.answers[i];
         output.tones = this.tones[i];
+        output.fillers = this.fillers[i];
         this.arranged.push(output);
         console.log('updated', this.arranged);
         }
