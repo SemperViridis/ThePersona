@@ -1,20 +1,26 @@
-<button
-  ng-if="$ctrl.recognizing"
-  class="ui red button flashing">
-</button>
 <div id="speech">
-  <button
+<!--   <button
+    ng-if="$ctrl.recognizing"
+    class="ui red button flashing">
+  </button> -->
+<!--   <button
     ng-if="!$ctrl.interviewStarted"
     ng-click="$ctrl.startInterview()"
     class="large ui right labeled icon button">
     <i ng-if="!$ctrl.recognizing" class="play icon"></i>
     <i ng-if="$ctrl.recognizing" class="stop icon"></i>
     Start
+  </button> -->
+  <button
+    ng-if="!$ctrl.interviewStarted"
+    ng-click="$ctrl.startInterview()"
+    class="play">
+    <i class="fa fa-play"></i>
   </button>
   <button
     ng-if="$ctrl.interviewStarted && !$ctrl.reachedLastQuestion"
     ng-click="$ctrl.getNextPrompt()"
-    class="large ui right labeled icon button">
+    class="large ui right floated right labeled icon button">
     <i class="step forward icon"></i>
     Next
   </button>
@@ -26,3 +32,4 @@
     Submit
   </button>
 </div>
+ <!-- ng-if="$ctrl.reachedLastQuestion" -->

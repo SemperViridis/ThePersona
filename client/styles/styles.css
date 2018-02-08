@@ -143,7 +143,7 @@ div.promptsScreen {
 
 p.prompt {
   padding: 12% 5%;
-  margin: 2% auto auto auto;
+  margin: 2% auto 0 auto;
   font-size: 3em;
   color: #393939;
 }
@@ -156,6 +156,7 @@ p.prompt {
 #speech button.submit {
   background: #13ed9a;
   color: #fff;
+  margin-top: 10px;
 }
 
 #results {
@@ -321,19 +322,10 @@ h3.ui.inverted.header {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-bottom: 500px;
+  padding-bottom: 600px;
 }
 
 button.ui.red.flashing{
-  top: -485px;
-  margin-left: 320px;
-  margin-bottom: 0;
-  position: relative;
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
-  border-radius: 50px;
-  width: 50px;
-  height: 50px;
   display: inline;
   animation-name: flash;
   animation-duration: 1.75s;
@@ -379,3 +371,31 @@ button.ui.red.flashing{
   100% { opacity: 0.9 }
 }
 
+button.play {
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 100px;
+  position: relative;
+  top: -370px;
+  left: 500px;
+  opacity: .6;
+  filter: alpha(opacity=60);
+}
+
+.fa.fa-play {
+  font-size: 200px;
+  /*color: #1ed992;*/
+  color: #464646;
+}
+
+button.large.ui.right.labeled.icon.button {
+  margin-top:10px;
+  width: 10%;
+  display: inline-block;
+}
+
+button:active, button:focus, button:selected, i:active, i:focus, i:selected {
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
