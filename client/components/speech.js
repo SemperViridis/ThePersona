@@ -65,7 +65,7 @@ angular.module('app')
 
     this.getNextPrompt = () => {
       this.promptCount = this.promptCount + 1 || 1;
-      this.reachedLastQuestion = (this.promptCount === 1);
+      this.reachedLastQuestion = (this.promptCount === 9);
       this.recognition.stop();
       this.responses.push(this.finalTranscript);
       this.interviewService.getNextPrompt();

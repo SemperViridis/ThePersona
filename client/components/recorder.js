@@ -50,17 +50,15 @@ angular.module('app')
       this.mediaRecorder = new MediaRecorder(this.stream);
       this.mediaRecorder.ondataavailable = this.handleDataAvailable;
       this.mediaRecorder.start(10);
-      // this.recordButton.textContent = 'Stop';
-      this.recordButton.textContent = '.';
-
+      this.recordButton.textContent = 'Stop';
     };
 
     this.toggleRecording = () => {
-      if (this.recordButton.textContent === '') {
+      if (this.recordButton.textContent === 'Record') {
         this.startRecording();
       } else {
         this.mediaRecorder.stop();
-        this.recordButton.textContent = '';
+        this.recordButton.textContent = 'Record';
         this.recordingService.recording = this.recordedBlobs;
       }
     };

@@ -7,7 +7,6 @@ angular.module('app')
         }
       })
         .then(({ data }) => {
-          // NEED TO VERIFY FORMAT OF DATA
           if (callback) {
             callback(null, data.document_tone);
           }
@@ -24,7 +23,6 @@ angular.module('app')
         }
       })
         .then(({ data }) => {
-          // NEED TO VERIFY FORMAT OF DATA
           if (callback) {
             callback(null, data);
           }
