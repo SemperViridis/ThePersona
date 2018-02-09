@@ -12,6 +12,11 @@ angular.module('app')
         component: 'home'
       },
       {
+        name: 'app.login',
+        url: 'login',
+        component: 'login'
+      },
+      {
         name: 'app.interview',
         url: 'interview',
         component: 'interview'
@@ -57,7 +62,7 @@ angular.module('app')
       }
     ];
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/home');
 
     states.forEach((state) => {
       $stateProvider.state(state);

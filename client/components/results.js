@@ -17,8 +17,8 @@ angular.module('app')
     ], [
       {
         "score": 62,
-        "tone_id": "sadness",
-        "tone_name": "Sadness"
+        "tone_id": "joy",
+        "tone_name": "Joy"
       },
       {
         "score": 84,

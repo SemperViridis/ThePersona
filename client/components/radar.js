@@ -1,9 +1,9 @@
 angular.module('app').controller('RadarCtrl', function ($scope) {
-  this.$onInit = function() {
-    $scope.labels = ['Anger', 'Fear', 'Joy', 'Sadness', 'Analytical', 'Confident', 'Tentative'];
+  this.$onInit = function () {
+    $scope.labels = ['Anger', 'Fear', 'Tentative', 'Sadness', 'Analytical', 'Confident', 'Joy'];
 
     $scope.data = [
-      [75, 81, 98, 78, 68, 21, 89]
+      [10, 30, 65, 10, 68, 75, 98]
     ];
 
     for (let i = 0; i < $scope.labels.length; i += 1) {

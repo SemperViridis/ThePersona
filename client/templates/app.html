@@ -1,22 +1,21 @@
 <div id="appContainer">
   <div id="header">
-    <h1><a ui-sref="app">Persona</a>
-      <i class="comment outline icon"></i>
-    </h1>
-    <ul>
-      <li><a ui-sref="app.interview">Interview</a>
-        <ul>
-          <li><a ui-sref="app.interview.practice">Practice</a></li>
-          <li><a ui-sref="app.interview.mock">Mock Interview</a></li>
-        </ul>
-      </li>
-      <li><a ui-sref="app.community">Community</a></li>
-      <li><a ui-sref="app.user">My Dashboard</a></li> <!-- Add ng-if show if isLoggin -->
-      <li><a ng-click="$ctrl.openComponentModal()" href="#">Login</a></li> <!-- Add ng-if show if !isLoggin -->
-      <li><a ui-sref="logout">Log Out</a></li> <!-- Add ng-if show if isLoggin -->
-      <br />
-      <li><a ui-sref="app.home">Testing</a></li>
-    </ul>
+      <h1 class="logo"><a ui-sref="app.home">Persona</a></h1>
+      <div class="generalNav">
+        <a ui-sref="app.interview">Interview</a>
+          <div class="dropdown">
+            <div class="dropdownItem">
+              <a ui-sref="app.interview.practice">Practice</a>
+              <a ui-sref="app.interview.mock">Mock Interview</a>
+            </div>
+          </div>
+        <a ui-sref="app.community">Community</a>
+      </div>
+      <div class="loginNav">
+        <a ng-if="$ctrl.isLoggedin" ui-sref="app.user">My Dashboard</a>
+        <a ng-if="!$ctrl.isLoggedin" ng-click="$ctrl.openComponentModal()" href="#">Login</a>
+        <a ng-if="$ctrl.isLoggedin" ui-sref="logout">Log Out</a>
+      </div>
   </div>
   <ui-view></ui-view>
 </div>
