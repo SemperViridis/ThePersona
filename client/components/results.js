@@ -24,6 +24,7 @@ angular.module('app')
         output.tones = this.tones[i];
         output.fillers = this.fillers[i];
         this.arranged.push(output);
+        console.log('results output object:', output);
         console.log('updated arranged:', this.arranged);
       }
     }
@@ -37,7 +38,6 @@ angular.module('app')
       output.overall = true;
       this.overall.push(output);
       console.log('this is the overall analysis:', this.overall);
-      debugger;
     }
     this.arrangeOverall();
 
