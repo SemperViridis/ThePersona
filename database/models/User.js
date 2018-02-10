@@ -43,12 +43,9 @@ module.exports = (sequelize, DataTypes) =>{
 
   });
 
-  
-  User.associate = function(models) {
+  User.associate = function (models) {
     models.User.hasMany(models.Prompt);
   };
-
-
 
   return User;
 };
