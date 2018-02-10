@@ -15,7 +15,7 @@ module.exports = function (app, passport) {
     resave: true,
     saveUninitialized: true,
     store: new sequelizeStore(sequelize),
-    cookie: { maxAge:1000*24*7 },
+    cookie: { maxAge:1000 * 24 * 7 },
 
   }));
   app.use(passport.initialize());
@@ -57,25 +57,24 @@ module.exports = function (app, passport) {
     profileFields: ['id', 'displayName', 'photos', 'email']
   },
   (accessToken, refreshToken, profile, done) => {
-    console.log('profile', profile);
     User.find({ where: { email: profile.emails[0].value } })
       .then((user) => {
-      if (!user) {
-        User.create({
-          name: profile._json.name || '',
-          email: profile.emails[0].value,
-          username: profile.name.givenName || '',
-          provider: 'facebook',
-          facebookUserId: profile.id
-        }).then((u)=> {
-          done(null, u);
-        })
-      } else {
-        done(null, user);
-      }
-    }).catch((err) => {
-      done(err, null);
-    });
+        if (!user) {
+          User.create({
+            name: profile._json.name || '',
+            email: profile.emails[0].value,
+            username: profile.name.givenName || '',
+            provider: 'facebook',
+            facebookUserId: profile.id
+          }).then((u) => {
+            done(null, u);
+          });
+        } else {
+          done(null, user);
+        }
+      }).catch((err) => {
+        done(err, null);
+      });
   }
   ));
 
