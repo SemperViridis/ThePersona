@@ -23,6 +23,16 @@ if (NODE_ENV === 'production') {
   });
 }
 
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Database successfully connected!');
+  })
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
+    throw err;
+  });
+
 // INITIALIZE TABLES
 
 const User = sequelize.import('./models/User.js');
