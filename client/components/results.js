@@ -3,62 +3,44 @@ angular.module('app')
     this.interviewService = interviewService;
     this.watsonService = watsonService;
 
-    this.questions = ['Who are you', 'What do you like to do'];
-    this.answers = ['I am the truth', 'I like to play soccer'];
-    this.tones = [[
-      {
-        "score": 91,
-        "tone_id": "confident",
-        "tone_name": "Confident"
-      },
-      {
-        "score": 83,
-        "tone_id": "analytical",
-        "tone_name": "Analytical"
-      },
-      {
-        "score": 78,
-        "tone_id": "joy",
-        "tone_name": "Joy"
-      }
+    this.test = 'overall graph';
+    this.interviewTones = watsonService.interviewAnalysis;
+    this.interviewFillers = watsonService.interviewFillers;
 
-    ], [
-      {
-        "score": 62,
-        "tone_id": "sadness",
-        "tone_name": "Sadness"
-      },
-      {
-        "score": 84,
-        "tone_id": "analytical",
-        "tone_name": "Analytical"
-      }
-    ]];
-    this.fillers = [{ like: 2, actually: 3 }, { totally: 10, so: 11 }];
+    this.questions = interviewService.prompts;
+
+    this.answers = this.watsonService.responses;
+
+    this.tones = this.watsonService.answerAnalysis;
+    this.fillers = this.watsonService.answerFillers;
 
     this.arranged = [];
 
-    this.arrange = () => {
-      for (let i = 0; i < this.questions.length; i += 1) {
+    this.arrangeAnswers = () => {
+      for (let i = 0; i < this.answers.length; i += 1) {
         const output = {};
-        output.question = this.questions[i];
+        output.question = this.questions[i].question;
         output.answer = this.answers[i];
         output.tones = this.tones[i];
         output.fillers = this.fillers[i];
         this.arranged.push(output);
-        console.log('updated', this.arranged);
-        }
+        console.log('updated arranged:', this.arranged);
       }
-    this.arrange();
+    }
+    this.arrangeAnswers();
 
-    this.interviewService = interviewService;
-    this.selectedPrompt = this.interviewService.selectedPrompt;
-    this.setPrompts = () => {
-      const tag = this.options.selectedType.name;
-      this.interviewService.setPrompt(tag, 10, () => {
-        this.prompts = this.interviewService.prompts;
-      });
-    };
+    this.overall = []
+    this.arrangeOverall = () => {
+      const output = {};
+      output.tones= this.interviewTones[0];
+      output.fillers = this.interviewFillers[0];
+      output.overall = true;
+      this.overall.push(output);
+      console.log('this is the overall analysis:', this.overall);
+      debugger;
+    }
+    this.arrangeOverall();
+
   })
   .component('results', {
     controller: 'resultsCtrl',

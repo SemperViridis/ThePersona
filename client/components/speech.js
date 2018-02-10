@@ -53,6 +53,9 @@ angular.module('app')
     };
 
     this.handleSubmission = () => {
+      this.responses.push(this.finalTranscript);
+      console.log('onSubmit transcript:', this.finalTranscript);
+      console.log('onSubmit responses:', this.responses);
       this.recordingService.submitRecording();
       this.watsonService.analyzeAnswer(this.finalTranscript);
       this.watsonService.analyzeInterview(this.responses.join('.'));
@@ -61,12 +64,14 @@ angular.module('app')
     this.getNextPrompt = () => {
       this.promptCount = this.promptCount + 1 || 1;
       this.reachedLastQuestion = (this.promptCount === 2);
-      this.watsonService.analyzeAnswer(this.finalTranscript);
-      this.responses.push(this.finalTranscript);
-      this.toggleRecognition();
-      this.interviewService.getNextPrompt();
+      this.recognition.stop();
+      console.log(this.finalTranscript);
       setTimeout(() => {
-        this.toggleRecognition();
+        this.watsonService.analyzeAnswer(this.finalTranscript);
+        this.responses.push(this.finalTranscript);
+        this.interviewService.getNextPrompt();
+        this.finalTranscript = '';
+        this.recognition.start();
       }, 50);
     };
 
