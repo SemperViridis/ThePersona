@@ -1,23 +1,26 @@
-const expect = chai.expect;
+const { expect } = chai;
 
-describe('app', function () {
-  let element;
-
-  // beforeEach(angular.mock.module('ui.router'));
+describe('App Component', function () {
+  let element, scope;
 
   beforeEach(angular.mock.module('app'));
-
   beforeEach(angular.mock.module('templates'));
-
-  beforeEach(angular.mock.inject(function ($rootScope, $compile) {
-    const scope = $rootScope.$new();
-    element = angular.element('<speech></speech>');
+  beforeEach(angular.mock.module(($provide) => {
+    $provide.value('$state', {});
+  }));
+  beforeEach(angular.mock.inject(($rootScope, $compile) => {
+    scope = $rootScope.$new();
+    element = angular.element('<app></app>');
     element = $compile(element)(scope);
     $rootScope.$digest();
+    console.log(element);
   }));
 
-  it('should render a speech element', function () {
-    const speech = element.find('speech');
-    expect(speech.length).to.equal(1);
+  it('should render', () => {
+    expect(element.find('app').length).to.exist;
+  });
+
+  it('should have a controller', () => {
+    expect(element.isolateScope().$ctrl).to.exist;
   });
 });
