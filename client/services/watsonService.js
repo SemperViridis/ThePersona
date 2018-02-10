@@ -9,7 +9,6 @@ angular.module('app')
 
 
     this.analyzeAnswer = (answer, cb) => {
-      console.log('line 12 watson')
       this.responses.push(answer)
       this.toneAnalysis(answer, (err, results) => {
         if (err) { throw new Error(err) }
@@ -30,13 +29,12 @@ angular.module('app')
     }
 
     this.analyzeInterview = (interview) => {
-      console.log('this is the interview', interview);
       this.toneAnalysis(interview, (err, results) => {
         if (err) { throw new Error(err) }
         this.interviewAnalysis.push(results)
-        console.log('answer analysis after callback', this.answerAnalysis);
-        console.log('interview tone Analysis:', results);
-        console.log('interview Array:', this.interviewAnalysis);
+        // console.log('answer analysis after callback', this.answerAnalysis);
+        // console.log('interview tone Analysis:', results);
+        // console.log('interview Array:', this.interviewAnalysis);
         broadcastService.send('analysis Done');
       });
 

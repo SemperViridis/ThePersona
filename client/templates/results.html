@@ -1,7 +1,8 @@
 <div >
   <h1>Results</h1>
-  <div>
-    <radar output="$ctrl.overall[0]" dope="$ctrl.test"></radar>
+  <div ng-if="!$ctrl.resultsLoaded"> Analyzing Interview </div>
+  <div ng-if="$ctrl.resultsLoaded">
+    <radar output="$ctrl.overall[0].tones" dope="$ctrl.test"></radar>
   </div>
   <div>
   <table border='1'>

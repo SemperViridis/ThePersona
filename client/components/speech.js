@@ -56,8 +56,8 @@ angular.module('app')
       this.recordingService.submitRecording();
       setTimeout(() => {
         this.responses.push(this.finalTranscript);
-        console.log('onSubmit transcript:', this.finalTranscript);
-        console.log('onSubmit responses:', this.responses);
+        // console.log('onSubmit transcript:', this.finalTranscript);
+        // console.log('onSubmit responses:', this.responses);
         this.watsonService.analyzeAnswer(this.finalTranscript, () => this.watsonService.analyzeInterview(this.responses.join('.')));
       }, 500);
     };
