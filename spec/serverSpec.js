@@ -20,7 +20,7 @@ describe('RESTful API interaction with database', () => {
   beforeEach((done) => {
     db.sequelize.sync({ force: true })
       .then(() => {
-        return db.Prompt.bulkCreate(seedPrompts.prompts);
+        db.Prompt.bulkCreate(seedPrompts.prompts);
       })
       .then(() => done())
       .catch((err) => {
