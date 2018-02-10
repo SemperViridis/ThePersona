@@ -7,11 +7,16 @@ angular.module('app')
     this.interviewAnalysis = [];
     this.interviewFillers = [];
 
-    this.analyzeAnswer = (answer) => {
+
+    this.analyzeAnswer = (answer, cb) => {
+      console.log('line 12 watson')
       this.responses.push(answer)
       this.toneAnalysis(answer, (err, results) => {
         if (err) { throw new Error(err) }
         this.answerAnalysis.push(results);
+        if (cb) {
+          cb();
+        }
         // broadcastService.send('render');
         // console.log('tone anaylsis:', this.answerAnalysis);
       })
@@ -29,9 +34,10 @@ angular.module('app')
       this.toneAnalysis(interview, (err, results) => {
         if (err) { throw new Error(err) }
         this.interviewAnalysis.push(results)
+        console.log('answer analysis after callback', this.answerAnalysis);
         console.log('interview tone Analysis:', results);
         console.log('interview Array:', this.interviewAnalysis);
-        setTimeout(broadcastService.send('render'), 50);
+        broadcastService.send('analysis Done');
       });
 
       this.wordAnalysis(interview, (err, results) => {

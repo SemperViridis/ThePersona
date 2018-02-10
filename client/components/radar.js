@@ -1,6 +1,6 @@
 angular.module('app').controller('RadarCtrl', function ($scope) {
   // this.$onInit = function() {
-  $scope.$on('render', (event) => {
+  $scope.$on('analysis Done', (event) => {
     $scope.labels = ['Anger', 'Fear', 'Sadness', 'Tentative', 'Joy', 'Analytical', 'Confident'];
 
     $scope.data = [

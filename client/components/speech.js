@@ -58,9 +58,8 @@ angular.module('app')
         this.responses.push(this.finalTranscript);
         console.log('onSubmit transcript:', this.finalTranscript);
         console.log('onSubmit responses:', this.responses);
-        this.watsonService.analyzeAnswer(this.finalTranscript);
-        this.watsonService.analyzeInterview(this.responses.join('.'));
-      }, 100)
+        this.watsonService.analyzeAnswer(this.finalTranscript, () => this.watsonService.analyzeInterview(this.responses.join('.')));
+      }, 500);
     };
 
     this.getNextPrompt = () => {
@@ -70,11 +69,11 @@ angular.module('app')
       this.interviewService.getNextPrompt();
       setTimeout(() => {
         console.log(this.finalTranscript);
-        this.watsonService.analyzeAnswer(this.finalTranscript);
         this.responses.push(this.finalTranscript);
+        this.watsonService.analyzeAnswer(this.finalTranscript);
         this.finalTranscript = '';
         this.recognition.start();
-      }, 100);
+      }, 500);
     };
 
     this.startInterview = () => {
