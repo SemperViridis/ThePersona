@@ -8,7 +8,8 @@ const wordAnalyzer = require('./helpers/fillerWords').fillerWords;
 const personalityInsight = require('./helpers/personalityInsight');
 const app = express();
 const sequelize = require('../database/index.js').sequelize;
-const User = require('../database/models/User.js');
+const User = require('../database/index.js').User;
+const userData = require('../database/controllers/userData.js');
 const passport = require('passport');
 const social = require('./passport/authRoute.js')(app, passport);
 
@@ -38,17 +39,25 @@ function checkAuthentication (req, res, next) {
   }
 };
 
+
 app.get('/api/dashboard', checkAuthentication, (req, res) => {
-  // if (req.isAuthenticated()) {
-  //   console.log('You are authenticated!');
-  //   res.redirect('/#!/login');
-  // } else {
-  //   console.log('You are not Authenticated!')
-  //   res.redirect('/#!/interview/practice');
-  // }
   res.redirect('/#!/interview/practice');
 });
 
+app.get('/data/user', checkAuthentication, (req, res) => {
+  let lookUp = req.user.dataValues.email;
+  console.log('this is the incoming request', req.user);
+  console.log('this is the session ID', req.session);
+  userData.userByEmail(lookUp, (err, results) => {
+    console.log('this is the server js', err, results);
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      console.log('these are the callback results', results);
+      res.status(200).json(results);
+    }
+  })
+});
 
 app.get('/api/prompts', (req, res) => {
   const tag = req.query.tags;
