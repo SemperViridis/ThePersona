@@ -10,18 +10,8 @@ const sequelizeStore = require('express-sequelize-session')(session.Store);
 var secret = 'starwars';
 
 module.exports = function (app, passport) {
-<<<<<<< HEAD
-  app.use(session({
-    secret: 'darkside',
-    resave: true,
-    saveUninitialized: true,
-    store: new sequelizeStore(sequelize),
-    cookie: { maxAge:1000*24*7 },
-
-=======
   app.use(session({ 
     secret: 'darkside'
->>>>>>> work in progress for database queries
   }));
   app.use(passport.initialize());
   app.use(passport.session());
