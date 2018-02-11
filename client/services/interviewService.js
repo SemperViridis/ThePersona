@@ -51,6 +51,7 @@ angular.module('app')
     this.getPrompts = () => this.prompts;
 
     this.getNextPrompt = () => {
+      console.log('here are the prompts:', this.prompts);
       this.currentPromptsIndex = this.currentPromptsIndex + 1;
       broadcastService.send('update', this.currentPromptsIndex);
     };

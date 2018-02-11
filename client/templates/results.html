@@ -8,6 +8,11 @@
   </div> -->
   <div>
     <radar output = "$ctrl.arranged[0].tones"></radar>
+<div >
+  <h1>Results</h1>
+  <div ng-if="!$ctrl.resultsLoaded"> Analyzing Interview </div>
+  <div ng-if="$ctrl.resultsLoaded">
+    <radar output="$ctrl.overall[0].tones" dope="$ctrl.test"></radar>
   </div>
 <!--   <div>
     <table border='1'>

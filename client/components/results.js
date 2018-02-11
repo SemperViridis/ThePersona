@@ -1,55 +1,51 @@
 angular.module('app')
-  .controller('resultsCtrl', function (interviewService) {
-
-    this.questions = ['Who are you', 'What do you like to do'];
-    this.answers = ['I am the truth', 'I like to play soccer'];
-    this.tones = [[
-      {
-        "score": 61,
-        "tone_id": "sadness",
-        "tone_name": "Sadness"
-      },
-      {
-        "score": 83,
-        "tone_id": "analytical",
-        "tone_name": "Analytical"
-      }
-    ], [
-      {
-        "score": 62,
-        "tone_id": "joy",
-        "tone_name": "Joy"
-      },
-      {
-        "score": 84,
-        "tone_id": "analytical",
-        "tone_name": "Analytical"
-      }
-    ]];
-    this.fillers = [{ like: 2, actually: 3 }, { totally: 10, so: 11 }];
-
-    this.arranged = [];
-
-    this.arrange = () => {
-      for (let i = 0; i < this.questions.length; i += 1) {
-        const output = {};
-        output.question = this.questions[i];
-        output.answer = this.answers[i];
-        output.tones = this.tones[i];
-        this.arranged.push(output);
-        console.log('updated', this.arranged);
-        }
-      }
-    this.arrange();
-
+  .controller('resultsCtrl', function (interviewService, watsonService, $scope) {
     this.interviewService = interviewService;
-    this.selectedPrompt = this.interviewService.selectedPrompt;
-    this.setPrompts = () => {
-      const tag = this.options.selectedType.name;
-      this.interviewService.setPrompt(tag, 10, () => {
-        this.prompts = this.interviewService.prompts;
-      });
-    };
+    this.watsonService = watsonService;
+
+    this.test = 'overall graph';
+    $scope.$on('analysis Done', (event) => {
+
+      //Analysis for whole interview
+      this.interviewTones = watsonService.interviewAnalysis;
+      this.interviewFillers = watsonService.interviewFillers;
+
+      //Analysis per question
+      this.questions = interviewService.prompts;
+      this.answers = this.watsonService.responses;
+
+      this.tones = this.watsonService.answerAnalysis;
+      this.fillers = this.watsonService.answerFillers;
+
+
+      //Arrange analysis into object per question
+      this.arranged = [];
+
+      this.arrangeAnswers = () => {
+        for (let i = 0; i < this.answers.length; i += 1) {
+          const output = {};
+          output.question = this.questions[i].question;
+          output.answer = this.answers[i];
+          output.tones = this.tones[i].tones;
+          output.fillers = this.fillers[i];
+          this.arranged.push(output);
+        }
+      };
+      this.arrangeAnswers();
+
+      //Arrange overall interview analysis into one object
+      this.overall = [];
+      this.arrangeOverall = () => {
+        const output = {};
+        output.tones = this.interviewTones[0].tones;
+        output.fillers = this.interviewFillers[0];
+        output.overall = true;
+        this.overall.push(output);
+      };
+      this.arrangeOverall();
+      this.resultsLoaded = true;
+      // $scope.$apply();
+    });
   })
   .component('results', {
     controller: 'resultsCtrl',
