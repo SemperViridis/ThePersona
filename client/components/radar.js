@@ -1,25 +1,26 @@
 angular.module('app').controller('RadarCtrl', function ($scope) {
-  this.$onInit = function () {
-    $scope.labels = ['Anger', 'Fear', 'Tentative', 'Sadness', 'Analytical', 'Confident', 'Joy'];
+  $scope.labels = ['Anger', 'Fear', 'Sadness', 'Tentative', 'Joy', 'Analytical', 'Confident'];
 
-    $scope.data = [
-      [10, 30, 65, 10, 68, 75, 98]
-    ];
+  $scope.data = [
+    [20, 20, 20, 20, 20, 20, 20]
+  ];
 
+  if ($scope.$ctrl.output) {
+    console.log('if condition hit')
     for (let i = 0; i < $scope.labels.length; i += 1) {
-      for (let k = 0; k < this.output.length; k += 1) {
-        if (this.output[k].tone_name === this.labels[i]) {
-          $scope.data[i] = this.output[k].score;
+      for (let k = 0; k < $scope.$ctrl.output.length; k += 1) {
+        if ($scope.$ctrl.output[k].tone_name === $scope.labels[i]) {
+          $scope.data[0][i] = $scope.$ctrl.output[k].score * 100;
+          console.log('changed OVERALL datapoint:', $scope.data[0][i], i);
         }
       }
     }
-  };
+  }
 })
 
   .component('radar', {
     bindings: {
-      output: '=',
+      output: '<',
     },
-    controller: 'RadarCtrl',
     templateUrl: 'templates/radar.html'
   });

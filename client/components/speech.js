@@ -54,24 +54,24 @@ angular.module('app')
 
     this.handleSubmission = () => {
       this.recordingService.submitRecording();
-      this.watsonService.toneAnalysis(this.responses.join('.'), (err, results) => {
-        if (err) { throw new Error(err); }
-        this.result = results;
-      });
-      this.watsonService.wordAnalysis(this.responses.join(' '), (err, results) => {
-        this.fillers = results;
-      });
+      setTimeout(() => {
+        this.responses.push(this.finalTranscript);
+        this.watsonService.analyzeAnswer(this.finalTranscript, () => this.watsonService.analyzeInterview(this.responses.join('.')));
+      }, 500);
     };
 
     this.getNextPrompt = () => {
       this.promptCount = this.promptCount + 1 || 1;
-      this.reachedLastQuestion = (this.promptCount === 9);
+      this.reachedLastQuestion = (this.promptCount === 2);
       this.recognition.stop();
-      this.responses.push(this.finalTranscript);
       this.interviewService.getNextPrompt();
       setTimeout(() => {
+        console.log(this.finalTranscript);
+        this.responses.push(this.finalTranscript);
+        this.watsonService.analyzeAnswer(this.finalTranscript);
+        this.finalTranscript = '';
         this.recognition.start();
-      }, 50);
+      }, 500);
     };
 
     this.startInterview = () => {
