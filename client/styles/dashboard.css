@@ -1,0 +1,59 @@
+#user {
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.pusher.dashboardBody {
+  background-color: #f5eeee;
+}
+
+.profile {
+  text-align: center;
+  margin: 20px 20px 60px 20px;
+}
+
+.profile img {
+  margin-bottom: 15px;
+}
+
+.ui.vertical.sticky.menu {
+  float: left;
+  height: 100%;
+  display: inline-block;
+  width: 15%;
+  text-align: left;
+}
+
+.ui.vertical.sticky.menu.dashboardMenu a.item {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.ui.vertical.sticky.menu.dashboardMenu i {
+  float: left;
+  margin-right: 30px;
+}
+
+.blocks {
+  margin: auto;
+  width: 90%;
+}
+
+
+.ui.aligned.basic.segment.dashboard {
+  margin: 50px auto auto auto;
+  height: calc(40vh);
+  width: 90%;
+  background: #fff;
+  opacity: .75;
+  filter: alpha(opacity=75);
+}
+
+.ui.aligned.basic.segment.dashboard.blocks {
+  height: calc(30vh);
+  width: 30%;
+  display: inline-block;
+}
+

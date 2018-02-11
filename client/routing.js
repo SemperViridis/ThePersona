@@ -42,8 +42,8 @@ angular.module('app')
         component: 'community'
       },
       {
-        name: 'app.user',
-        url: '/{ id }',
+        name: 'app.dashboard',
+        url: 'dashboard',
         component: 'user'
         // NEED TO ADD SERVICE TO RETRIEVE USER ID
         // resolve: (UserService) => {
