@@ -38,16 +38,15 @@ function checkAuthentication (req, res, next) {
   }
 };
 
-app.get('/api/dashboard', checkAuthentication, (req, res) => {
-  // if (req.isAuthenticated()) {
-  //   console.log('You are authenticated!');
-  //   res.redirect('/#!/login');
-  // } else {
-  //   console.log('You are not Authenticated!')
-  //   res.redirect('/#!/interview/practice');
-  // }
-  res.redirect('/#!/interview/practice');
-});
+// app.get('/api/user/dashboard', checkAuthentication, (req, res) => {
+//   console.log('REQ:', req.body);
+//   if (req.isAuthenticated()) {
+//     res.redirect('/#!/user/dashboard');
+//   } else {
+//     res.redirect('/#!/login');
+//   }
+//   res.redirect('/#!/interview/practice');
+// });
 
 app.get('/api/prompts', (req, res) => {
   const tag = req.query.tags;

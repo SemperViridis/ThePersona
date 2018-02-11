@@ -1,19 +1,18 @@
 <div id="user">
-
   <div class="ui bottom attached segment pushable">
     <div class="ui vertical sticky menu dashboardMenu">
       <div class="profile">
         <div class="image">
           <img src="../images/patty2.png">
         </div>
-        <h3>Patty Kovash</h3>
+        <h3>{{ $ctrl.username }}</h3>
       </div>
-      <a class="item">
+      <a ui-sref="app.user.dashboard" class="item">
         <i class="bar chart icon"></i>
         Dashboard
       </a>
       <a class="item">
-        <i class="block layout icon"></i>
+        <i class="block layout icon" ui-sref="app.user.interviews"></i>
         Interviews
       </a>
       <a class="item">
@@ -22,24 +21,7 @@
       </a>
     </div>
     <div class="pusher dashboardBody">
-      <div class="blocks">
-        <div class="ui aligned basic segment dashboard blocks">
-          <h3 class="ui header">Interviews</h3>
-        </div>
-        <div class="ui aligned basic segment dashboard blocks">
-          <h3 class="ui header">Tone Analysis</h3>
-        </div>
-        <div class="ui aligned basic segment dashboard blocks">
-          <h3 class="ui header">Personality Analysis</h3>
-        </div>
-      </div>
-      <div class="ui aligned basic segment dashboard history">
-        <h3 class="ui header">History</h3>
-      </div>
+      <ui-view></ui-view>
     </div>
   </div>
-<!--   <h1>YOUR DASHBOARD</h1>
-  <button class="large ui button"><a ui-sref="app.interview.practice">Practice</a></button>
-  <button class="large ui button"><a ui-sref="app.interview.mock">Mock Interview</a></button>
-  <button class="large ui button"><a ui-sref="app.community">Community</a></button> -->
 </div>

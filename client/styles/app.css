@@ -12,15 +12,15 @@ a, abbr, acronym, address, applet, b, big, blockquote, body, button, caption, ce
 
 body {
   background: #f4f4f4;
-  font: 1em 'Montserrat', sans-serif;
+  font: 400 1em 'Nunito Sans', sans-serif;
   overflow: hidden;
   color: #494949;
   /*background-image: url("../images/prompts.jpg");*/
 }
 
-h1 {
-  font-family: 'Raleway', sans-serif;
-}
+/*h1 {
+  font-family: 'Nunito Sans', sans-serif;
+}*/
 
 a, a:hover, a:active, a:focus {
   text-decoration: none;
@@ -51,7 +51,7 @@ a, a:hover, a:active, a:focus {
   float: right;
   display: inline-block;
   margin-top: 10px;
-  font-size: 1em;
+  font-size: .85em;
   text-align: center;
 }
 
@@ -63,7 +63,8 @@ a, a:hover, a:active, a:focus {
 .generalNav a:hover,
 .generalNav a:visited,
 .generalNav a:focus,
-.dropdown:hover .drop {
+.dropdown:hover .drop,
+.generalNav a.active {
   border-bottom: 2px solid #13ed9a; /* #13ed9a*/
 }
 

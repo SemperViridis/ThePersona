@@ -42,13 +42,23 @@ angular.module('app')
         component: 'community'
       },
       {
-        name: 'app.dashboard',
-        url: 'dashboard',
+        name: 'app.user',
+        url: 'user',
         component: 'user'
         // NEED TO ADD SERVICE TO RETRIEVE USER ID
         // resolve: (UserService) => {
         // return PeopleService.getUser();
         // }
+      },
+      {
+        name: 'app.user.dashboard',
+        url: '/dashboard',
+        component: 'userDashboard'
+      },
+      {
+        name: 'app.user.interviews',
+        url: '/interviews',
+        component: 'userInterviews'
       },
       {
         name: 'app.analysis',

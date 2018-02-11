@@ -3,15 +3,25 @@
   height: 100%;
   width: 100%;
   position: absolute;
+  font: 400 1em 'Nunito Sans', sans-serif;
 }
 
 .pusher.dashboardBody {
-  background-color: #f5eeee;
+  background-color: #e8ebef;
 }
 
 .profile {
   text-align: center;
   margin: 20px 20px 60px 20px;
+}
+
+#user h3 {
+  font: 400 1em 'Nunito Sans', sans-serif;
+  font-size: 1.1em;
+}
+
+.profile h3 {
+  letter-spacing: 1px;
 }
 
 .profile img {
@@ -22,38 +32,45 @@
   float: left;
   height: 100%;
   display: inline-block;
-  width: 15%;
+  width: 20%;
+  min-width: 215px;
+  max-width: 260px;
   text-align: left;
 }
 
 .ui.vertical.sticky.menu.dashboardMenu a.item {
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+.ui.vertical.sticky.menu.dashboardMenu a:hover.item, .ui.vertical.sticky.menu.dashboardMenu a:focus.item {
+  border-left: 6px solid #13ed9a;
 }
 
 .ui.vertical.sticky.menu.dashboardMenu i {
   float: left;
-  margin-right: 30px;
+  margin-right: 3%;
 }
 
-.blocks {
-  margin: auto;
-  width: 90%;
-}
-
-
-.ui.aligned.basic.segment.dashboard {
-  margin: 50px auto auto auto;
+.nine.wide.column {
+  margin: 50px 4.5% auto 4.5%;
   height: calc(40vh);
-  width: 90%;
   background: #fff;
   opacity: .75;
   filter: alpha(opacity=75);
 }
 
-.ui.aligned.basic.segment.dashboard.blocks {
+.ui.three.column.stackable.row {
+  margin: 50px 3% auto 3%;
+  height: calc(30vh);
+}
+
+.three.column.row .column {
+  margin: auto;
   height: calc(30vh);
   width: 30%;
   display: inline-block;
+  background: #fff;
+  opacity: .75;
+  filter: alpha(opacity=75);
 }
-
