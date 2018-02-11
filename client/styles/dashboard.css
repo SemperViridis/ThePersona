@@ -52,12 +52,15 @@
   margin-right: 3%;
 }
 
+.nine.wide.column, .three.column.row .column {
+  background: #fff;
+  opacity: .80;
+  filter: alpha(opacity=80);
+}
+
 .nine.wide.column {
   margin: 50px 4.5% auto 4.5%;
   height: calc(40vh);
-  background: #fff;
-  opacity: .75;
-  filter: alpha(opacity=75);
 }
 
 .ui.three.column.stackable.row {
@@ -70,7 +73,4 @@
   height: calc(30vh);
   width: 30%;
   display: inline-block;
-  background: #fff;
-  opacity: .75;
-  filter: alpha(opacity=75);
 }

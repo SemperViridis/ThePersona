@@ -8,21 +8,26 @@ angular.module('app')
     // Add active link styling to current page on reload
     this.setActiveOnReload = setInterval(() => {
       if (document.readyState === 'complete') {
-        clearInterval(this.setActive);
+        clearInterval(this.setActiveOnReload);
+        this.removePrevActiveOnClick();
         this.currentUrl = $location.path();
         const current = document.getElementById(this.currentUrl);
-        current.classList.add('active');
+        if  (current) {
+          current.classList.add('active');
+        }
       }
     }, 100);
 
     // Remove class 'active' on previous nav link
     this.removePrevActiveOnClick = () => {
+      const activeElem = document.getElementsByClassName('active')[0];
+      if (activeElem) {
+        activeElem.classList.remove('active');
+      }
       if ($location.path() !== this.currentUrl) {
         this.previousUrl = this.currentUrl;
         this.currentUrl = $location.path();
       }
-      const activeElem = document.getElementsByClassName('active')[0];
-      activeElem.classList.remove('active');
     };
 
     this.openComponentModal = function () {
