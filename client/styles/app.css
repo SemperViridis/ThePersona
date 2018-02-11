@@ -13,14 +13,12 @@ a, abbr, acronym, address, applet, b, big, blockquote, body, button, caption, ce
 body {
   background: #f4f4f4;
   font: 400 1em 'Nunito Sans', sans-serif;
-  overflow: hidden;
   color: #494949;
-  /*background-image: url("../images/prompts.jpg");*/
 }
 
-/*h1 {
+h1 {
   font-family: 'Nunito Sans', sans-serif;
-}*/
+}
 
 a, a:hover, a:active, a:focus {
   text-decoration: none;
@@ -81,7 +79,7 @@ a:focus.login {
   display: none;
   position: absolute;
   background-color: #fff;
-  min-width: 200px;
+  min-width: 160px;
   box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.1);
   margin-left: 15px;
   z-index: 1;
