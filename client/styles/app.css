@@ -37,8 +37,6 @@ a, a:hover, a:active, a:focus {
 }
 
 #header {
-  /*background: #0f2d37;*/
-  /*position: absolute;*/
   background: #fff;
   padding: 15px 30px 15px 15px;
   list-style: none;
@@ -121,3 +119,4 @@ h1.logo {
   text-decoration: none;
   color: #494949;
 }
+

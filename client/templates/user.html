@@ -7,15 +7,27 @@
         </div>
         <h3>{{ $ctrl.username }}</h3>
       </div>
-      <a ui-sref="app.user.dashboard" class="item">
+      <a
+        id="/user/dashboard"
+        ui-sref="app.user.dashboard"
+        class="item activeSub"
+        ng-click="$ctrl.removeActiveSub($event)">
         <i class="bar chart icon"></i>
         Dashboard
       </a>
-      <a class="item">
-        <i class="block layout icon" ui-sref="app.user.interviews"></i>
+      <a
+        id="/user/interviews"
+        ui-sref="app.user.interviews"
+        class="item"
+        ng-click="$ctrl.removeActiveSub($event)">
+        <i class="block layout icon"></i>
         Interviews
       </a>
-      <a class="item">
+      <a
+        id="#"
+        class="item"
+        ui-sref="#"
+        ng-click="$ctrl.removeActiveSub($event)">
         <i class="calendar icon"></i>
         History
       </a>
