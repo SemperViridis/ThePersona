@@ -107,6 +107,4 @@ describe('RESTful API interaction with database', () => {
   });
 });
 
-// Add Watson tests
-
 process.env.NODE_ENV = undefined;
