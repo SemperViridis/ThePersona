@@ -1,4 +1,6 @@
 language: node_js
+addons:
+  chrome: beta
 node_js:
   - "8"
 cache:
@@ -14,6 +16,7 @@ test:
   username: root
   encoding: utf8
 before_install:
+  - "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --headless --disable-gpu --remote-debugging-port=9222 http://localhost &"
   - mysql -e 'CREATE DATABASE persona;'
 
 env:
