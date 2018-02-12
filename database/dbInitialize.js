@@ -1,3 +1,4 @@
+const server = require('../server/index.js');
 const db = require('./index.js');
 const seedPrompts = require('./prompts');
 
