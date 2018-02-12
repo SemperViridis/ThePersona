@@ -20,7 +20,7 @@ describe('RESTful API interaction with database', () => {
   beforeEach((done) => {
     db.sequelize.sync({ force: true })
       .then(() => {
-        db.Prompt.bulkCreate(seedPrompts.prompts);
+        return db.Prompt.bulkCreate(seedPrompts.prompts);
       })
       .then(() => done())
       .catch((err) => {
@@ -52,7 +52,7 @@ describe('RESTful API interaction with database', () => {
           .query({ tags: 'all' })
           .end((err, res) => {
             if (err) {
-              console.error(err);
+              console.error('ERROR:', err);
             } else {
               const resultLen = res.body.length;
               res.should.have.status(200);
@@ -108,4 +108,3 @@ describe('RESTful API interaction with database', () => {
 });
 
 process.env.NODE_ENV = undefined;
-

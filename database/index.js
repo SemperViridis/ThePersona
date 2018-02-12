@@ -103,13 +103,21 @@ const findUser = (query, callback) => {
       email: query
     }
   })
+<<<<<<< HEAD
     .then((found) => {
       if (callback) { callback(null, found); }
     })
     .catch(callback);
+=======
+  .then((found) => {
+    if (callback) {callback(null,found)};
+  })
+  .catch(callback);
+>>>>>>> Test
 };
 
 module.exports.sequelize = sequelize;
+<<<<<<< HEAD
 
 // Models
 module.exports.Answer = Answer;
@@ -125,3 +133,7 @@ module.exports.findUser = findUser;
 module.exports.getPrompts = getPrompts;
 module.exports.selectAll = selectAll;
 // Comment
+=======
+module.exports.getPrompts = getPrompts;
+
+>>>>>>> Test
