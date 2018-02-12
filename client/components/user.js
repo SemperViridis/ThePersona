@@ -1,7 +1,29 @@
 angular.module('app')
   .controller('userCtrl', function ($location) {
-    this.username = 'Patty Kovash';
-    this.numInterviews = 10;
+    this.userData = {
+      id: 1,
+      name: 'Patty Kovash',
+      email: 'pattykovash@gmail.com',
+      username: 'khamd002',
+      firstName: 'Patty',
+      lastName: 'Kovash',
+      provider: '',
+      facebookUserId: '45678913345',
+      googleUserId: '789911344663'
+    };
+
+    this.userInterviews = [
+      {
+        id: 3546545,
+        questions: [],
+        createdAt: '2018-02-10 20:22:16'
+      },
+      {
+        id: 7489877,
+        questions: [],
+        createdAt: '2018-02-10 20:22:16'
+      }
+    ];
 
     this.removeActiveSub = (e) => {
       const activeElem = document.getElementsByClassName('activeSub')[0];
