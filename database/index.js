@@ -99,6 +99,10 @@ const findUser = (query, callback) => {
     .catch(callback);
 };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Move db sync to new file.
 module.exports.sequelize = sequelize;
 
 // Models
@@ -109,6 +113,14 @@ module.exports.PromptToTag = PromptToTag;
 module.exports.Tag = Tag;
 module.exports.User = User;
 module.exports.Vote = Vote;
+<<<<<<< HEAD
+=======
+
+// Query Functions
+module.exports.findUser = findUser;
+module.exports.getPrompts = getPrompts;
+module.exports.selectAll = selectAll;
+>>>>>>> Move db sync to new file.
 
 // Query Functions
 module.exports.findUser = findUser;
