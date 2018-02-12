@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/index.js",
     "server-dev": "nodemon --inspect -r dotenv/config server/index.js",
-    "test-dev": "karma start --single-run --browsers PhantomJS",
+    "test-dev": "karma start",
     "test": "mocha spec/serverSpec.js --exit"
   },
   "engines": {
