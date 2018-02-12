@@ -11,31 +11,13 @@ var secret = 'starwars';
 
 module.exports = function (app, passport) {
   app.use(session({
-    secret: 'darkside',
-    resave: true,
-    saveUninitialized: true,
-    store: new sequelizeStore(sequelize),
-    cookie: { maxAge:1000 * 24 * 7 },
-
   }));
   app.use(passport.initialize());
   app.use(passport.session());
 
   passport.serializeUser(function (user, done) {
-
-    // if (user) {
-    //   if (user.error) {
-    //     token = 'unconfirmed/error';
-    //   } else {
-    //     token = jwtoken.sign({ username: user.username, email: user.email }, secret, { expiresIn: '24h' });
-    //   }
-    // } else {
-    //   token = 'inactive/error';
-    // }
-
     done(null, user.id);
   });
-
 
   passport.deserializeUser(function(id, done) {
     User.find({ where: {id: id}}).then((user) => {
@@ -51,7 +33,7 @@ module.exports = function (app, passport) {
   // FACEBOOK STRATEGY
 
   passport.use(new FacebookStrategy({ // travis is getting it from the .travis.yml so it's probably looking for it in there
-    clientID: '403488566768775',
+    clientID: '1840741019270677',
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: 'http://localhost:3000/auth/facebook/callback',
     profileFields: ['id', 'displayName', 'photos', 'email']

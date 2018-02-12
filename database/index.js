@@ -96,8 +96,24 @@ const getPrompts = (query, callback) => {
     .catch(callback);
 };
 
+const findUser = (query, callback) => {
+  User.find( {
+    where: {
+      email: query
+    }
+  })
+  .then((found) => {
+    if (callback) {callback(null,found)};
+  })
+  .catch(callback);
+}; 
+
 module.exports.User = User;
 module.exports.selectAll = selectAll;
 module.exports.sequelize = sequelize;
 module.exports.getPrompts = getPrompts;
-
+module.exports.Answer = Answer;
+module.exports.Prompt = Prompt;
+module.exports.Comment = Comment;
+module.exports.Tag = Tag;
+module.exports.Vote = Vote;
