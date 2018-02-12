@@ -1,15 +1,18 @@
-const db = require('../database');
-const path = require('path');
-const User = require('../database/models/User.js');
+// Node Modules
 const router = require('express').Router();
 const express = require('express');
+const path = require('path');
 const passport = require('passport');
-const sequelize = require('../database/index.js').sequelize;
 const bodyParser = require('body-parser');
+// DB Files
+const db = require('../database');
+const User = require('../database/models/User.js');
+const sequelize = require('../database/index.js').sequelize;
+const userData = require('../database/controllers/userData.js');
+// Helpers
 const toneAnalyzer = require('./helpers/toneAnalyzer');
 const wordAnalyzer = require('./helpers/fillerWords').fillerWords;
 const personalityInsight = require('./helpers/personalityInsight');
-const userData = require('../database/controllers/userData.js');
 
 const app = express();
 const social = require('./passport/authRoute.js')(app, passport);
