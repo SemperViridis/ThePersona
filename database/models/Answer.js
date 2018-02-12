@@ -12,6 +12,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
     },
     createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE
   });
 
 
