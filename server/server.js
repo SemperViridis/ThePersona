@@ -70,7 +70,8 @@ app.get('/api/prompts', (req, res) => {
 app.post('/api/ibmtone', (req, res) => {
   toneAnalyzer(req.body.data.text)
     .then((tone) => {
-      res.json(tone);
+      const toneResults = JSON.parse(tone);
+      res.send(toneResults);
     })
     .catch((err) => {
       res.status(500).json(err);
