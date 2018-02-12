@@ -150,31 +150,6 @@ button {
   background-color: #1ed992;
 }
 
-a:hover.ui.huge.primary.button {
-  background-color: #05386b;
-  opacity: .9;
-  filter: alpha(opacity=90);
-}
-
-.ui.container.header-image{
-  height: calc(60vh);
-  width: 100%;
-  flex: 1 0 auto;
-  font-family: 'Montserrat', helvetica, sans-serif;
-  background: url("../images/header2.jpg") no-repeat;
-  background-size: 100%;
-  background-position: 50% 50%;
-  margin-bottom: 60px;
-  position: relative;
-  overflow: hidden;
-}
-
-.header-message {
-  margin: 12% 0 5% 5%;
-  width: 55%;
-  font-family: 'Raleway', sans-serif;
-}
-
 h1.ui.inverted {
   font-size: 5.0vh;
   color: #5a5a5a;
@@ -187,34 +162,6 @@ h1.ui.inverted {
 .ui.container.content {
   margin-bottom: 100px;
   font-family: 'Raleway', sans-serif;
-}
-
-.four.wide.column {
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
-}
-
-h2.four.wide.column, h3.four.wide.column {
-  font-family: 'Raleway', sans-serif;
-}
-
-.ui.footer.segment {
-  width: 100%;
-  margin-bottom: 0;
-  background-color: #0f2d37;
-  max-height: 300px;
-  text-align: center;
-  padding-top: 25px;
-  padding-bottom: 20px;
-}
-
-.ui.divided.grid {
-  margin: auto;
-  max-width: 75%;
-}
-
-.ui.footer.basic.segment p {
-  margin-top: 40px;
 }
 
 .content {

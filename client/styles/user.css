@@ -4,10 +4,12 @@
   width: 100%;
   position: absolute;
   font: 400 1em 'Nunito Sans', sans-serif;
+  color: #626262;
 }
 
 .pusher.dashboardBody {
   background-color: #e8ebef;
+  /*background-color: #f0f0f0;*/
 }
 
 .profile {
@@ -44,6 +46,7 @@
 .ui.vertical.sticky.menu.dashboardMenu a.item {
   padding-left: 15%;
   padding-right: 15%;
+  color: #626262;
 }
 
 .ui.vertical.sticky.menu.dashboardMenu a:hover.item,

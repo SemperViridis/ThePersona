@@ -5,8 +5,8 @@
         <div class="image">
           <img src="../images/patty2.png">
         </div>
-        <h3>{{ $ctrl.userData.dataValues.name }}</h3>
-        <h3>{{ $ctrl.userData.dataValues.email }}</h3>
+        <h3>{{ $ctrl.userData.name }}</h3>
+        <h3>{{ $ctrl.userData.email }}</h3>
       </div>
       <a
         id="/user/dashboard"
@@ -27,10 +27,10 @@
       <a
         id="#"
         class="item"
-        ui-sref="#"
+        ui-sref="app.interview.mock"
         ng-click="$ctrl.removeActiveSub($event)">
-        <i class="calendar icon"></i>
-        History
+        <i class="comment outline icon"></i>
+        Mock Interview
       </a>
     </div>
     <div class="pusher dashboardBody">

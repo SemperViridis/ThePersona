@@ -38,9 +38,8 @@ a, a:hover, a:active, a:focus {
 
 #header {
   background: #fff;
-  padding: 15px 30px 15px 15px;
+  padding: 15px 30px 60px 15px;
   list-style: none;
-  height: 80px;
 }
 
 .generalNav {
@@ -53,7 +52,8 @@ a, a:hover, a:active, a:focus {
 
 .generalNav a {
   margin: 10px 0 0 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2em;
+  text-transform: uppercase;
 }
 
 .generalNav a:hover,
@@ -110,9 +110,8 @@ a:focus.login {
 
 h1.logo {
   left: 100px;
-  padding-top: 5px;
-  font-weight: 600;
-  font-size: 2.5em;
+  font-weight: 400;
+  font-size: 2em;
 }
 
 .logo a:active, .logo a:visited {
