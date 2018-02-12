@@ -52,11 +52,7 @@ describe('RESTful API interaction with database', () => {
           .query({ tags: 'all' })
           .end((err, res) => {
             if (err) {
-<<<<<<< HEAD
               console.error('ERROR:', err);
-=======
-              console.error(err);
->>>>>>> Move db sync to new file.
             } else {
               const resultLen = res.body.length;
               res.should.have.status(200);
