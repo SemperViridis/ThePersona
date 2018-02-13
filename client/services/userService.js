@@ -1,14 +1,19 @@
 angular.module('app')
-  .service('userService', function ($http) {
-    this.isLoggedIn;
+  .service('userService', function ($http, broadcastService) {
+    this.isLoggedIn = false;
     this.userData = {};
 
     this.setStatus = () => {
-      this.getAllUserData((loggedIn) => {
-        this.isLoggedIn = loggedIn;
-        if (loggedIn) {
-          this.userData = loggedIn;
+      this.getAllUserData((err, userData) => {
+        console.log('USERDATA:', userData);
+        if (userData) {
+          this.userData = userData;
+          this.isLoggedIn = true;
+          broadcastService.send('loggedIn');
+        } else {
+          this.isLoggedIn = userData;
         }
+        console.log('INSIDE SERVICE: ISLOGGEDIN:', this.isLoggedIn);
       });
     };
 

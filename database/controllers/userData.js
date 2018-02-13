@@ -21,9 +21,9 @@ exports.userByEmail = function (email, callback) {
 exports.createAnswer = function (email, promptid, reply, callback) {
   db.User.find({ where: { email: email } })
     .then((user) => {
-      return db.Prompt.find({ where: { id: promptid } })
+      db.Prompt.find({ where: { id: promptid } })
         .then((prompt) => {
-          return db.Answer.create({
+          db.Answer.create({
             userId: user.id,
             propmtId: promptid,
             response: reply

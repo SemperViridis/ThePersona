@@ -1,21 +1,14 @@
 angular.module('app')
-  .controller('userCtrl', function ($location, userService) {
+  .controller('userCtrl', function ($location, userService, $scope) {
     this.userService = userService;
     this.isLoggedIn = this.userService.isLoggedIn;
     this.userData = this.userService.userData;
 
-    this.testing = () => {
-      console.log('IN THIS.TESTING');
-      this.userService.getAllUserData((err, user) => {
-        console.log('IN THIS.USERSERVICE');
-        if (err) {
-          console.log('ERROR:', err);
-        } else {
-          console.log('USER INFO:', user);
-        }
-      });
-    };
-
+    $scope.$on('loggedIn', () => {
+      this.isLoggedIn = this.userService.isLoggedIn;
+      this.userData = this.userService.userData;
+      console.log('USER DATA FROM USER COMPONENT:', this.userData);
+    });
 
     this.userInterviews = [
       {
