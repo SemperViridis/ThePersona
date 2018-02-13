@@ -13,12 +13,13 @@ const userData = require('../database/controllers/userData.js');
 const toneAnalyzer = require('./helpers/toneAnalyzer');
 const wordAnalyzer = require('./helpers/fillerWords').fillerWords;
 const personalityInsight = require('./helpers/personalityInsight');
+const videoUploader = require('./helpers/videoUploader');
 
 const app = express();
 const social = require('./passport/authRoute.js')(app, passport);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.static(path.join(__dirname, '/../client')));
 app.use(express.static(path.join(__dirname, '/../node_modules')));
 
@@ -98,8 +99,12 @@ app.post('/api/insight', (req, res) => {
 });
 
 app.post('/api/cloudinary', (req, res) => {
-  console.log(req.body.video);
-  res.end();
+  const videoURL = req.body.video;
+  videoUploader(videoURL, { resource_type: 'video' }, (error, result) => {
+    console.log('error', error);
+    console.log('result', result);
+    res.end();
+  });
 });
 
 module.exports = app;
