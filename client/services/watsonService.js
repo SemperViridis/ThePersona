@@ -1,50 +1,52 @@
 angular.module('app')
   .service('watsonService', function ($http, broadcastService) {
-
-    this.responses = []
+    this.responses = [];
     this.answerAnalysis = [];
-    this.answerFillers = []
+    this.answerFillers = [];
     this.interviewAnalysis = [];
     this.interviewFillers = [];
 
 
     this.analyzeAnswer = (answer, cb) => {
-      this.responses.push(answer)
+      this.responses.push(answer);
       this.toneAnalysis(answer, (err, results) => {
-        if (err) { throw new Error(err) }
+        if (err) {
+          console.log(err);
+          this.answerAnalysis.push('');
+        }
         this.answerAnalysis.push(results);
         if (cb) {
           cb();
         }
-        // broadcastService.send('render');
-        // console.log('tone anaylsis:', this.answerAnalysis);
-      })
+        console.log('tone anaylsis:', this.answerAnalysis);
+      });
 
 
       this.wordAnalysis(answer, (err, results) => {
-        if (err) { throw new Error(err) }
-        // console.log('word anaylsis:', this.answerFillers);
+        if (err) { console.log(err); }
         this.answerFillers.push(results);
       });
-    }
+    };
 
-    this.analyzeInterview = (interview) => {
+    this.analyzeInterview = (interview, cb) => {
       this.toneAnalysis(interview, (err, results) => {
-        if (err) { throw new Error(err) }
-        this.interviewAnalysis.push(results)
-        // console.log('answer analysis after callback', this.answerAnalysis);
-        // console.log('interview tone Analysis:', results);
-        // console.log('interview Array:', this.interviewAnalysis);
+        if (err) {
+          console.log('ERROR:', err);
+          this.interviewAnalysis.push('');
+        }
+        this.interviewAnalysis.push(results);
+        if (cb) {
+          cb();
+        }
         broadcastService.send('analysis Done');
       });
 
       this.wordAnalysis(interview, (err, results) => {
-        if (err) { throw new Error(err) }
+        if (err) { console.log(err); }
         this.interviewFillers.push(results);
         // console.log('interview word Analysis:', results);
       });
-
-    }
+    };
 
     this.toneAnalysis = (transcription, callback) => {
       $http.post('http://localhost:3000/api/ibmtone', {
