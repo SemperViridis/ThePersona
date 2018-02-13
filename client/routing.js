@@ -22,16 +22,6 @@ angular.module('app')
         component: 'interview'
       },
       {
-        name: 'app.interview.practice',
-        url: '/practice',
-        component: 'practice'
-      },
-      {
-        name: 'app.interview.mock',
-        url: '/mock',
-        component: 'mock'
-      },
-      {
         name: 'app.interview.results',
         url: '/results',
         component: 'results'

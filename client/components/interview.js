@@ -23,14 +23,9 @@ angular.module('app')
     };
 
     this.init = () => {
-      if ($location.path() === '/interview/practice') {
-        this.setPrompts();
-      }
-      if ($location.path() === '/interview/mock') {
-        this.interviewService.queryPrompts('non-technical', (err, data) => {
-          this.prompts = this.interviewService.selectNumPrompts(10, data);
-        });
-      }
+      this.interviewService.queryPrompts('all', (err, data) => {
+        this.prompts = this.interviewService.selectNumPrompts(10, data);
+      });
     };
 
     this.setPrompts = () => {
