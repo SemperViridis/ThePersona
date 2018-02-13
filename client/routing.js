@@ -53,8 +53,7 @@ angular.module('app')
       {
         name: 'app.user.dashboard',
         url: '/dashboard',
-        component: 'userDashboard',
-        authenticate: true
+        component: 'userDashboard'
       },
       {
         name: 'app.user.interviews',
