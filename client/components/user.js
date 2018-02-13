@@ -1,16 +1,14 @@
 angular.module('app')
-  .controller('userCtrl', function ($location) {
-    this.userData = {
-      id: 1,
-      name: 'Patty Kovash',
-      email: 'pattykovash@gmail.com',
-      username: 'khamd002',
-      firstName: 'Patty',
-      lastName: 'Kovash',
-      provider: '',
-      facebookUserId: '45678913345',
-      googleUserId: '789911344663'
-    };
+  .controller('userCtrl', function ($location, userService, $scope) {
+    this.userService = userService;
+    this.isLoggedIn = this.userService.isLoggedIn;
+    this.userData = this.userService.userData;
+
+    $scope.$on('loggedIn', () => {
+      this.isLoggedIn = this.userService.isLoggedIn;
+      this.userData = this.userService.userData;
+      console.log('USER DATA FROM USER COMPONENT:', this.userData);
+    });
 
     this.userInterviews = [
       {

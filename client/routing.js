@@ -12,24 +12,14 @@ angular.module('app')
         component: 'home'
       },
       {
-        name: 'app.login',
-        url: 'login',
+        name: 'login',
+        url: '/login',
         component: 'login'
       },
       {
         name: 'app.interview',
         url: 'interview',
         component: 'interview'
-      },
-      {
-        name: 'app.interview.practice',
-        url: '/practice',
-        component: 'practice'
-      },
-      {
-        name: 'app.interview.mock',
-        url: '/mock',
-        component: 'mock'
       },
       {
         name: 'app.interview.results',

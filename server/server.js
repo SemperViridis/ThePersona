@@ -33,24 +33,29 @@ function checkAuthentication(req, res, next) {
     next();
   } else {
     console.log('You are not Authenticated!');
-    res.redirect('/#!/login');
+    res.send(false);
+    // res.redirect('/#!/login');
   }
 }
 
-app.get('/api/dashboard', checkAuthentication, (req, res) => {
+app.get('/#!/user/dashboard', checkAuthentication, (req, res) => {
   res.redirect('/#!/interview/practice');
 });
 
 app.get('/data/user', checkAuthentication, (req, res) => {
   const lookUp = req.user.dataValues.email;
-  console.log('this is the incoming request', req.user);
-  console.log('this is the session ID', req.session);
+  // console.log('this is the incoming request', req.user.dataValues);
+  // console.log('=================================');
+  // console.log('this is the session ID', req.session);
+  // console.log('=================================');
   userData.userByEmail(lookUp, (err, results) => {
-    console.log('this is the server js', err, results);
+    // console.log('this is the server js', err, results);
+    // console.log('=================================');
     if (err) {
+      // console.log('ERROR AT /DATA/USER ENDPOINT:', err);
       res.status(500).send(err);
     } else {
-      console.log('these are the callback results', results);
+      // console.log('these are the callback results', results);
       res.status(200).json(results);
     }
   });
@@ -75,12 +80,33 @@ app.post('/api/ibmtone', (req, res) => {
   toneAnalyzer(req.body.data.text)
     .then((tone) => {
       const toneResults = JSON.parse(tone);
-      res.status(200).send(toneResults);
+      if (req.user.dataValues.email) {
+        userData.createAnswer(req.user.dataValues.email, '1', req.body.data.text, (err, results) => {
+          if (err) {
+            res.status(500).send(err);
+          } else {
+            res.status(200).json(toneResults);
+          }
+        });
+      } else {
+        res.status(200).json(toneResults);
+      }
     })
     .catch((err) => {
-      res.status(500).json(err);
+      res.status(500).send(err);
     });
 });
+
+// app.post('/api/ibmtone', (req, res) => {
+//   toneAnalyzer(req.body.data.text)
+//     .then((tone) => {
+//       const toneResults = JSON.parse(tone);
+//       res.status(200).send(toneResults);
+//     })
+//     .catch((err) => {
+//       res.status(500).json(err);
+//     });
+// });
 
 app.post('/api/wordanalysis', (req, res) => {
   wordAnalyzer(req.body.data.text, (analysis) => {

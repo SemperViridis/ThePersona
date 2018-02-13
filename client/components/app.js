@@ -1,9 +1,31 @@
 angular.module('app')
-  .controller('AppCtrl', function ($uibModal, $location) {
+  .controller('AppCtrl', function ($uibModal, $location, userService, $scope) {
+    this.userService = userService;
+    this.isLoggedIn = this.userService.isLoggedIn;
     this.animationsEnabled = true;
-    this.isLoggedIn = true;
     this.currentUrl = '/home';
     this.previousUrl = null;
+
+    // Broadcasts
+    $scope.$on('loggedIn', () => {
+      this.isLoggedIn = this.userService.isLoggedIn;
+      console.log('INSIDE OF BROADCAST:', this.isLoggedIn);
+    });
+
+    // Function to run on page load
+    this.init = () => {
+      this.setActiveOnReload;
+      this.setStatus;
+    };
+
+    // Function to get login status of user
+    this.getStatus = setInterval(() => {
+      if (this.isLoggedIn) {
+        clearInterval(this.setStatus);
+        return;
+      }
+      this.userService.setStatus();
+    }, 2000);
 
     // Add active link styling to current page on reload
     this.setActiveOnReload = setInterval(() => {
@@ -12,7 +34,7 @@ angular.module('app')
         this.removePrevActiveOnClick();
         this.currentUrl = $location.path();
         const current = document.getElementById(this.currentUrl);
-        if  (current) {
+        if (current) {
           current.classList.add('active');
         }
       }
@@ -35,28 +57,6 @@ angular.module('app')
         animation: this.animationsEnabled,
         component: 'login'
       });
-    };
-
-    this.init = () => {
-      this.setActiveOnReload;
-    };
-
-    this.analysis = [];
-    this.fillerAnalysis = [];
-    this.total = '';
-
-    this.showAnalysis = (results) => {
-      const { tones } = results;
-      const renderedTones = tones.map(tone => `${tone.tone_name} - ${Math.round(tone.score * 100)} %`);
-      this.analysis = renderedTones;
-    };
-
-    this.showFillers = (result) => {
-      this.fillerAnalsis = [];
-      for (let j in result[1]) {
-        this.fillerAnalysis.push(`You used the word '${j}' ${result[1][j]} times`);
-      }
-      this.total = `Total word count: ${result[2]}`;
     };
 
     this.init();

@@ -7,7 +7,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../../database/index.js').sequelize;
 const User = require('../../database/index.js').User;
 const sequelizeStore = require('express-sequelize-session')(session.Store);
-var secret = 'starwars';
+const secret = 'starwars';
 
 module.exports = function (app, passport) {
   app.use(session({
@@ -20,8 +20,8 @@ module.exports = function (app, passport) {
     done(null, user.id);
   });
 
-  passport.deserializeUser(function(id, done) {
-    User.find({ where: {id: id}}).then((user) => {
+  passport.deserializeUser(function (id, done) {
+    User.find({ where: { id: id } }).then((user) => {
       if (!user) {
         return done(null, false);
       }
@@ -34,7 +34,7 @@ module.exports = function (app, passport) {
   // FACEBOOK STRATEGY
 
   passport.use(new FacebookStrategy({ // travis is getting it from the .travis.yml so it's probably looking for it in there
-    clientID: '1840741019270677',
+    clientID: '403488566768775',
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: 'http://localhost:3000/auth/facebook/callback',
     profileFields: ['id', 'displayName', 'photos', 'email']
