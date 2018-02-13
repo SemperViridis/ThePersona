@@ -26,7 +26,9 @@ angular.module('app')
           const output = {};
           output.question = this.questions[i].question;
           output.answer = this.answers[i];
-          output.tones = this.tones[i].tones;
+          if (this.tones[i] && this.tones[i].tones) {
+            output.tones = this.tones[i].tones;
+          }
           output.fillers = this.fillers[i];
           this.arranged.push(output);
         }
@@ -37,7 +39,9 @@ angular.module('app')
       this.overall = [];
       this.arrangeOverall = () => {
         const output = {};
-        output.tones = this.interviewTones[0].tones;
+        if (this.interviewTones[0].tones) {
+          output.tones = this.interviewTones[0].tones;
+        }
         output.fillers = this.interviewFillers[0];
         output.overall = true;
         this.overall.push(output);
