@@ -33,7 +33,8 @@ function checkAuthentication(req, res, next) {
     next();
   } else {
     console.log('You are not Authenticated!');
-    res.redirect('/#!/login');
+    res.send(false);
+    // res.redirect('/#!/login');
   }
 }
 
@@ -43,11 +44,15 @@ app.get('/api/dashboard', checkAuthentication, (req, res) => {
 
 app.get('/data/user', checkAuthentication, (req, res) => {
   const lookUp = req.user.dataValues.email;
-  console.log('this is the incoming request', req.user);
+  console.log('this is the incoming request', req.user.dataValues);
+  console.log('=================================');
   console.log('this is the session ID', req.session);
+  console.log('=================================');
   userData.userByEmail(lookUp, (err, results) => {
     console.log('this is the server js', err, results);
+    console.log('=================================');
     if (err) {
+      console.log('ERROR AT /DATA/USER ENDPOINT:', err);
       res.status(500).send(err);
     } else {
       console.log('these are the callback results', results);

@@ -1,5 +1,20 @@
 angular.module('app')
-  .controller('userCtrl', function ($location) {
+  .controller('userCtrl', function ($location, userService) {
+    this.userService = userService;
+    this.isLoggedIn;
+
+    this.testing = () => {
+      console.log('IN THIS.TESTING');
+      this.userService.getAllUserData((err, user) => {
+        console.log('IN THIS.USERSERVICE');
+        if (err) {
+          console.log('ERROR:', err);
+        } else {
+          console.log('USER INFO:', user);
+        }
+      });
+    };
+
     this.userData = {
       id: 1,
       name: 'Patty Kovash',

@@ -1,9 +1,29 @@
 angular.module('app')
-  .controller('AppCtrl', function ($uibModal, $location) {
+  .controller('AppCtrl', function ($uibModal, $location, userService) {
     this.animationsEnabled = true;
-    this.isLoggedIn = true;
+    this.isLoggedIn;
     this.currentUrl = '/home';
     this.previousUrl = null;
+
+    this.userService = userService;
+
+    this.getUser = setInterval(() => {
+      console.log('IN THIS.TESTING');
+      this.userService.getAllUserData((err, user) => {
+        console.log('IN THIS.USERSERVICE');
+        if (err) {
+          console.log('ERROR:', err);
+        } else {
+          console.log('USER INFO:', user);
+          if (user) {
+            clearInterval(this.getUser);
+            this.isLoggedIn = true;
+          } else {
+            this.isLoggedIn = user;
+          }
+        }
+      });
+    }, 2000);
 
     // Add active link styling to current page on reload
     this.setActiveOnReload = setInterval(() => {
@@ -38,6 +58,7 @@ angular.module('app')
     };
 
     this.init = () => {
+      this.getUser;
       this.setActiveOnReload;
     };
 

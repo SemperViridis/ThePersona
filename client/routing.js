@@ -12,8 +12,8 @@ angular.module('app')
         component: 'home'
       },
       {
-        name: 'app.login',
-        url: 'login',
+        name: 'login',
+        url: '/login',
         component: 'login'
       },
       {
