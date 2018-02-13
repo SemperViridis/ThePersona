@@ -17,8 +17,8 @@ const personalityInsight = require('./helpers/personalityInsight');
 const app = express();
 const social = require('./passport/authRoute.js')(app, passport);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.static(path.join(__dirname, '/../client')));
 app.use(express.static(path.join(__dirname, '/../node_modules')));
 
