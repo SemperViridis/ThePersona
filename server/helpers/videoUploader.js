@@ -10,6 +10,8 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-cloudinary.uploader.upload('recording.webm', { resource_type: 'video' }, function (error, result) {
-  // if video has been loaded, then remove file from local storage
-});
+// module.exports = cloudinary.uploader.upload('recording.webm', { resource_type: 'video' }, function (error, result) {
+//   // if video has been loaded, then remove file from local storage
+// });
+
+module.exports = cloudinary.uploader.upload;
