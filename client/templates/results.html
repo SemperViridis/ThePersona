@@ -10,7 +10,13 @@
   <h1>Results</h1>
   <div ng-if="!$ctrl.resultsLoaded"> Analyzing Interview </div>
   <div ng-if="$ctrl.resultsLoaded">
-    <radar output="$ctrl.overall[0].tones" dope="$ctrl.test"></radar>
+    <table border='1'>
+        <tr>
+        <td><bar output="$ctrl.overall[0].tones"></bar></td>
+        <td><barLang output="$ctrl.overall[0].language"></barLang></td>
+        <td><radar output="$ctrl.overall[0].social"></radar></td>
+      </tr>
+    </table>
   </div>
   <div ng-if="$ctrl.resultsLoaded">
     <table border='1'>
@@ -21,7 +27,9 @@
       <tr ng-repeat="output in $ctrl.arranged track by $index">
         <td><h3>{{output.question}}</h3></td>
         <td><h3>{{output.answer}}</h3></td>
-        <td><radar output = output.tones></radar></td>
+        <td><bar output = output.tones></bar></td>
+        <td><barLang output = output.language></barLang></td>
+        <td><radar output = output.social></radar></td>
       </tr>
     </table>
   </div>
