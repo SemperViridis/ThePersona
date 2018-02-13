@@ -1,26 +1,24 @@
-const express = require('express');
+// Node Modules
 const router = require('express').Router();
-const bodyParser = require('body-parser');
+const express = require('express');
 const path = require('path');
+const passport = require('passport');
+const bodyParser = require('body-parser');
+// DB Files
 const db = require('../database');
+const User = require('../database/models/User.js');
+const sequelize = require('../database/index.js').sequelize;
+const userData = require('../database/controllers/userData.js');
+// Helpers
 const toneAnalyzer = require('./helpers/toneAnalyzer');
 const wordAnalyzer = require('./helpers/fillerWords').fillerWords;
 const personalityInsight = require('./helpers/personalityInsight');
+
 const app = express();
-const sequelize = require('../database/index.js').sequelize;
-const User = require('../database/models/User.js');
-const passport = require('passport');
 const social = require('./passport/authRoute.js')(app, passport);
 
-// app.use((req, res, next)=>{
-//   if (req.user) {
-//   debugger;
-//   }
-//   next();
-// });
-
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '/../client')));
 app.use(express.static(path.join(__dirname, '/../node_modules')));
 
@@ -28,25 +26,33 @@ app.get('/api/users', (req, res) => {
   res.sendStatus(200);
 });
 
-function checkAuthentication (req, res, next) {
+function checkAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
     console.log('You are authenticated!');
     next();
   } else {
-    console.log('You are not Authenticated!')
+    console.log('You are not Authenticated!');
     res.redirect('/#!/login');
   }
-};
+}
 
 app.get('/api/dashboard', checkAuthentication, (req, res) => {
-  // if (req.isAuthenticated()) {
-  //   console.log('You are authenticated!');
-  //   res.redirect('/#!/login');
-  // } else {
-  //   console.log('You are not Authenticated!')
-  //   res.redirect('/#!/interview/practice');
-  // }
   res.redirect('/#!/interview/practice');
+});
+
+app.get('/data/user', checkAuthentication, (req, res) => {
+  const lookUp = req.user.dataValues.email;
+  console.log('this is the incoming request', req.user);
+  console.log('this is the session ID', req.session);
+  userData.userByEmail(lookUp, (err, results) => {
+    console.log('this is the server js', err, results);
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      console.log('these are the callback results', results);
+      res.status(200).json(results);
+    }
+  });
 });
 
 app.get('/api/prompts', (req, res) => {
@@ -67,7 +73,11 @@ app.get('/api/prompts', (req, res) => {
 app.post('/api/ibmtone', (req, res) => {
   toneAnalyzer(req.body.data.text)
     .then((tone) => {
-      res.send(tone);
+      const toneResults = JSON.parse(tone);
+      res.status(200).send(toneResults);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
     });
 });
 
@@ -80,7 +90,10 @@ app.post('/api/wordanalysis', (req, res) => {
 app.post('/api/insight', (req, res) => {
   personalityInsight(req.body.data.text)
     .then((personality) => {
-      res.send(personality);
+      res.json(personality);
+    })
+    .catch((err) => {
+      res.status(500).send(err.error);
     });
 });
 

@@ -17,6 +17,7 @@ module.exports = function analyzeInput(input) {
 
     request.tone(params, (err, tone) => {
       if (err) {
+        console.log('ERROR OUT AT TONES!!!!!!, ', err);
         resolve('Empty response');
       } else {
         resolve(JSON.stringify(tone, null, 2));

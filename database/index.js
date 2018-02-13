@@ -1,11 +1,16 @@
 const Sequelize = require('sequelize');
-const seedPrompts = require('./prompts');
-let sequelize;
 
-if (process.env.NODE_ENV === 'production') {
+const NODE_ENV = process.env.NODE_ENV;
+let sequelize;
+let database = 'persona';
+
+if (NODE_ENV === 'production') {
   sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 } else {
-  sequelize = new Sequelize('persona', 'root', '', {
+  if (NODE_ENV === 'test') {
+    database = 'personaTest';
+  }
+  sequelize = new Sequelize(database, 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
     pool: {
@@ -13,29 +18,20 @@ if (process.env.NODE_ENV === 'production') {
       min: 0,
       acquire: 30000,
       idle: 5000
-    }
+    },
+    logging: false
   });
 }
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Database successfully connected!');
-  })
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  });
 
 // INITIALIZE TABLES
 
 const User = sequelize.import('./models/User.js');
-const Prompt = sequelize.import('./models/Prompt.js');
 const Answer = sequelize.import('./models/Answer.js');
+const Prompt = sequelize.import('./models/Prompt.js');
 const Comment = sequelize.import('./models/Comment.js');
 const Tag = sequelize.import('./models/Tag.js');
 const Vote = sequelize.import('./models/Vote.js');
 const PromptToTag = sequelize.import('./models/PromptToTag');
-
 
 // // FOREIGN KEY CREATION
 
@@ -69,11 +65,6 @@ Answer.belongsTo(Prompt, {
   onDelete: `CASCADE`,
 });
 
-sequelize.sync({ force: true })
-  .then(() => {
-    Prompt.bulkCreate(seedPrompts.prompts);
-  });
-
 const selectAll = (callback) => {
   User.findAll()
     .then((results) => {
@@ -96,8 +87,30 @@ const getPrompts = (query, callback) => {
     .catch(callback);
 };
 
-module.exports.User = User;
-module.exports.selectAll = selectAll;
-module.exports.sequelize = sequelize;
-module.exports.getPrompts = getPrompts;
+const findUser = (query, callback) => {
+  User.find({
+    where: {
+      email: query
+    }
+  })
+    .then((found) => {
+      if (callback) { callback(null, found); }
+    })
+    .catch(callback);
+};
 
+module.exports.sequelize = sequelize;
+
+// Models
+module.exports.Answer = Answer;
+module.exports.Comment = Comment;
+module.exports.Prompt = Prompt;
+module.exports.PromptToTag = PromptToTag;
+module.exports.Tag = Tag;
+module.exports.User = User;
+module.exports.Vote = Vote;
+
+// Query Functions
+module.exports.findUser = findUser;
+module.exports.getPrompts = getPrompts;
+module.exports.selectAll = selectAll;
