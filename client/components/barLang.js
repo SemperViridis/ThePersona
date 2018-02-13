@@ -1,4 +1,4 @@
-angular.module('app').controller('BarLangCtrl', function ($scope) {
+angular.module('app').controller('barLangCtrl', function ($scope) {
   $scope.labels = ['Analytical', 'Confident', 'Tentative'];
 
   $scope.series = ['Language'];
@@ -7,6 +7,7 @@ angular.module('app').controller('BarLangCtrl', function ($scope) {
     [1, 1, 1]
   ];
 
+  debugger;
   if ($scope.$ctrl.output) {
     console.log('if condition hit')
     for (let i = 0; i < $scope.labels.length; i += 1) {
@@ -20,9 +21,9 @@ angular.module('app').controller('BarLangCtrl', function ($scope) {
   }
 })
 
-  .component('barLang', {
+  .component('barlang', {
     bindings: {
       output: '<',
     },
-    templateUrl: 'templates/barLang.html'
+    templateUrl: 'templates/barlang.html'
   });

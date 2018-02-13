@@ -1,4 +1,4 @@
-angular.module('app').controller('BarCtrl', function ($scope) {
+angular.module('app').controller('barCtrl', function ($scope) {
   $scope.labels = ['Anger', 'Fear', 'Sadness', 'Disgust', 'Joy'];
 
   $scope.series = ['Emotion'];
@@ -7,7 +7,6 @@ angular.module('app').controller('BarCtrl', function ($scope) {
     [1, 1, 1, 1, 1]
   ];
 
-  debugger;
   console.log($scope.$ctrl);
 
   if ($scope.$ctrl.output) {

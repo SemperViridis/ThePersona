@@ -53,7 +53,7 @@ angular.module('app')
         this.overall.push(output);
       };
       this.arrangeOverall();
-      debugger;
+
       this.resultsLoaded = true;
       // $scope.$apply();
     });
