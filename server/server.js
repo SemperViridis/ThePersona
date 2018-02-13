@@ -38,7 +38,7 @@ function checkAuthentication(req, res, next) {
   }
 }
 
-app.get('/api/dashboard', checkAuthentication, (req, res) => {
+app.get('/#!/user/dashboard', checkAuthentication, (req, res) => {
   res.redirect('/#!/interview/practice');
 });
 

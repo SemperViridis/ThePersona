@@ -8,9 +8,7 @@ angular.module('app')
     this.userService = userService;
 
     this.getUser = setInterval(() => {
-      console.log('IN THIS.TESTING');
       this.userService.getAllUserData((err, user) => {
-        console.log('IN THIS.USERSERVICE');
         if (err) {
           console.log('ERROR:', err);
         } else {
@@ -24,6 +22,12 @@ angular.module('app')
         }
       });
     }, 2000);
+
+    this.redirect = () => {
+      if (!this.isLoggedIn) {
+        $location.path('/login');
+      }
+    };
 
     // Add active link styling to current page on reload
     this.setActiveOnReload = setInterval(() => {

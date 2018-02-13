@@ -1,7 +1,8 @@
 angular.module('app')
   .controller('userCtrl', function ($location, userService) {
     this.userService = userService;
-    this.isLoggedIn;
+    this.isLoggedIn = this.userService.isLoggedIn;
+    this.userData = this.userService.userData;
 
     this.testing = () => {
       console.log('IN THIS.TESTING');
@@ -15,17 +16,6 @@ angular.module('app')
       });
     };
 
-    this.userData = {
-      id: 1,
-      name: 'Patty Kovash',
-      email: 'pattykovash@gmail.com',
-      username: 'khamd002',
-      firstName: 'Patty',
-      lastName: 'Kovash',
-      provider: '',
-      facebookUserId: '45678913345',
-      googleUserId: '789911344663'
-    };
 
     this.userInterviews = [
       {
