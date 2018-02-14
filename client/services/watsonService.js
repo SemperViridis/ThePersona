@@ -46,11 +46,12 @@ angular.module('app')
       });
     };
 
-    this.toneAnalysis = (transcription, promptID, callback) => {
+    this.toneAnalysis = (transcription, promptID, overall, callback) => {
       $http.post('http://localhost:3000/api/ibmtone', {
         data: {
           text: transcription,
-          promptID: promptID
+          promptID: promptID,
+          overall: overall
         }
       })
         .then(({ data }) => {
