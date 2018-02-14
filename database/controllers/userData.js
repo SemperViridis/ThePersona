@@ -4,13 +4,15 @@ exports.userByEmail = function (email, callback) {
   db.User.find({ where: { email: email } })
     .then((user) => {
       if (user) {
-        db.Answer.find({ where: { userID: user.id } })
-          .then((answer) => {
-            console.log('userData file this is the answer', answer);
+        db.Answer.find({ where: { userID: user.id }})
+          .then ((answer) => {
             user.answers = answer;
-          });
+           return db.Prompt.find({ where: { id: answer.promptId }})
+           .then((prompts) => {
+             user.prompts = prompts;
+           })
+          })
       }
-      console.log('userData file this is the user', user);
       callback(null, user);
     })
     .catch((err) => {
@@ -21,20 +23,20 @@ exports.userByEmail = function (email, callback) {
 exports.createAnswer = function (email, promptid, reply, callback) {
   db.User.find({ where: { email: email } })
     .then((user) => {
-      db.Prompt.find({ where: { id: promptid } })
-        .then((prompt) => {
-          db.Answer.create({
-            userId: user.id,
-            propmtId: promptid,
-            response: reply
-          })
-            .then((a) => {
-              userByEmail(email, callback);
-            });
-        });
+      return db.Prompt.find({ where: { id: promptid } })
+      .then(prompt => {        
+        return db.Answer.create({
+          userId: user.id,
+          promptId: promptid,
+          response: reply
+        })
+      })
+    })
+    .then((a) => {
+      userByEmail(email, callback);
     })
     .catch((err) => {
       callback(err, null);
-    });
+    })
 };
 
