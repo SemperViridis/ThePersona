@@ -38,31 +38,43 @@ const Interview = sequelize.import('./models/Interview.js');
 Answer.belongsTo(User, {
   targetKey: `id`,
   constraints: false,
-  onDelete: `CASCADE`,
+  onDelete: `CASCADE`
 });
 
 Prompt.belongsTo(User, {
   targetKey: `id`,
   constraints: false,
-  onDelete: `CASCADE`,
+  onDelete: `CASCADE`
 });
 
 Comment.belongsTo(User, {
   targetKey: `id`,
   constraints: false,
-  onDelete: `CASCADE`,
+  onDelete: `CASCADE`
 });
 
 Vote.belongsTo(User, {
   targetKey: `id`,
   constraints: false,
-  onDelete: `CASCADE`,
+  onDelete: `CASCADE`
 });
 
 Answer.belongsTo(Prompt, {
   targetKey: `id`,
   constraints: false,
-  onDelete: `CASCADE`,
+  onDelete: `CASCADE`
+});
+
+Answer.belongsTo(Interview, {
+  targetKey: `id`,
+  constraints: false,
+  onDelete: `CASCADE`
+});
+
+Interview.belongsTo(User, {
+  targetKey: `id`,
+  constraints: false,
+  onDelete: `CASCADE`
 });
 
 const selectAll = (callback) => {
