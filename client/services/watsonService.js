@@ -7,9 +7,9 @@ angular.module('app')
     this.interviewFillers = [];
 
 
-    this.analyzeAnswer = (answer, cb) => {
+    this.analyzeAnswer = (answer, questionID, cb) => {
       this.responses.push(answer);
-      this.toneAnalysis(answer, (err, results) => {
+      this.toneAnalysis(answer, questionID, (err, results) => {
         if (err) {
           console.log(err);
           this.answerAnalysis.push('');
@@ -28,16 +28,14 @@ angular.module('app')
       });
     };
 
-    this.analyzeInterview = (interview, cb) => {
-      this.toneAnalysis(interview, (err, results) => {
+    this.analyzeInterview = (interview) => {
+      this.toneAnalysis(interview, null, (err, results) => {
         if (err) {
           console.log('ERROR:', err);
           this.interviewAnalysis.push('');
         }
         this.interviewAnalysis.push(results);
-        if (cb) {
-          cb();
-        }
+        console.log('Overall interview analysis:', this.interviewAnalysis)
         broadcastService.send('analysis Done');
       });
 
@@ -48,10 +46,11 @@ angular.module('app')
       });
     };
 
-    this.toneAnalysis = (transcription, callback) => {
+    this.toneAnalysis = (transcription, promptID, callback) => {
       $http.post('http://localhost:3000/api/ibmtone', {
         data: {
-          text: transcription
+          text: transcription,
+          promptID: promptID
         }
       })
         .then(({ data }) => {

@@ -8,6 +8,10 @@ angular.module('app')
     this.recordingService = recordingService;
 
     // state properties
+    $scope.$on('update', (event, args) => {
+      const currentPromptIndex = args;
+      this.currentID = this.interviewService.prompts[currentPromptIndex].id;
+    });
     this.interviewStarted = false;
     this.recognizing = false;
     this.responses = [];
@@ -56,7 +60,8 @@ angular.module('app')
       this.recordingService.submitRecording();
       setTimeout(() => {
         this.responses.push(this.finalTranscript);
-        this.watsonService.analyzeAnswer(this.finalTranscript, () => this.watsonService.analyzeInterview(this.responses.join('.')));
+        this.watsonService.analyzeAnswer(this.finalTranscript, this.currentID, () => { this.watsonService.analyzeInterview(this.responses.join('.'))
+        });
       }, 500);
     };
 
@@ -64,11 +69,12 @@ angular.module('app')
       this.promptCount = this.promptCount + 1 || 1;
       this.reachedLastQuestion = (this.promptCount === 2);
       this.recognition.stop();
+      console.log(this.currentID);
       this.interviewService.getNextPrompt();
       setTimeout(() => {
         console.log(this.finalTranscript);
         this.responses.push(this.finalTranscript);
-        this.watsonService.analyzeAnswer(this.finalTranscript);
+        this.watsonService.analyzeAnswer(this.finalTranscript, this.currentID);
         this.finalTranscript = '';
         this.recognition.start();
       }, 500);

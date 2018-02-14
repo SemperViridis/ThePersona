@@ -3,9 +3,9 @@ angular.module('app')
     this.interviewService = interviewService;
     this.watsonService = watsonService;
 
-    this.test = 'overall graph';
-    $scope.$on('analysis Done', (event) => {
 
+    $scope.$on('analysis Done', (event) => {
+      console.log('analysis done, organizing results');
       //Analysis for whole interview
       this.interviewTones = watsonService.interviewAnalysis;
       this.interviewFillers = watsonService.interviewFillers;
@@ -45,7 +45,7 @@ angular.module('app')
         if (this.interviewTones[0].tone_categories) {
           output.tones = this.interviewTones[0].tone_categories[0].tones;
           output.language = this.interviewTones[0].tone_categories[1].tones;
-          output.social = this.tones[0].tone_categories[2].tones;
+          output.social = this.interviewTones[0].tone_categories[2].tones;
 
         }
         output.fillers = this.interviewFillers[0];
@@ -54,6 +54,7 @@ angular.module('app')
       };
       this.arrangeOverall();
 
+      console.log(this.overall);
       this.resultsLoaded = true;
       // $scope.$apply();
     });
