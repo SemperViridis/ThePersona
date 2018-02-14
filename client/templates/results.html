@@ -1,4 +1,4 @@
-<div id="graph">
+<div id="graph" class="ui centered grid">
 <!--   <div class="breadcrumb results">
     <a class="section" ui-sref="app.home">Home</a>
     <p class="divider">  /  </p>
@@ -6,11 +6,34 @@
     <p class="divider">  /  </p>
     <a class="section" ui-sref="app.analysis">Results</a>
   </div> -->
-<div >
-  <h1>Results</h1>
-  <div ng-if="!$ctrl.resultsLoaded"> Analyzing Interview </div>
-  <div ng-if="$ctrl.resultsLoaded">
-    <table border='1'>
+  <div>
+    <h1>Overall Analysis</h1>
+    <div ng-if="!$ctrl.resultsLoaded"> Analyzing Interview </div>
+    <div ng-if="$ctrl.resultsLoaded">
+      <div border='1'>
+        <div class="ui three column center aligned stackable grid container">
+          <div class="column"><bar output="$ctrl.overall[0].tones"></bar></div>
+          <div class="column"><barlang output="$ctrl.overall[0].language"></barlang></div>
+          <div class="column">><radar output="$ctrl.overall[0].social"></radar></div>
+        </div>
+        <div class="ui divider"></div>
+  </div>
+  <div>
+    <h1>Questions &amp; Answers</h1>
+    <div ng-repeat="output in $ctrl.arranged track by $index">
+      <div><h2>{{output.question}}</h2></div>
+      <div><h3>{{output.answer}}</h3></div>
+      <div class="ui three column center aligned stackable grid container">
+        <div class="column"><bar output = output.tones></bar></div>
+        <div class="column"><barLang output = output.language></barLang></div>
+        <div class="column"><radar output = output.social></radar></div>
+      </div>
+      <div class="ui divider"></div>
+    </div>
+  </div>
+</div>
+
+<!--     <table border='1'>
         <tr>
         <td><bar output="$ctrl.overall[0].tones"></bar></td>
         <td><barlang output="$ctrl.overall[0].language"></barlang></td>
@@ -31,8 +54,5 @@
         <td><barLang output = output.language></barLang></td>
         <td><radar output = output.social></radar></td>
       </tr>
-    </table>
-  </div>
+    </table> -->
 
-</div>
-</div>
