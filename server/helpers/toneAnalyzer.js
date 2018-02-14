@@ -6,7 +6,7 @@ module.exports = function analyzeInput(input) {
     const request = new ToneAnalyzerV3({
       username: process.env.WATSON_USERNAME,
       password: process.env.WATSON_PASSWORD,
-      version_date: '2017-09-21',
+      version_date: '2016-05-19',
     });
 
     const params = {
@@ -20,6 +20,7 @@ module.exports = function analyzeInput(input) {
         console.log('ERROR OUT AT TONES!!!!!!, ', err);
         resolve('Empty response');
       } else {
+        console.log(JSON.stringify(tone));
         resolve(JSON.stringify(tone, null, 2));
       }
     });

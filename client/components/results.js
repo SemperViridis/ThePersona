@@ -3,9 +3,9 @@ angular.module('app')
     this.interviewService = interviewService;
     this.watsonService = watsonService;
 
-    this.test = 'overall graph';
-    $scope.$on('analysis Done', (event) => {
 
+    $scope.$on('analysis Done', (event) => {
+      console.log('analysis done, organizing results');
       //Analysis for whole interview
       this.interviewTones = watsonService.interviewAnalysis;
       this.interviewFillers = watsonService.interviewFillers;
@@ -26,27 +26,35 @@ angular.module('app')
           const output = {};
           output.question = this.questions[i].question;
           output.answer = this.answers[i];
-          if (this.tones[i] && this.tones[i].tones) {
-            output.tones = this.tones[i].tones;
+          if (this.tones[i] && this.tones[i].tone_categories) {
+            output.tones = this.tones[i].tone_categories[0].tones;
+            output.language = this.tones[i].tone_categories[1].tones;
+            output.social = this.tones[i].tone_categories[2].tones;
           }
           output.fillers = this.fillers[i];
           this.arranged.push(output);
         }
       };
       this.arrangeAnswers();
+      console.log(this.arranged);
 
       //Arrange overall interview analysis into one object
       this.overall = [];
       this.arrangeOverall = () => {
         const output = {};
-        if (this.interviewTones[0].tones) {
-          output.tones = this.interviewTones[0].tones;
+        if (this.interviewTones[0].tone_categories) {
+          output.tones = this.interviewTones[0].tone_categories[0].tones;
+          output.language = this.interviewTones[0].tone_categories[1].tones;
+          output.social = this.interviewTones[0].tone_categories[2].tones;
+
         }
         output.fillers = this.interviewFillers[0];
         output.overall = true;
         this.overall.push(output);
       };
       this.arrangeOverall();
+
+      console.log(this.overall);
       this.resultsLoaded = true;
       // $scope.$apply();
     });
