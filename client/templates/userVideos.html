@@ -7,9 +7,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="interview in $ctrl.userInterviews track by interview.id">
-        <td>{{ interview.createdAt }}</td>
-        <td><a href="#">{{ interview.id }}</a></td>
+      <tr ng-repeat="video in $ctrl.userVideos track by video.id">
+        <td>{{ video.createdAt }}</td>
+        <td><a href="#">{{ video.url }}</a></td>
       </tr>
     </tbody>
     <tfoot>
@@ -18,7 +18,7 @@
         <td></td>
       </tr>
       <tr>
-        <th>Total Interviews: {{ $ctrl.userInterviews.length }}</th>
+        <th>Total Interviews: {{ $ctrl.userVideos.length }}</th>
         <th></th>
       </tr>
     </tfoot>
