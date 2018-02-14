@@ -4,26 +4,34 @@
       <div class="ui large text loader">Analyzing Interview</div>
     </div>
  </div>
-  <div ng-if="$ctrl.resultsLoaded">
-    <h1 id="qa" class="ui horizontal divider">Overall Analysis</h1>
-    <div border='1'>
-      <div class="ui three column center aligned stackable grid container">
-        <div class="column"><bar output="$ctrl.overall[0].tones"></bar></div>
-        <div class="column"><barlang output="$ctrl.overall[0].language"></barlang></div>
-        <div class="column"><radar output="$ctrl.overall[0].social"></radar></div>
-      </div>
-      <h1 id="qa" class="ui horizontal divider">Questions &amp; Answers</h1>
+  <div id="ovarall" ng-if="$ctrl.resultsLoaded">
+    <h1 class="ui horizontal divider">Overall Analysis</h1>
+    <div class="ui three column center aligned stackable grid container">
+      <div class="column"><bar class="barGraph" output="$ctrl.overall[0].tones"></bar></div>
+      <div class="column"><barlang output="$ctrl.overall[0].language"></barlang></div>
+      <div class="column"><radar output="$ctrl.overall[0].social"></radar></div>
+    </div>
+    <h1 id="qa" class="ui horizontal divider">Questions &amp; Answers</h1>
   </div>
   <div>
-    <div ng-repeat="output in $ctrl.arranged track by $index">
-      <div class="ui left aligned header"><h2>{{output.question}}</h2></div>
-      <div class="ui left aligned header"><h3>{{output.answer}}</h3></div>
+    <div id="repeat" ng-repeat="output in $ctrl.arranged track by $index">
+      <div class="ui left aligned header">
+        <h2 class="qaPrompt">
+          <span class="uppercase">Question:</span>
+          {{ output.question }}
+        </h2>
+      </div>
+      <div class="ui left aligned header">
+        <h3 class="qaAnswer">
+          <span class="uppercase">Answer:</span>
+          {{ output.answer }}
+        </h3>
+      </div>
       <div class="ui three column center aligned stackable grid container">
         <div class="column"><bar output = output.tones></bar></div>
         <div class="column"><barLang output = output.language></barLang></div>
         <div class="column"><radar output = output.social></radar></div>
       </div>
-      <div class="ui divider"></div>
     </div>
   </div>
 </div>

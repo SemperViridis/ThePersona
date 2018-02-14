@@ -1,5 +1,5 @@
 #analysis .ui.centered.grid{
-  width: 80%;
+  width: 90%;
   height: 100%;
   margin-top: 3%;
 }
@@ -11,7 +11,7 @@
 #analysis h1 {
   text-transform: uppercase;
   font: 400 1.5em 'Nunito Sans', sans-serif;
-  color: #626262;
+  /*color: #626262;*/
   color: #05386b;
 }
 
@@ -25,6 +25,7 @@
   filter: alpha(opacity=80); /* For IE8 and earlier */
 }
 
-#analysis h1.ui.horizontal.divider {
-  margin-top: 4.5%;
+#yourResults {
+  margin-top: 4%;
+  margin-bottom: 0;
 }

@@ -59,7 +59,7 @@ angular.module('app')
       });
     };
 
-    this.init();
+    // this.init();
   })
   .component('app', {
     controller: 'AppCtrl',

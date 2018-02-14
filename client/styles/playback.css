@@ -1,11 +1,6 @@
 #playback, #graph {
   margin: auto;
   width: 100%;
-
-}
-
-#playback {
-  margin-bottom: 2%;
 }
 
 #recorded {
@@ -23,18 +18,43 @@
   text-align: center;
 }
 
-#download button.ui.button {
-  margin-top: 15px;
-  background: rgba(76,203,171,1);
-  background: -moz-linear-gradient(-45deg, rgba(76,203,171,1) 0%, rgba(62,117,200,0.7) 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(76,203,171,1)), color-stop(100%, rgba(62,117,200,0.7)));
-  background: -webkit-linear-gradient(-45deg, rgba(76,203,171,1) 0%, rgba(62,117,200,0.7) 100%);
-  background: -o-linear-gradient(-45deg, rgba(76,203,171,1) 0%, rgba(62,117,200,0.7) 100%);
-  background: -ms-linear-gradient(-45deg, rgba(76,203,171,1) 0%, rgba(62,117,200,0.7) 100%);
-  background: linear-gradient(135deg, rgba(76,203,171,1) 0%, rgba(62,117,200,0.7) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ccbab', endColorstr='#3e75c8', GradientType=1 );
+#download button.ui.button,
+#download button.ui.button a {
+  margin-top: 18px;
   color: #fff;
   font: 400 1.2em 'Nunito Sans', sans-serif;
   width: 20%;
-  max-width: 200px;
+  max-width: 180px;
+}
+
+#download button.ui.button a {
+  font-size: 1em
+}
+
+#download button:nth-child(1):hover.ui.button, #download button:nth-child(2):hover.ui.button {
+  background: rgba(76,203,171,.5);
+}
+
+#download button:nth-child(1).ui.button {
+  margin-right: 10px;
+  background: rgba(77,203,172,0.8);
+  background: -moz-linear-gradient(45deg, rgba(77,203,172,0.8) 0%, rgba(60,116,200,0.84) 85%, rgba(60,116,200,0.85) 100%);
+  background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(77,203,172,0.8)), color-stop(85%, rgba(60,116,200,0.84)), color-stop(100%, rgba(60,116,200,0.85)));
+  background: -webkit-linear-gradient(45deg, rgba(77,203,172,0.8) 0%, rgba(60,116,200,0.84) 85%, rgba(60,116,200,0.85) 100%);
+  background: -o-linear-gradient(45deg, rgba(77,203,172,0.8) 0%, rgba(60,116,200,0.84) 85%, rgba(60,116,200,0.85) 100%);
+  background: -ms-linear-gradient(45deg, rgba(77,203,172,0.8) 0%, rgba(60,116,200,0.84) 85%, rgba(60,116,200,0.85) 100%);
+  background: linear-gradient(45deg, rgba(77,203,172,0.8) 0%, rgba(60,116,200,0.84) 85%, rgba(60,116,200,0.85) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4dcbac', endColorstr='#3c74c8', GradientType=1 );
+}
+
+#download button:nth-child(2).ui.button {
+  margin-left: 10px;
+  background: rgba(60,116,200,0.85);
+  background: -moz-linear-gradient(45deg, rgba(60,116,200,0.85) 0%, rgba(60,116,200,0.84) 15%, rgba(77,203,172,0.8) 100%);
+  background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(60,116,200,0.85)), color-stop(15%, rgba(60,116,200,0.84)), color-stop(100%, rgba(77,203,172,0.8)));
+  background: -webkit-linear-gradient(45deg, rgba(60,116,200,0.85) 0%, rgba(60,116,200,0.84) 15%, rgba(77,203,172,0.8) 100%);
+  background: -o-linear-gradient(45deg, rgba(60,116,200,0.85) 0%, rgba(60,116,200,0.84) 15%, rgba(77,203,172,0.8) 100%);
+  background: -ms-linear-gradient(45deg, rgba(60,116,200,0.85) 0%, rgba(60,116,200,0.84) 15%, rgba(77,203,172,0.8) 100%);
+  background: linear-gradient(45deg, rgba(60,116,200,0.85) 0%, rgba(60,116,200,0.84) 15%, rgba(77,203,172,0.8) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3c74c8', endColorstr='#4dcbac', GradientType=1 );
 }

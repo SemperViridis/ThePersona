@@ -20,24 +20,28 @@
           id="/community"
           ui-sref="app.community"
           ng-click="$ctrl.removePrevActiveOnClick()">
-        Community</a>
+        Community
+        </a>
         <a
           id="/user/dashboard"
           ng-if="$ctrl.isLoggedIn"
           ui-sref="app.user.dashboard"
           ng-click="$ctrl.removePrevActiveOnClick()">
-        My Dashboard</a>
+        My Dashboard
+        </a>
         <a
           ng-if="!$ctrl.isLoggedIn"
           ng-click="$ctrl.openComponentModal()"
           href="#"
           class="login">
-        Login</a>
+        Login
+        </a>
         <a
           ng-if="$ctrl.isLoggedIn"
           ui-sref="logout"
           class="login">
-        Log Out</a>
+        Log Out
+        </a>
       </div>
   </div>
 </div>
