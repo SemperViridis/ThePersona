@@ -34,7 +34,7 @@ module.exports = function (app, passport) {
   // FACEBOOK STRATEGY
 
   passport.use(new FacebookStrategy({ // travis is getting it from the .travis.yml so it's probably looking for it in there
-    clientID: '403488566768775',
+    clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: 'http://localhost:3000/auth/facebook/callback',
     profileFields: ['id', 'displayName', 'photos', 'email']

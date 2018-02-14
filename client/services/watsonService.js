@@ -9,7 +9,7 @@ angular.module('app')
 
     this.analyzeAnswer = (answer, questionID, cb) => {
       this.responses.push(answer);
-      this.toneAnalysis(answer, questionID, (err, results) => {
+      this.toneAnalysis(answer, questionID, false, (err, results) => {
         if (err) {
           console.log(err);
           this.answerAnalysis.push('');
@@ -29,7 +29,7 @@ angular.module('app')
     };
 
     this.analyzeInterview = (interview) => {
-      this.toneAnalysis(interview, null, (err, results) => {
+      this.toneAnalysis(interview, null, true, (err, results) => {
         if (err) {
           console.log('ERROR:', err);
           this.interviewAnalysis.push('');
