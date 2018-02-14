@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
       autoIncrement: true,
     },
     response: {
-      type: Sequelize.TEXT,
+      type: Sequelize.TEXT(`long`),
       allowNull: false,
     },
     createdAt: Sequelize.DATE,
