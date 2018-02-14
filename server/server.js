@@ -8,6 +8,7 @@ const db = require('../database');
 const User = require('../database/models/User.js');
 const sequelize = require('../database/index.js').sequelize;
 const userData = require('../database/controllers/userData.js');
+const interviewData = require('../database/controllers/interviewData.js');
 // Helpers
 const toneAnalyzer = require('./helpers/toneAnalyzer');
 const wordAnalyzer = require('./helpers/fillerWords').fillerWords;

@@ -31,38 +31,50 @@ const Prompt = sequelize.import('./models/Prompt.js');
 const Comment = sequelize.import('./models/Comment.js');
 const Tag = sequelize.import('./models/Tag.js');
 const Vote = sequelize.import('./models/Vote.js');
-const PromptToTag = sequelize.import('./models/PromptToTag');
+const Interview = sequelize.import('./models/Interview.js');
 
 // // FOREIGN KEY CREATION
 
 Answer.belongsTo(User, {
   targetKey: `id`,
   constraints: false,
-  onDelete: `CASCADE`,
+  onDelete: `CASCADE`
 });
 
 Prompt.belongsTo(User, {
   targetKey: `id`,
   constraints: false,
-  onDelete: `CASCADE`,
+  onDelete: `CASCADE`
 });
 
 Comment.belongsTo(User, {
   targetKey: `id`,
   constraints: false,
-  onDelete: `CASCADE`,
+  onDelete: `CASCADE`
 });
 
 Vote.belongsTo(User, {
   targetKey: `id`,
   constraints: false,
-  onDelete: `CASCADE`,
+  onDelete: `CASCADE`
 });
 
 Answer.belongsTo(Prompt, {
   targetKey: `id`,
   constraints: false,
-  onDelete: `CASCADE`,
+  onDelete: `CASCADE`
+});
+
+Answer.belongsTo(Interview, {
+  targetKey: `id`,
+  constraints: false,
+  onDelete: `CASCADE`
+});
+
+Interview.belongsTo(User, {
+  targetKey: `id`,
+  constraints: false,
+  onDelete: `CASCADE`
 });
 
 const selectAll = (callback) => {
@@ -105,10 +117,10 @@ module.exports.sequelize = sequelize;
 module.exports.Answer = Answer;
 module.exports.Comment = Comment;
 module.exports.Prompt = Prompt;
-module.exports.PromptToTag = PromptToTag;
 module.exports.Tag = Tag;
 module.exports.User = User;
 module.exports.Vote = Vote;
+module.exports.Interview = Interview;
 
 // Query Functions
 module.exports.findUser = findUser;
