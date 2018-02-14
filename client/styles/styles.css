@@ -10,10 +10,6 @@
   color: #fff;
 }
 
-.breadcrumb.results a {
-  color: #464646;
-}
-
 .breadcrumb a:hover {
   color: #1ed992;
 }
@@ -23,10 +19,6 @@ p.divider {
   margin-right: 15px;
   display: inline;
   color: #fff;
-}
-
-.results p.divider {
-  color: #464646;
 }
 
 #prompts, #speech, #results {
@@ -69,53 +61,10 @@ p.prompt {
   margin-top: 10px;
 }
 
-#results {
-  background: #fff;
-  min-height: 340px;
-  margin: 2% auto 1% auto;
-  border: 1px solid #bfc1c1;
-}
-
 #final_span, #interim_span {
   font-size: 2em;
   padding: 20px 30px;
   display: inline-block;
-}
-
-#analysis {
-  margin: 150px auto 0 auto;
-  width: 90%;
-  height: 100%;
-}
-
-#analysis h1 {
-  background: #13ed9a;
-  padding-left: 20px;
-  color: #fff;
-  width: 30%;
-  padding-top: 5px;
-  text-transform: uppercase;
-  font-family: 'Raleway', sans-serif;
-
-}
-
-#analysis p {
-  background: #fff;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  padding: 10px 10px;
-  font-size: 1.5em;
-  opacity: .70;
-  filter: alpha(opacity=80); /* For IE8 and earlier */
-}
-
-#playback, #graph {
-  margin: auto;
-  width: 100%;
-}
-
-#playback {
-  margin-left: 100px;
 }
 
 .login.ng-scope.ng-isolate-scope {
@@ -271,20 +220,6 @@ button:active, button:focus, button:selected, i:active, i:focus, i:selected {
   outline: none;
   border: none;
   text-decoration: none;
-}
-
-video {
-  width: 80%;
-  height: auto;
-  border: 1px solid grey;
-}
-
-#download {
-  margin-top: 15px;
-}
-
-#recorded {
-  background-color: #fff;
 }
 
 .ui.horizontal.header.divider {

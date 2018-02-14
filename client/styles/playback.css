@@ -1,0 +1,19 @@
+#playback, #graph {
+  margin: auto;
+  width: 100%;
+}
+
+#recorded {
+  position: relative;
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+
+#download {
+  margin-top: 15px;
+}
+
+#recorded {
+  background-color: #fff;
+}

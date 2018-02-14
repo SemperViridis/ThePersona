@@ -1,0 +1,15 @@
+#results {
+  font: 400 1em 'Nunito Sans', sans-serif;
+  background: #fff;
+  min-height: 340px;
+  margin: 2% auto 1% auto;
+  border: 1px solid #bfc1c1;
+}
+
+.breadcrumb.results a {
+  color: #464646;
+}
+
+.results p.divider {
+  color: #464646;
+}

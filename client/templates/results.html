@@ -1,15 +1,10 @@
-<div id="graph" class="ui centered grid">
-<!--   <div class="breadcrumb results">
-    <a class="section" ui-sref="app.home">Home</a>
-    <p class="divider">  /  </p>
-    <a class="section" ui-sref="app.interview">Interview</a>
-    <p class="divider">  /  </p>
-    <a class="section" ui-sref="app.analysis">Results</a>
-  </div> -->
+<div id="graph">
   <div>
-    <h1>Overall Analysis</h1>
+    <div class="column">
+    </div>
     <div ng-if="!$ctrl.resultsLoaded"> Analyzing Interview </div>
     <div ng-if="$ctrl.resultsLoaded">
+      <h1 class="ui left aligned header">Overall Analysis</h1>
       <div border='1'>
         <div class="ui three column center aligned stackable grid container">
           <div class="column"><bar output="$ctrl.overall[0].tones"></bar></div>
@@ -19,10 +14,10 @@
         <div class="ui divider"></div>
   </div>
   <div>
-    <h1>Questions &amp; Answers</h1>
+    <h1 class="ui left aligned header">Questions &amp; Answers</h1>
     <div ng-repeat="output in $ctrl.arranged track by $index">
-      <div><h2>{{output.question}}</h2></div>
-      <div><h3>{{output.answer}}</h3></div>
+      <div class="ui left aligned header"><h2>{{output.question}}</h2></div>
+      <div class="ui left aligned header"><h3>{{output.answer}}</h3></div>
       <div class="ui three column center aligned stackable grid container">
         <div class="column"><bar output = output.tones></bar></div>
         <div class="column"><barLang output = output.language></barLang></div>
@@ -32,27 +27,3 @@
     </div>
   </div>
 </div>
-
-<!--     <table border='1'>
-        <tr>
-        <td><bar output="$ctrl.overall[0].tones"></bar></td>
-        <td><barlang output="$ctrl.overall[0].language"></barlang></td>
-        <td><radar output="$ctrl.overall[0].social"></radar></td>
-      </tr>
-    </table>
-  </div>
-  <div ng-if="$ctrl.resultsLoaded">
-    <table border='1'>
-      <tr>
-        <td><h2>Questions</h2></td>
-        <td><h2>Answers</h2></td>
-      </tr>
-      <tr ng-repeat="output in $ctrl.arranged track by $index">
-        <td><h3>{{output.question}}</h3></td>
-        <td><h3>{{output.answer}}</h3></td>
-        <td><bar output = output.tones></bar></td>
-        <td><barLang output = output.language></barLang></td>
-        <td><radar output = output.social></radar></td>
-      </tr>
-    </table> -->
-
