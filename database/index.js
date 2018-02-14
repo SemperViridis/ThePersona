@@ -117,7 +117,6 @@ module.exports.sequelize = sequelize;
 module.exports.Answer = Answer;
 module.exports.Comment = Comment;
 module.exports.Prompt = Prompt;
-module.exports.PromptToTag = PromptToTag;
 module.exports.Tag = Tag;
 module.exports.User = User;
 module.exports.Vote = Vote;
