@@ -60,7 +60,7 @@ angular.module('app')
       this.recordingService.submitRecording();
       setTimeout(() => {
         this.responses.push(this.finalTranscript);
-        this.watsonService.analyzeAnswer(this.finalTranscript, this.currentID, () => { this.watsonService.analyzeInterview(this.responses.join('.'))
+        this.watsonService.analyzeAnswer(this.finalTranscript, this.currentID, true, () => { this.watsonService.analyzeInterview(this.responses.join('.'))
         });
       }, 500);
     };
@@ -74,7 +74,7 @@ angular.module('app')
       setTimeout(() => {
         console.log(this.finalTranscript);
         this.responses.push(this.finalTranscript);
-        this.watsonService.analyzeAnswer(this.finalTranscript, this.currentID);
+        this.watsonService.analyzeAnswer(this.finalTranscript, this.currentID, null);
         this.finalTranscript = '';
         this.recognition.start();
       }, 500);
