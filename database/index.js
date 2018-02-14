@@ -31,7 +31,7 @@ const Prompt = sequelize.import('./models/Prompt.js');
 const Comment = sequelize.import('./models/Comment.js');
 const Tag = sequelize.import('./models/Tag.js');
 const Vote = sequelize.import('./models/Vote.js');
-const PromptToTag = sequelize.import('./models/PromptToTag');
+const Interview = sequelize.import('./models/Interview.js');
 
 // // FOREIGN KEY CREATION
 
@@ -109,6 +109,7 @@ module.exports.PromptToTag = PromptToTag;
 module.exports.Tag = Tag;
 module.exports.User = User;
 module.exports.Vote = Vote;
+module.exports.Interview = Interview;
 
 // Query Functions
 module.exports.findUser = findUser;

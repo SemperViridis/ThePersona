@@ -1,14 +1,14 @@
 'use strict';
 
 module.exports = (sequelize, Sequelize) => {
-  var Interview = sequelize.define('interviews', {
+  const Interview = sequelize.define('interviews', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     response: {
-      type: Sequelize.TEXT(`long`),
+      type: Sequelize.TEXT('long'),
       allowNull: false,
     },
     videoURL: {
