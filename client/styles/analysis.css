@@ -1,20 +1,18 @@
 #analysis .ui.centered.grid{
-  width: 90%;
+  width: 80%;
   height: 100%;
+  margin-top: 3%;
 }
 
-#analysis {
+#analysis div.one.column.row {
+  margin-bottom: 2%
 }
 
 #analysis h1 {
-  background: #13ed9a;
-  padding-left: 20px;
-  color: #fff;
-  width: 30%;
-  padding-top: 5px;
   text-transform: uppercase;
-  font-family: 'Raleway', sans-serif;
-
+  font: 400 1.5em 'Nunito Sans', sans-serif;
+  color: #626262;
+  color: #05386b;
 }
 
 #analysis p {
@@ -25,4 +23,8 @@
   font-size: 1.5em;
   opacity: .70;
   filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+#analysis h1.ui.horizontal.divider {
+  margin-top: 4.5%;
 }

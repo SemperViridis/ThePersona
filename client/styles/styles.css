@@ -117,10 +117,6 @@ h1.ui.inverted {
   text-align: center;
 }
 
-h2.ui.inverted.header, h3.ui.inverted.header{
-  font-family: 'Roboto', helvetica, sans-serif;
-}
-
 h2.ui.inverted.header {
   font-size: 1.4em;
   margin-bottom: 5px;

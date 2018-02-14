@@ -1,20 +1,20 @@
 <div id="graph">
-  <div>
-    <div class="column">
+  <div ng-if="!$ctrl.resultsLoaded" class="ui segment">
+    <div class="ui active inverted dimmer">
+      <div class="ui large text loader">Analyzing Interview</div>
     </div>
-    <div ng-if="!$ctrl.resultsLoaded"> Analyzing Interview </div>
-    <div ng-if="$ctrl.resultsLoaded">
-      <h1 class="ui left aligned header">Overall Analysis</h1>
-      <div border='1'>
-        <div class="ui three column center aligned stackable grid container">
-          <div class="column"><bar output="$ctrl.overall[0].tones"></bar></div>
-          <div class="column"><barlang output="$ctrl.overall[0].language"></barlang></div>
-          <div class="column">><radar output="$ctrl.overall[0].social"></radar></div>
-        </div>
-        <div class="ui divider"></div>
+ </div>
+  <div ng-if="$ctrl.resultsLoaded">
+    <h1 id="qa" class="ui horizontal divider">Overall Analysis</h1>
+    <div border='1'>
+      <div class="ui three column center aligned stackable grid container">
+        <div class="column"><bar output="$ctrl.overall[0].tones"></bar></div>
+        <div class="column"><barlang output="$ctrl.overall[0].language"></barlang></div>
+        <div class="column"><radar output="$ctrl.overall[0].social"></radar></div>
+      </div>
+      <h1 id="qa" class="ui horizontal divider">Questions &amp; Answers</h1>
   </div>
   <div>
-    <h1 class="ui left aligned header">Questions &amp; Answers</h1>
     <div ng-repeat="output in $ctrl.arranged track by $index">
       <div class="ui left aligned header"><h2>{{output.question}}</h2></div>
       <div class="ui left aligned header"><h3>{{output.answer}}</h3></div>

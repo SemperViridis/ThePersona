@@ -13,3 +13,13 @@
 .results p.divider {
   color: #464646;
 }
+
+#graph div.ui.segment {
+  height: 30vh;
+  margin-top: 0
+}
+
+#qa {
+  margin-top: 6%;
+  margin-bottom: 6%;
+}
