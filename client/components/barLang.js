@@ -7,7 +7,6 @@ angular.module('app').controller('barLangCtrl', function ($scope) {
     [1, 1, 1]
   ];
 
-  debugger;
   if ($scope.$ctrl.output) {
     console.log('if condition hit')
     for (let i = 0; i < $scope.labels.length; i += 1) {

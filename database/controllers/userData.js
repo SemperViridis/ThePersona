@@ -20,23 +20,25 @@ exports.userByEmail = function (email, callback) {
     });
 };
 
-exports.createAnswer = function (email, promptid, reply, callback) {
+exports.createAnswer = function (email, promptid, reply) {
   db.User.find({ where: { email: email } })
     .then((user) => {
-      return db.Prompt.find({ where: { id: promptid } })
+      db.Prompt.find({ where: { id: promptid } })
       .then(prompt => {
-        return db.Answer.create({
+        db.Answer.create({
           userId: user.id,
           promptId: promptid,
           response: reply
         })
       })
     })
-    .then((a) => {
-      userByEmail(email, callback);
-    })
+    // .then((a) => {
+    //   userByEmail(email, callback);
+    // })
     .catch((err) => {
-      callback(err, null);
+      console.log('create answer error:', err);
+      if (err) {
+        return err;
+      }
     })
 };
-
