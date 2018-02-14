@@ -1,0 +1,31 @@
+#analysis .ui.centered.grid{
+  width: 90%;
+  height: 100%;
+  margin-top: 3%;
+}
+
+#analysis div.one.column.row {
+  margin-bottom: 2%
+}
+
+#analysis h1 {
+  text-transform: uppercase;
+  font: 400 1.5em 'Nunito Sans', sans-serif;
+  /*color: #626262;*/
+  color: #05386b;
+}
+
+#analysis p {
+  background: #fff;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 10px 10px;
+  font-size: 1.5em;
+  opacity: .70;
+  filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+#yourResults {
+  margin-top: 4%;
+  margin-bottom: 0;
+}

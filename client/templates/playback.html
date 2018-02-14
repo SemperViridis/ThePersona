@@ -1,6 +1,11 @@
-<div id="playback">
+<div id="playback" class="column">
   <video id="recorded" loop controls></video>
-  <div>
-    <button class="ui button" ng-click="$ctrl.download()" id="download">Download</button>
+  <div id="download" class="column">
+    <button class="ui button" ng-click="$ctrl.download()">
+      Download
+    </button>
+    <button class="ui button">
+      <a href="/user/dashboard">Go to Dashboard</a>
+    </button>
   </div>
 </div>

@@ -1,5 +1,4 @@
 // Node Modules
-const router = require('express').Router();
 const express = require('express');
 const path = require('path');
 const passport = require('passport');
@@ -17,6 +16,7 @@ const videoUploader = require('./helpers/videoUploader');
 
 const app = express();
 const social = require('./passport/authRoute.js')(app, passport);
+const router = require('express').Router();
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
@@ -38,8 +38,8 @@ function checkAuthentication(req, res, next) {
   }
 }
 
-app.get('/#!/user/dashboard', checkAuthentication, (req, res) => {
-  res.redirect('/#!/interview/practice');
+app.get('/user/dashboard', checkAuthentication, (req, res) => {
+  res.redirect('/#!/user/dashboard');
 });
 
 app.get('/data/user', checkAuthentication, (req, res) => {

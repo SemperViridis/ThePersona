@@ -24,7 +24,7 @@ exports.createAnswer = function (email, promptid, reply, callback) {
   db.User.find({ where: { email: email } })
     .then((user) => {
       return db.Prompt.find({ where: { id: promptid } })
-      .then(prompt => {        
+      .then(prompt => {
         return db.Answer.create({
           userId: user.id,
           promptId: promptid,
