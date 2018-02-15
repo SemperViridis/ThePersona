@@ -5,6 +5,7 @@
         <th>Interview Date</th>
         <th>Interview ID</th>
         <th>Video Link</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -12,6 +13,9 @@
         <td>{{ video.createdAt }}</td>
         <td>{{ video.id }}</td>
         <td><a ng-href="{{ video.url }}" target="blank">Interview recording</a></td>
+        <td class="right aligned">
+          <button type="button"><i class="large remove circle icon"></i></button>
+        </td>
       </tr>
     </tbody>
     <tfoot>
@@ -19,9 +23,11 @@
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
       </tr>
       <tr>
         <th>Total Interviews: {{ $ctrl.userVideos.length }}</th>
+        <th></th>
         <th></th>
         <th></th>
       </tr>
