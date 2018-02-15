@@ -26,13 +26,13 @@ a:hover.ui.huge.primary.button {
 #home .ui.three.column.stackable.row {
   width: 100%;
   height: calc(30vh);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
 #home .three.column.row .column {
   padding: 25px 20px;
   margin: auto;
-  height: calc(30vh);
+  height: auto;
   width: 30%;
   display: inline-block;
   text-align: center;

@@ -21,7 +21,7 @@ p.divider {
   color: #fff;
 }
 
-#prompts, #speech, #results {
+#prompts, #results {
   margin: auto;
   width: 65%;
 }
@@ -48,17 +48,6 @@ p.prompt {
   /*color: #393939;*/
   color: #ECEBEB;
   text-shadow: 4px 5px 5px #000;
-}
-
-#speech {
-  margin-top: 0;
-  margin-bottom: 40px;
-}
-
-#speech button.submit {
-  background: #13ed9a;
-  color: #fff;
-  margin-top: 10px;
 }
 
 #final_span, #interim_span {
@@ -117,15 +106,6 @@ h3.ui.inverted.header {
   margin-top: 0;
 }
 
-#interview {
-  height: 100%;
-  background-image: url("../images/prompts.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding-bottom: 600px;
-}
-
 button.ui.red.flashing{
   display: inline;
   animation-name: flash;
@@ -170,26 +150,6 @@ button.ui.red.flashing{
   50% { opacity: 0.1 }
   75% { opacity: 0.5 }
   100% { opacity: 0.9 }
-}
-
-button.play {
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
-  border-radius: 100px;
-  position: relative;
-  top: -370px;
-  left: 500px;
-  opacity: .6;
-  filter: alpha(opacity=60);
-  width: 10%;
-  display: block;
-  text-align: center;
-}
-
-.fa.fa-play {
-  font-size: 200px;
-  /*color: #1ed992;*/
-  color: #464646;
 }
 
 button.huge.ui.right.labeled.icon.button {
