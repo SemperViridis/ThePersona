@@ -9,7 +9,7 @@
     <tbody>
       <tr ng-repeat="video in $ctrl.userVideos track by video.id">
         <td>{{ video.createdAt }}</td>
-        <td><a href="#">{{ video.url }}</a></td>
+        <td><a ng-href="{{video.url}}">Interview recording</a></td>
       </tr>
     </tbody>
     <tfoot>
