@@ -51,6 +51,11 @@ angular.module('app')
         component: 'userInterviews'
       },
       {
+        name: 'app.user.videos',
+        url: '/videos',
+        component: 'userVideos'
+      },
+      {
         name: 'app.analysis',
         url: 'analysis',
         component: 'analysis'

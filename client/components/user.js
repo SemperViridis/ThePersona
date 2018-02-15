@@ -38,6 +38,19 @@ angular.module('app')
       }
     ];
 
+    this.userVideos = [
+      {
+        id: 123456,
+        createdAt: '2018-02-08 10:22:16',
+        url: 'http://res.cloudinary.com/dinoa/video/upload/v1517876710/dab9lvbcpe5djbrymhde.mkv'
+      },
+      {
+        id: 234567,
+        createdAt: '2018-02-10 10:22:17',
+        url: 'http://res.cloudinary.com/dinoa/video/upload/v1518550712/mfvroni0blex8jt8ih9l.mkv'
+      }
+    ];
+
     this.removeActiveSub = (e) => {
       const activeElem = document.getElementsByClassName('activeSub')[0];
       if (activeElem) {
