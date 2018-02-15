@@ -7,7 +7,6 @@ angular.module('app').controller('barCtrl', function ($scope) {
     [1, 1, 1, 1, 1]
   ];
 
-  console.log($scope.$ctrl);
 
   if ($scope.$ctrl.output) {
     console.log('if condition hit')

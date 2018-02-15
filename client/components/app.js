@@ -15,17 +15,17 @@ angular.module('app')
     // Function to run on page load
     this.init = () => {
       this.setActiveOnReload;
-      this.setStatus;
+      // this.setStatus;
     };
 
     // Function to get login status of user
-    this.getStatus = setInterval(() => {
-      if (this.isLoggedIn) {
-        clearInterval(this.setStatus);
-        return;
-      }
-      this.userService.setStatus();
-    }, 2000);
+    // this.getStatus = setInterval(() => {
+    //   if (this.isLoggedIn) {
+    //     clearInterval(this.setStatus);
+    //     return;
+    //   }
+    //   this.userService.setStatus();
+    // }, 2000);
 
     // Add active link styling to current page on reload
     this.setActiveOnReload = setInterval(() => {

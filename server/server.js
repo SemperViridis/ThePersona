@@ -8,6 +8,7 @@ const db = require('../database');
 const User = require('../database/models/User.js');
 const sequelize = require('../database/index.js').sequelize;
 const userData = require('../database/controllers/userData.js');
+const interviewData = require('../database/controllers/interviewData.js');
 // Helpers
 const toneAnalyzer = require('./helpers/toneAnalyzer');
 const wordAnalyzer = require('./helpers/fillerWords').fillerWords;
@@ -46,7 +47,6 @@ app.get('/data/user', checkAuthentication, (req, res) => {
   const lookUp = req.user.dataValues.email;
   userData.userByEmail(lookUp, (err, results) => {
     if (err) {
-      // console.log('ERROR AT /DATA/USER ENDPOINT:', err);
       res.status(500).send(err);
     } else {
       res.status(200).json(results);
@@ -73,14 +73,9 @@ app.post('/api/ibmtone', (req, res) => {
   toneAnalyzer(req.body.data.text)
     .then((tone) => {
       const toneResults = JSON.parse(tone);
-      if (req.user.dataValues.email) {
-        userData.createAnswer(req.user.dataValues.email, '1', req.body.data.text, (err, results) => {
-          if (err) {
-            res.status(500).send(err);
-          } else {
-            res.status(200).json(toneResults);
-          }
-        });
+      if (req.isAuthenticated()) {
+        userData.createAnswer(req.user.dataValues.email, req.body.data.promptID, req.body.data.text);
+        res.status(200).json(toneResults);
       } else {
         res.status(200).json(toneResults);
       }
@@ -120,8 +115,6 @@ app.post('/api/insight', (req, res) => {
 app.post('/api/cloudinary', (req, res) => {
   const videoURL = req.body.video;
   videoUploader(videoURL, { resource_type: 'video' }, (error, result) => {
-    console.log('error', error);
-    console.log('result', result);
     res.end();
   });
 });
