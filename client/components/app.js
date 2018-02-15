@@ -1,7 +1,7 @@
 angular.module('app')
   .controller('AppCtrl', function ($uibModal, $location, userService, $scope) {
     this.userService = userService;
-    this.isLoggedIn = this.userService.isLoggedIn;
+    this.isLoggedIn = true;
     this.animationsEnabled = true;
     this.currentUrl = '/home';
     this.previousUrl = null;
@@ -15,17 +15,8 @@ angular.module('app')
     // Function to run on page load
     this.init = () => {
       this.setActiveOnReload;
-      // this.setStatus;
+      this.userService.setUser();
     };
-
-    // Function to get login status of user
-    // this.getStatus = setInterval(() => {
-    //   if (this.isLoggedIn) {
-    //     clearInterval(this.setStatus);
-    //     return;
-    //   }
-    //   this.userService.setStatus();
-    // }, 2000);
 
     // Add active link styling to current page on reload
     this.setActiveOnReload = setInterval(() => {
@@ -58,7 +49,6 @@ angular.module('app')
         component: 'login'
       });
     };
-
     // this.init();
   })
   .component('app', {

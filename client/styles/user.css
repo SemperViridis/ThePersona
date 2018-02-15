@@ -4,7 +4,7 @@
   width: 100%;
   position: absolute;
   font: 400 1em 'Nunito Sans', sans-serif;
-  color: #626262;
+  color: #6c6b6b;
 }
 
 .pusher.dashboardBody {
@@ -19,15 +19,18 @@
 
 #user h3 {
   font: 400 1.1em 'Nunito Sans', sans-serif;
-  color: #878788;
 }
 
 .profile h3 {
   letter-spacing: 1px;
+  color: #626262;
 }
 
 .profile img {
   margin-bottom: 15px;
+  position: relative;
+  width: 60%;
+  margin-top: 10%;
 }
 
 .ui.vertical.sticky.menu {
