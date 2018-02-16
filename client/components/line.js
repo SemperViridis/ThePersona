@@ -13,7 +13,7 @@ angular
       [20, 65, 40, 9, 5]
     ];
 
-    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+    $scope.datasetOverride = [{ yAxisID: 'y-axis-1', fill: false }, { yAxisID: 'y-axis-2', fill: false }, {fill: false}];
 
     $scope.options = {
       scales: {

@@ -120,24 +120,24 @@ angular
     this.analysis = [
       {
         language: [
-          { score: 0.430175, tone_id: 'analytical', tone_name: 'Analytical' },
-          { score: 0, tone_id: 'confident', tone_name: 'Confident' },
-          { score: 0.742727, tone_id: 'tentative', tone_name: 'Tentative' }
+          { score: 0.920175, tone_id: 'analytical', tone_name: 'Analytical' },
+          { score: 75, tone_id: 'confident', tone_name: 'Confident' },
+          { score: 0.462727, tone_id: 'tentative', tone_name: 'Tentative' }
         ],
         social: [
-          { score: 0.846622, tone_id: 'openness_big5', tone_name: 'Openness' },
+          { score: 0.746622, tone_id: 'openness_big5', tone_name: 'Openness' },
           {
-            score: 0.077534,
+            score: 0.357534,
             tone_id: 'conscientiousness_big5',
             tone_name: 'Conscientiousness'
           },
           {
-            score: 0.777449,
+            score: 0.627449,
             tone_id: 'extraversion_big5',
             tone_name: 'Extraversion'
           },
           {
-            score: 0.259633,
+            score: 0.889633,
             tone_id: 'agreeableness_big5',
             tone_name: 'Agreeableness'
           },
@@ -151,9 +151,9 @@ angular
         tones: [
           { score: 0.081541, tone_id: 'anger', tone_name: 'Anger' },
           { score: 0.0168, tone_id: 'disgust', tone_name: 'Disgust' },
-          { score: 0.114638, tone_id: 'fear', tone_name: 'Fear' },
-          { score: 0.450808, tone_id: 'joy', tone_name: 'Joy' },
-          { score: 0.12278, tone_id: 'sadness', tone_name: 'Sadness' }
+          { score: 0.334638, tone_id: 'fear', tone_name: 'Fear' },
+          { score: 0.740808, tone_id: 'joy', tone_name: 'Joy' },
+          { score: 0.1278, tone_id: 'sadness', tone_name: 'Sadness' }
         ]
       }
     ];
