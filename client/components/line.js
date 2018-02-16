@@ -8,12 +8,12 @@ angular
     $scope.series = ['Analytical', 'Confident', 'Tentative'];
 
     $scope.data = [
-      [20, 70, 65, 88, 95],
+      [55, 70, 65, 88, 95],
       [60, 25, 50, 75, 89],
-      [20, 65, 40, 9, 5]
+      [20, 65, 40, 35, 25]
     ];
 
-    $scope.datasetOverride = [{ yAxisID: 'y-axis-1', fill: false }, { yAxisID: 'y-axis-2', fill: false }, {fill: false}];
+    $scope.datasetOverride = [{ yAxisID: 'y-axis-1', fill: false }, { yAxisID: 'y-axis-2', fill: false }, { fill: false }];
 
     $scope.options = {
       scales: {

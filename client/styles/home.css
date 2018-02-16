@@ -47,11 +47,12 @@ a:hover.ui.huge.primary.button.home {
 #home .three.column.row .column {
   padding: 3%;
   margin: auto;
-  height: auto;
+  height: calc(35vh);
   width: 30%;
   display: inline-block;
   text-align: center;
   font: 400 1em 'Nunito Sans', sans-serif;
+  border-radius: 5px;
 }
 
 .ui.icon.header {
