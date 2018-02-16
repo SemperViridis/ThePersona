@@ -5,6 +5,7 @@ angular.module('app')
     $scope.$on('update', (event, args) => {
       const currentPromptIndex = args;
       this.currentPrompt = this.prompts[currentPromptIndex].question;
+      this.showPrompts = true;
     });
 
     this.prompts = [];

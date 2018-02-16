@@ -47,7 +47,7 @@ angular.module('app')
     };
 
     this.toneAnalysis = (transcription, promptID, overall, callback) => {
-      $http.post('http://localhost:3000/api/ibmtone', {
+      $http.post('/api/ibmtone', {
         data: {
           text: transcription,
           promptID: promptID,
@@ -65,7 +65,7 @@ angular.module('app')
         });
     };
     this.wordAnalysis = (transcription, callback) => {
-      $http.post('http://localhost:3000/api/wordanalysis', {
+      $http.post('/api/wordanalysis', {
         data: {
           text: transcription
         }

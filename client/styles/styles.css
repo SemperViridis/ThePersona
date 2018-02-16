@@ -1,19 +1,3 @@
-.breadcrumb {
-  display: inline-block;
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 100%;
-  background: transparent;
-}
-
-.breadcrumb a {
-  color: #fff;
-}
-
-.breadcrumb a:hover {
-  color: #1ed992;
-}
-
 p.divider {
   margin-left: 15px;
   margin-right: 15px;
@@ -21,39 +5,9 @@ p.divider {
   color: #fff;
 }
 
-#prompts, #results {
+#results {
   margin: auto;
   width: 65%;
-}
-
-div.promptsScreen {
-  background: transparent;
-  min-height: 500px;
-  /*height: 100%;*/
-  margin: 70px auto 0 auto;
-  /*border: 1px solid #bfc1c1;*/
-  text-align: center;
-  list-style: none;
-}
-
-#prompts h1 {
-  font-family: 'Raleway', sans-serif;
-  margin-top: 15px;
-}
-
-p.prompt {
-  padding: 12% 5%;
-  margin: 2% auto 0 auto;
-  font-size: 5em;
-  /*color: #393939;*/
-  color: #ECEBEB;
-  text-shadow: 4px 5px 5px #000;
-}
-
-#final_span, #interim_span {
-  font-size: 2em;
-  padding: 20px 30px;
-  display: inline-block;
 }
 
 button {
@@ -70,7 +24,6 @@ button {
 }
 
 .ui.huge.primary.button {
-  font-family: 'Montserrat', sans-serif;
   letter-spacing: 1.5px;
   font-size: 1.5em;
   font-weight: 600;
@@ -80,10 +33,6 @@ button {
 h1.ui.inverted {
   font-size: 5.0vh;
   color: #5a5a5a;
-}
-
-.ui.huge.primary.button {
-  margin-top: 30px;
 }
 
 .ui.container.content {
@@ -106,55 +55,7 @@ h3.ui.inverted.header {
   margin-top: 0;
 }
 
-button.ui.red.flashing{
-  display: inline;
-  animation-name: flash;
-  animation-duration: 1.75s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-
-  /* Chrome 4+, Safari 4+, Opera 15+ */
-  -webkit-animation-name: flash;
-  -webkit-animation-duration: 1.85s;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-
-  /* Firefox 5+ */
-  -moz-animation-name: flash;
-  -moz-animation-duration: 1.85s;
-  -moz-animation-timing-function: linear;
-  -moz-animation-iteration-count: infinite
-}
-
-@keyframes flash {
-  0% { opacity: 0.9 }
-  25% { opacity: 0.5 }
-  50% { opacity: 0.1 }
-  75% { opacity: 0.5 }
-  100% { opacity: 0.9 }
-}
-
-/* Chrome 4+, Safari 4+, Opera 15+ */
-@-webkit-keyframes flash {
-  0% { opacity: 0.9 }
-  25% { opacity: 0.5 }
-  50% { opacity: 0.1 }
-  75% { opacity: 0.5 }
-  100% { opacity: 0.9 }
-}
-
-/* Firefox 5+ */
-@-moz-keyframes flash {
-  0% { opacity: 0.9 }
-  25% { opacity: 0.5 }
-  50% { opacity: 0.1 }
-  75% { opacity: 0.5 }
-  100% { opacity: 0.9 }
-}
-
 button.huge.ui.right.labeled.icon.button {
-/*  top: -370px;
-  left: 500px*/
   margin: auto;
   width: 15%;
   display: block;

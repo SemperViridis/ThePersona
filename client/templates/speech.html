@@ -1,16 +1,4 @@
 <div id="speech">
-  <button
-    ng-if="$ctrl.recognizing"
-    class="ui red button flashing">
-  </button>
-<!--   <button
-    ng-if="!$ctrl.interviewStarted"
-    ng-click="$ctrl.startInterview()"
-    class="large ui right labeled icon button">
-    <i ng-if="!$ctrl.recognizing" class="play icon"></i>
-    <i ng-if="$ctrl.recognizing" class="stop icon"></i>
-    Start
-  </button> -->
     <div ng-if="!$ctrl.interviewStarted" class="ui container content features">
       <div class="ui three column stackable row">
         <div class="column instructions">
@@ -18,8 +6,7 @@
             <i class="circular icon">1</i>
             Start Interview
           </h2>
-          <p>To start the interview, click the start button below.</p>
-          <p>The video and audio will start recording.</p>
+          <p>To start the interview, click the start button below. The video and audio will start recording.</p>
 
         </div>
         <div class="column">
@@ -44,19 +31,23 @@
         Start
       </button>
     </div>
-  <button
-    ng-if="$ctrl.interviewStarted && !$ctrl.reachedLastQuestion"
-    ng-click="$ctrl.getNextPrompt()"
-    class="huge ui right labeled icon button">
-    <i class="step forward icon"></i>
-    Next
-  </button>
-  <button
-    ng-if="$ctrl.reachedLastQuestion"
-    ng-click="$ctrl.handleSubmission()"
-    ui-sref="app.analysis"
-    class="huge ui right floated button submit">
-    Submit
-  </button>
+    <button
+      class="circular ui massive red icon button flashing"
+      ng-if="$ctrl.recognizing">
+      <i class="large record icon flashing"></i>
+    </button>
+    <button
+      ng-if="$ctrl.interviewStarted && !$ctrl.reachedLastQuestion"
+      ng-click="$ctrl.getNextPrompt()"
+      class="massive ui right labeled icon inverted button forward">
+      <i class="step forward inverted icon"></i>
+      Next
+    </button>
+    <button
+      ng-if="$ctrl.reachedLastQuestion"
+      ng-click="$ctrl.handleSubmission()"
+      ui-sref="app.analysis"
+      class="massive ui right floated inverted button submit">
+      Submit
+    </button>
 </div>
- <!-- ng-if="$ctrl.reachedLastQuestion" -->

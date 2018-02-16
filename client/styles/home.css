@@ -16,27 +16,58 @@
   width: 55%;
 }
 
-a:hover.ui.huge.primary.button {
+#home h1.ui.horizontal.divider {
+  font: 400 1.6em 'Nunito Sans', sans-serif;
+  margin-top: 4%;
+}
+
+#home .ui.huge.primary.button {
+  margin-top: 30px;
+  font: 400 1.5em 'Nunito Sans', sans-serif;
+  text-transform: uppercase;
+}
+
+a:hover.ui.huge.primary.button.home {
   background-color: #05386b;
   opacity: .9;
   filter: alpha(opacity=90);
 }
 
 /* Content */
+#home div.ui.container.content.features {
+  width: 85%;
+  height: auto;
+  margin: 4% auto 10% auto;
+}
+
 #home .ui.three.column.stackable.row {
-  width: 100%;
-  height: calc(30vh);
-  font-size: 1.6rem;
+  margin: auto;
 }
 
 #home .three.column.row .column {
-  padding: 25px 20px;
+  padding: 3%;
   margin: auto;
   height: auto;
   width: 30%;
   display: inline-block;
   text-align: center;
+  font: 400 1em 'Nunito Sans', sans-serif;
 }
+
+.ui.icon.header {
+  margin-bottom: 30px;
+  font: 600 1.8rem 'Nunito Sans', sans-serif;
+}
+
+#home div.ui.container.content.features p {
+  font: 300 1.5em 'Nunito Sans', sans-serif;
+  color: #6c6b6b;
+}
+
+.ui.icon.header .circular.icon {
+  margin-bottom: 25px;
+}
+
 
 /* Footer */
 .ui.footer.segment {

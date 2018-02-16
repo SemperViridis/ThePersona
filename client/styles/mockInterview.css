@@ -16,30 +16,104 @@ p.prompt {
   text-shadow: 4px 5px 5px #000;
 }
 
-#speech button.submit {
-  background: #13ed9a;
-  color: #fff;
-  margin-top: 10px;
-}
-
-button.massive.ui.inverted.button.start {
+button.massive.ui.inverted.button.start,
+button.massive.ui.inverted.button.forward,
+button.massive.ui.right.floated.inverted.button.submit {
   position: relative;
   width: 20%;
-  display: block;
+  display: inline-block;
   text-align: center;
   font: 400 1.5em 'Nunito Sans', sans-serif;
   text-transform: uppercase;
   text-align: center;
   margin: 8% auto auto auto;
   background: rgba(255, 255, 255, .1);
+
 }
 
-button:hover.massive.ui.inverted.button.start {
+button.massive.ui.right.labeled.icon.inverted.button.forward,
+button.massive.ui.right.floated.inverted.button.submit {
+  margin-top: 0;
+  width: 12%;
+}
+
+button.massive.ui.right.labeled.icon.inverted.button.forward {
+  margin-left: 40px;
+}
+
+button:focus.massive.ui.right.labeled.icon.inverted.button.forward {
+  color: #fff;
+}
+
+button.massive.ui.right.floated.inverted.button.submit {
+  background: #1ed992;
+  color: #fff;
+  margin-top: 10px;
+  margin-right: 10%;
+  border: none;
+}
+
+button:hover.massive.ui.inverted.button.start,
+button:hover.massive.ui.right.labeled.icon.inverted.button.forward,
+button:hover.massive.ui.right.floated.inverted.button.submit {
   background: #fff;
+  color: #6c6b6b;
 }
 
-#speech div {
-  padding-bottom: 0;
+button:hover.massive.ui.right.floated.inverted.button.submit {
+  background: rgba(19, 237, 154, .5);
+  color: #fff;
+}
+
+button.circular.ui.massive.red.icon.button.flashing {
+  display: inline-block;
+  /*margin-right: 45px;*/
+  animation-name: flash;
+  animation-duration: 1.75s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  /* Chrome 4+, Safari 4+, Opera 15+ */
+  -webkit-animation-name: flash;
+  -webkit-animation-duration: 1.85s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+
+  /* Firefox 5+ */
+  -moz-animation-name: flash;
+  -moz-animation-duration: 1.85s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite
+}
+
+@keyframes flash {
+  0% { opacity: 0.9 }
+  25% { opacity: 0.5 }
+  50% { opacity: 0.1 }
+  75% { opacity: 0.5 }
+  100% { opacity: 0.9 }
+}
+
+/* Chrome 4+, Safari 4+, Opera 15+ */
+@-webkit-keyframes flash {
+  0% { opacity: 0.9 }
+  25% { opacity: 0.5 }
+  50% { opacity: 0.1 }
+  75% { opacity: 0.5 }
+  100% { opacity: 0.9 }
+}
+
+/* Firefox 5+ */
+@-moz-keyframes flash {
+  0% { opacity: 0.9 }
+  25% { opacity: 0.5 }
+  50% { opacity: 0.1 }
+  75% { opacity: 0.5 }
+  100% { opacity: 0.9 }
+}
+
+i.large.record.icon.flashing {
+  color: #fff;
 }
 
 #speech div.ui.container.content.features {
@@ -47,20 +121,27 @@ button:hover.massive.ui.inverted.button.start {
   margin: auto;
 }
 
-
 #speech {
   width: 100%;
+  position: absolute;
+  text-align: center;
 }
 
 #speech div.ui.three.column.stackable.row {
-  margin: 10% auto auto auto;
+  margin: 15% auto auto auto;
   vertical-align: top;
-
 }
 
 #speech .three.column.row .column {
   width: 25%;
-  height: auto;
+  height: calc(30vh);
+}
+
+#speech div.ui.container.content.features p {
+  text-align: left;
+  margin-bottom: 3%;
+  color: #4a4a4a;
+  padding-left: 1%;
 }
 
 #prompts .header-message {
@@ -71,4 +152,40 @@ button:hover.massive.ui.inverted.button.start {
   #speech .three.column.row .column {
     min-height: calc(30vh);
   }
+}
+
+/* Promps */
+#prompts {
+  margin: 10% auto 5% auto;
+  text-align: center;
+  width: 90%;
+}
+
+div.promptsScreen {
+  background: transparent;
+  min-height: 500px;
+  /*height: 100%;*/
+  margin: 70px auto 0 auto;
+  /*border: 1px solid #bfc1c1;*/
+  text-align: center;
+  list-style: none;
+}
+
+#prompts h1 {
+  font: 400 5.5em 'Nunito Sans', sans-serif;
+  color: #fff;
+  text-shadow: 4px 5px 5px #000;
+}
+
+h1.prompt {
+  padding: 12% 5%;
+  margin: 2% auto 0 auto;
+  font-size: 5em;
+  /*color: #393939;*/
+  color: #ECEBEB;
+  text-shadow: 4px 5px 5px #000;
+}
+
+.interviewFix {
+  height: calc(15vh);
 }
