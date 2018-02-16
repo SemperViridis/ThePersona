@@ -5,12 +5,13 @@
 
 .nine.wide.column {
   margin: 50px 4.5% auto 4.5%;
-  height: calc(40vh);
+  height: auto;
 }
 
 div.ui.three.column.stackable.row {
   margin: 50px 3% auto 3%;
   height: calc(30vh);
+  margin-bottom: 10%;
 }
 
 .three.column.row .column {

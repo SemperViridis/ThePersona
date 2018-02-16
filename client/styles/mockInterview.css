@@ -1,6 +1,6 @@
 #interviewContainer {
   height: calc(100vh);
-  background: url("../images/interviewBackground2.jpg") no-repeat;
+  background: url("../images/interviewBackground3.jpg") no-repeat;
   width: 100%;
   background-size: cover;
   background-position: 50% 50%;
@@ -132,9 +132,10 @@ i.large.record.icon.flashing {
   vertical-align: top;
 }
 
-#speech .three.column.row .column {
+#speech .three.column.row div.column.instructions {
   width: 25%;
   height: calc(30vh);
+  border-radius: 5px;
 }
 
 #speech div.ui.container.content.features p {

@@ -139,7 +139,7 @@ angular
       {
         language: [
           { score: 0.920175, tone_id: 'analytical', tone_name: 'Analytical' },
-          { score: 75, tone_id: 'confident', tone_name: 'Confident' },
+          { score: 0.85, tone_id: 'confident', tone_name: 'Confident' },
           { score: 0.462727, tone_id: 'tentative', tone_name: 'Tentative' }
         ],
         social: [
