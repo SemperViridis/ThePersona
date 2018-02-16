@@ -1,19 +1,24 @@
 <div id="dashboard" class="nine wide column">
-  <h3 class="history">History</h3>
+  <h3 class="Language Analysis History">History</h3>
+  <line></line>
 </div>
 <div class="ui three column stackable row">
   <div class="column">
     <div class="columnContainer">
 
-        <h1 class="numberStats">{{ $ctrl.userInterviews.length }}</h1>
+        <!-- <h1 class="numberStats">{{ $ctrl.userInterviews.length }}</h1> -->
 
-      <h3 class="ui header">Mock  Interviews  Taken</h3>
+      <!-- <h3 class="ui header">Mock  Interviews  Taken</h3> -->
+      <h3 class="ui header">Overall Language Analysis</h3>
+      <barlang></barlang>
     </div>
   </div>
   <div class="column">
-    <h3 class="ui header">Tone Analysis</h3>
+    <h3 class="ui header">Overall Tone Analysis</h3>
+    <bar></bar>
   </div>
   <div class="column">
-    <h3 class="ui header">Personality Analysis</h3>
+    <h3 class="ui header">Overall Personality Analysis</h3>
+    <radar></radar>
   </div>
 </div>
