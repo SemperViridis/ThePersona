@@ -13,15 +13,33 @@ angular
     this.userVideos = [
       {
         id: 1,
-        createdAt: '2018-02-08 10:22:16',
+        createdAt: '2018-02-08',
         url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1517876710/dab9lvbcpe5djbrymhde.mkv'
+          'http://res.cloudinary.com/dinoa/video/upload/v1518723667/hbkt8dpj8vh2sxoxtzqj.mkv'
       },
       {
-        id: 6,
-        createdAt: '2018-02-10 10:22:17',
+        id: 2,
+        createdAt: '2018-02-09',
         url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518550712/mfvroni0blex8jt8ih9l.mkv'
+          'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
+      },
+      {
+        id: 3,
+        createdAt: '2018-02-10',
+        url:
+          'http://res.cloudinary.com/dinoa/video/upload/v1518723667/hbkt8dpj8vh2sxoxtzqj.mkv'
+      },
+      {
+        id: 4,
+        createdAt: '2018-02-13',
+        url:
+          'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
+      },
+      {
+        id: 5,
+        createdAt: '2018-02-16',
+        url:
+          'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
       }
     ];
 
