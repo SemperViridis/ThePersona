@@ -1,5 +1,6 @@
-angular.module('app')
-  .controller('userCtrl', function ($location, userService, $scope) {
+angular
+  .module('app')
+  .controller('userCtrl', function($location, userService, $scope) {
     this.userService = userService;
     this.isLoggedIn = this.userService.isLoggedIn;
     this.userData = this.userService.userData;
@@ -13,31 +14,34 @@ angular.module('app')
       {
         id: 1,
         createdAt: '2018-02-08 10:22:16',
-        url: 'http://res.cloudinary.com/dinoa/video/upload/v1517876710/dab9lvbcpe5djbrymhde.mkv'
+        url:
+          'http://res.cloudinary.com/dinoa/video/upload/v1517876710/dab9lvbcpe5djbrymhde.mkv'
       },
       {
         id: 6,
         createdAt: '2018-02-10 10:22:17',
-        url: 'http://res.cloudinary.com/dinoa/video/upload/v1518550712/mfvroni0blex8jt8ih9l.mkv'
+        url:
+          'http://res.cloudinary.com/dinoa/video/upload/v1518550712/mfvroni0blex8jt8ih9l.mkv'
       }
     ];
 
     this.userAnswers = [
       {
         id: 1,
-        response: 'My favorite data structure is a hash table because of its constant time insertion and lookup.',
+        response:
+          'My favorite data structure is a hash table because of its constant time insertion and lookup.',
         prompt: 'What is your favorite data structure and why?',
         toneAnalysis: {
           tones: [
             {
-              "score": 0.576521,
-              "tone_id": "confident",
-              "tone_name": "confident"
+              score: 0.576521,
+              tone_id: 'confident',
+              tone_name: 'confident'
             },
             {
-              "score": 0.829888,
-              "tone_id": "analytical",
-              "tone_name": "Analytical"
+              score: 0.829888,
+              tone_id: 'analytical',
+              tone_name: 'Analytical'
             }
           ]
         },
@@ -46,19 +50,20 @@ angular.module('app')
       },
       {
         id: 2,
-        response: 'Javascript is the de facto language of front end development. most engineers have had some interaction with it regardless of role. its versatility also allows for fullstack development in one language',
+        response:
+          'Javascript is the de facto language of front end development. most engineers have had some interaction with it regardless of role. its versatility also allows for fullstack development in one language',
         prompt: 'Why did you choose to learn Javascript over another language?',
         toneAnalysis: {
           tones: [
             {
-              "score": 0.915245,
-              "tone_id": "confident",
-              "tone_name": "Confident"
+              score: 0.915245,
+              tone_id: 'confident',
+              tone_name: 'Confident'
             },
             {
-              "score": 0.829888,
-              "tone_id": "joy",
-              "tone_name": "Joy"
+              score: 0.829888,
+              tone_id: 'joy',
+              tone_name: 'Joy'
             }
           ]
         },
@@ -67,19 +72,20 @@ angular.module('app')
       },
       {
         id: 10,
-        response: 'Hashtables because of database operation optimizations and versatility objects are life!',
+        response:
+          'Hashtables because of database operation optimizations and versatility objects are life!',
         prompt: 'What is your favorite data structure and why?',
         toneAnalysis: {
           tones: [
             {
-              "score": 0.753246,
-              "tone_id": "confident",
-              "tone_name": "confident"
+              score: 0.753246,
+              tone_id: 'confident',
+              tone_name: 'confident'
             },
             {
-              "score": 0.832146,
-              "tone_id": "analytical",
-              "tone_name": "Analytical"
+              score: 0.832146,
+              tone_id: 'analytical',
+              tone_name: 'Analytical'
             }
           ]
         },
@@ -88,19 +94,21 @@ angular.module('app')
       },
       {
         id: 11,
-        response: 'Both call and apply are used to bind the this parameter to the context passed in as the first argument. Call takes individual arguments after the first argument, and apply takes an array of arguments after the first argument.',
-        prompt: 'What is the difference between call and apply? What are their purposes?',
+        response:
+          'Both call and apply are used to bind the this parameter to the context passed in as the first argument. Call takes individual arguments after the first argument, and apply takes an array of arguments after the first argument.',
+        prompt:
+          'What is the difference between call and apply? What are their purposes?',
         toneAnalysis: {
           tones: [
             {
-              "score": 0.854432,
-              "tone_id": "confident",
-              "tone_name": "confident"
+              score: 0.854432,
+              tone_id: 'confident',
+              tone_name: 'confident'
             },
             {
-              "score": 0.732145,
-              "tone_id": "analytical",
-              "tone_name": "Analytical"
+              score: 0.732145,
+              tone_id: 'analytical',
+              tone_name: 'Analytical'
             }
           ]
         },
@@ -109,7 +117,48 @@ angular.module('app')
       }
     ];
 
-    this.removeActiveSub = (e) => {
+    this.analysis = [
+      {
+        language: [
+          { score: 0.920175, tone_id: 'analytical', tone_name: 'Analytical' },
+          { score: 75, tone_id: 'confident', tone_name: 'Confident' },
+          { score: 0.462727, tone_id: 'tentative', tone_name: 'Tentative' }
+        ],
+        social: [
+          { score: 0.746622, tone_id: 'openness_big5', tone_name: 'Openness' },
+          {
+            score: 0.357534,
+            tone_id: 'conscientiousness_big5',
+            tone_name: 'Conscientiousness'
+          },
+          {
+            score: 0.627449,
+            tone_id: 'extraversion_big5',
+            tone_name: 'Extraversion'
+          },
+          {
+            score: 0.889633,
+            tone_id: 'agreeableness_big5',
+            tone_name: 'Agreeableness'
+          },
+          {
+            score: 0.596624,
+            tone_id: 'emotional_range_big5',
+            tone_name: 'Emotional Range'
+          }
+        ],
+
+        tones: [
+          { score: 0.081541, tone_id: 'anger', tone_name: 'Anger' },
+          { score: 0.0168, tone_id: 'disgust', tone_name: 'Disgust' },
+          { score: 0.334638, tone_id: 'fear', tone_name: 'Fear' },
+          { score: 0.740808, tone_id: 'joy', tone_name: 'Joy' },
+          { score: 0.1278, tone_id: 'sadness', tone_name: 'Sadness' }
+        ]
+      }
+    ];
+
+    this.removeActiveSub = e => {
       const activeElem = document.getElementsByClassName('activeSub')[0];
       if (activeElem) {
         activeElem.classList.remove('activeSub');
@@ -120,7 +169,9 @@ angular.module('app')
     this.userRemoveActive = setInterval(() => {
       if (document.readyState === 'complete') {
         clearInterval(this.userRemoveActive);
-        const userActive = document.getElementsByClassName('ui vertical sticky menu dashboardMenu')[0].getElementsByClassName('active')[0];
+        const userActive = document
+          .getElementsByClassName('ui vertical sticky menu dashboardMenu')[0]
+          .getElementsByClassName('active')[0];
         if (userActive) {
           userActive.classList.remove('active');
         }
