@@ -31,6 +31,10 @@ angular
             position: 'right'
           }
         ]
+      },
+      legend: {
+        display: true,
+        position: 'top'
       }
     };
 

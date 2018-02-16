@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .controller('RadarCtrl', function($scope) {
+  .controller('RadarCtrl', function ($scope) {
     $scope.labels = [
       'Openness',
       'Extraversion',

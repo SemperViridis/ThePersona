@@ -1,6 +1,8 @@
 <div id="dashboard" class="nine wide column">
-  <h3 class="Language Analysis History">History</h3>
-  <line></line>
+  <h3 class="Language Analysis History">Interview History - Past 5 Interviews</h3>
+  <div>
+    <line></line>
+</div>
 </div>
 <div class="ui three column stackable row">
   <div class="column">
@@ -10,15 +12,15 @@
 
       <!-- <h3 class="ui header">Mock  Interviews  Taken</h3> -->
       <h3 class="ui header">Overall Language Analysis</h3>
-      <barlang></barlang>
+      <barlang output="$ctrl.analysis[0].language"></barlang>
     </div>
   </div>
   <div class="column">
     <h3 class="ui header">Overall Tone Analysis</h3>
-    <bar></bar>
+    <bar output="$ctrl.analysis[0].tones"></bar>
   </div>
   <div class="column">
     <h3 class="ui header">Overall Personality Analysis</h3>
-    <radar></radar>
+    <radar output="$ctrl.analysis[0].social"></radar>
   </div>
 </div>
