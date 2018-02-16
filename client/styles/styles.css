@@ -24,7 +24,6 @@ button {
 }
 
 .ui.huge.primary.button {
-  font-family: 'Montserrat', sans-serif;
   letter-spacing: 1.5px;
   font-size: 1.5em;
   font-weight: 600;
@@ -34,10 +33,6 @@ button {
 h1.ui.inverted {
   font-size: 5.0vh;
   color: #5a5a5a;
-}
-
-.ui.huge.primary.button {
-  margin-top: 30px;
 }
 
 .ui.container.content {
