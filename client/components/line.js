@@ -34,7 +34,10 @@ angular
       },
       legend: {
         display: true,
-        position: 'top'
+        position: 'right',
+        labels: {
+          fontSize: 17
+        }
       }
     };
 
