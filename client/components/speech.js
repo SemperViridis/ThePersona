@@ -81,6 +81,7 @@ angular.module('app')
     };
 
     this.startInterview = () => {
+
       this.interviewStarted = true;
       this.recordingService.startRecording();
       this.interviewService.getNextPrompt();

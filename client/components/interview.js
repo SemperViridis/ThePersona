@@ -8,6 +8,7 @@ angular.module('app')
       this.showPrompts = true;
     });
 
+
     this.prompts = [];
     this.currentPromptIndex = -1;
     this.currentPrompt = '';

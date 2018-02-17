@@ -5,13 +5,32 @@ angular.module('app')
     this.currentPrompt = this.prompts[this.currentPromptsIndex];
     this.selectedPrompt = {};
 
+    this.interviewID = 0; //set this equal to the interview ID returned from the database on start
+
     this.queryPrompts = (tag, callback) => {
-      $http.get('http://localhost:3000/api/prompts', {
+      $http.get('/api/prompts', {
         headers: {
           'Content-Type': 'application/json'
         },
         params: {
           tags: tag
+        }
+      })
+        .then(({ data }) => {
+          if (callback) {
+            callback(null, data);
+          }
+        }, ({ data }) => {
+          if (callback) {
+            callback(data, null);
+          }
+        });
+    };
+
+    this.beginInterview = (callback) => {
+      $http.post('/api/interviewID', {
+        headers: {
+          'Content-Type': 'application/json'
         }
       })
         .then(({ data }) => {
