@@ -5,12 +5,11 @@ angular.module('app')
 
     // Broadcasts
     $scope.$on('analysis Done', (event) => {
-      console.log('analysis done, organizing results');
-      //Analysis for whole interview
+      // Analysis for whole interview
       this.interviewTones = watsonService.interviewAnalysis;
       this.interviewFillers = watsonService.interviewFillers;
 
-      //Analysis per question
+      // Analysis per question
       this.questions = interviewService.prompts;
       this.answers = this.watsonService.responses;
 
@@ -18,7 +17,7 @@ angular.module('app')
       this.fillers = this.watsonService.answerFillers;
 
 
-      //Arrange analysis into object per question
+      // Arrange analysis into object per question
       this.arranged = [];
 
       this.arrangeAnswers = () => {
@@ -38,7 +37,7 @@ angular.module('app')
       this.arrangeAnswers();
       console.log(this.arranged);
 
-      //Arrange overall interview analysis into one object
+      // Arrange overall interview analysis into one object
       this.overall = [];
       this.arrangeOverall = () => {
         const output = {};
@@ -46,7 +45,6 @@ angular.module('app')
           output.tones = this.interviewTones[0].tone_categories[0].tones;
           output.language = this.interviewTones[0].tone_categories[1].tones;
           output.social = this.interviewTones[0].tone_categories[2].tones;
-
         }
         output.fillers = this.interviewFillers[0];
         output.overall = true;

@@ -4,6 +4,7 @@ angular.module('app')
     this.interviewService = interviewService;
     this.recordingService = recordingService;
     this.videoUploader = videoUploader;
+    this.storageService = storageService;
 
     // state properties
     this.recordedBlobs = [...this.recordingService.recording];
@@ -30,7 +31,6 @@ angular.module('app')
         }
       });
     };
-    // invoke on compononent mount
     this.play();
 
     // method to turn video data into a URL
@@ -41,7 +41,6 @@ angular.module('app')
       });
       reader.readAsDataURL(this.recordingBlob);
     };
-    // invoke on compononent mount
     this.generateVideoURL();
 
     // method that utilizes service to send video to the server
