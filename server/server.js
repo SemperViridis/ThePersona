@@ -92,7 +92,6 @@ app.get('/api/interviews', (req, res) => {
   const userId = req.query.userId;
   interviewData.getUserInterviews(userId)
     .then((interviews) => {
-      console.log('USER INTS: ', interviews);
       res.status(200).json(interviews);
     })
     .catch((err) => {
@@ -103,10 +102,9 @@ app.get('/api/interviews', (req, res) => {
 
 app.get('/api/answers', (req, res) => {
   const userId = req.query.userId;
-  interviewData.getUserInterviews(userId)
+  interviewData.getUserAnswers(userId)
     .then((answers) => {
-      console.log('USER ANSWERS: ', answers);
-      res.status(200).json(interviews);
+      res.status(200).json(answers);
     })
     .catch((err) => {
       console.log('ERROR GETTING INTS: ', err);
