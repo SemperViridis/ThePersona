@@ -3,6 +3,8 @@ angular.module('app')
     this.currentResults = {
       id: 1,
       createdAt: new Date().toLocaleDateString(),
-      url: null
+      url: null,
+      arranged: null,
+      overall: null
     };
   });
