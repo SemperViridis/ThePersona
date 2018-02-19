@@ -57,11 +57,19 @@ angular.module('app')
     };
 
     this.handleSubmission = () => {
+      this.recognition.stop();
       this.recordingService.submitRecording();
+      this.interviewService.createQandA(this.interviewService.prompts[this.interviewService.currentPromptsIndex]);
+      this.interviewService.curInt.qAndA[this.currentID] = this.interviewService.qAndA;
       setTimeout(() => {
         this.responses.push(this.finalTranscript);
-        this.watsonService.analyzeAnswer(this.finalTranscript, this.currentID, () => { this.watsonService.analyzeInterview(this.responses.join('.'))
-        });
+        this.watsonService.analyzeAnswer(this.finalTranscript, this.currentID)
+          .then(() => {
+            return this.watsonService.analyzeInterview(this.responses.join('.'), this.currentID);
+          })
+          .catch((err) => {
+            console.log('ERROR: ', err);
+          });
       }, 500);
     };
 
@@ -70,18 +78,24 @@ angular.module('app')
       this.reachedLastQuestion = (this.promptCount === 2);
       this.recognition.stop();
       console.log(this.currentID);
+      let previousID = this.currentID;
+      this.interviewService.createQandA(this.interviewService.prompts[this.interviewService.currentPromptsIndex]);
+      this.interviewService.curInt.qAndA[previousID] = this.interviewService.qAndA;
       this.interviewService.getNextPrompt();
       setTimeout(() => {
         console.log(this.finalTranscript);
         this.responses.push(this.finalTranscript);
-        this.watsonService.analyzeAnswer(this.finalTranscript, this.currentID);
+        this.watsonService.analyzeAnswer(
+          this.finalTranscript,
+          previousID
+        );
         this.finalTranscript = '';
         this.recognition.start();
       }, 500);
     };
 
     this.startInterview = () => {
-
+      this.interviewService.createInterview();
       this.interviewStarted = true;
       this.recordingService.startRecording();
       this.interviewService.getNextPrompt();

@@ -9,20 +9,22 @@ module.exports = function analyzeInput(input) {
       version_date: '2016-05-19',
     });
 
-    const params = {
-      tone_input: input,
-      content_type: 'text/plain',
-      sentences: false,
-    };
+    if (input === '') {
+      resolve(null);
+    } else {
+      const params = {
+        tone_input: input,
+        content_type: 'text/plain',
+        sentences: false,
+      };
 
-    request.tone(params, (err, tone) => {
-      if (err) {
-        console.log('ERROR OUT AT TONES!!!!!!, ', err);
-        resolve('Empty response');
-      } else {
-        console.log(JSON.stringify(tone));
-        resolve(JSON.stringify(tone, null, 2));
-      }
-    });
+      request.tone(params, (err, tone) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(tone);
+        }
+      });
+    }
   });
 };

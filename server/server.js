@@ -61,52 +61,80 @@ app.get('/api/prompts', (req, res) => {
   if (tag === 'all') {
     query = {};
   }
-  db.getPrompts(query, (err, results) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
+  db.getPrompts(query)
+    .then((results) => {
       res.status(200).json(results);
-    }
-  });
-});
-
-app.post('/api/ibmtone', (req, res) => {
-  toneAnalyzer(req.body.data.text)
-    .then((tone) => {
-      const toneResults = JSON.parse(tone);
-      if (req.isAuthenticated()) {
-        userData.createAnswer(req.user.dataValues.email, req.body.data.promptID, req.body.data.text);
-        res.status(200).json(toneResults);
-      } else {
-        res.status(200).json(toneResults);
-      }
     })
     .catch((err) => {
       res.status(500).send(err);
     });
 });
 
-// app.post('/api/ibmtone', (req, res) => {
-//   toneAnalyzer(req.body.data.text)
-//     .then((tone) => {
-//       const toneResults = JSON.parse(tone);
-//       res.status(200).send(toneResults);
-//     })
-//     .catch((err) => {
-//       res.status(500).json(err);
+// app.get('/api/interviews', (req, res) => {
+//   const userId = req.query.userId;
+//   console.log('USERID: ', userId);
+//   sequelize.query('select * from interviews inner join answers on 1 = answers.interviewId;')
+//     .then((interviews) => {
+//       console.log('INTERVIEWS IN SERVER: ', interviews);
 //     });
+//   // interviewData.getUserInterviews(userId)
+//   //   .then((interviews) => {
+//   //     console.log('USER INTS: ', interviews);
+//   //     res.status(200).json(interviews);
+//   //   })
+//   //   .catch((err) => {
+//   //     console.log('ERROR GETTING INTS: ', err);
+//   //     res.status(500).send(err);
+//   //   });
 // });
+
+app.get('/api/interviews', (req, res) => {
+  const userId = req.query.userId;
+  interviewData.getUserInterviews(userId)
+    .then((interviews) => {
+      console.log('USER INTS: ', interviews);
+      res.status(200).json(interviews);
+    })
+    .catch((err) => {
+      console.log('ERROR GETTING INTS: ', err);
+      res.status(500).send(err);
+    });
+});
+
+app.get('/api/answers', (req, res) => {
+  const userId = req.query.userId;
+  interviewData.getUserInterviews(userId)
+    .then((answers) => {
+      console.log('USER ANSWERS: ', answers);
+      res.status(200).json(interviews);
+    })
+    .catch((err) => {
+      console.log('ERROR GETTING INTS: ', err);
+      res.status(500).send(err);
+    });
+});
+
+app.post('/api/ibmtone', (req, res) => {
+  toneAnalyzer(req.body.data.text)
+    .then((tone) => {
+      res.status(200).json(tone);
+    })
+    .catch((err) => {
+      console.log('ERR FROM IBM TONE, ', err);
+      res.status(500).send(err);
+    });
+});
 
 app.post('/api/wordanalysis', (req, res) => {
   wordAnalyzer(req.body.data.text, (analysis) => {
-    res.send(JSON.stringify(analysis));
+    res.json(analysis);
   }, req.body.data.fillers);
 });
 
 app.post('/api/insight', (req, res) => {
   personalityInsight(req.body.data.text)
     .then((personality) => {
-      res.json(personality);
+      res.status(200).json(personality);
     })
     .catch((err) => {
       res.status(500).send(err.error);
@@ -116,8 +144,27 @@ app.post('/api/insight', (req, res) => {
 app.post('/api/cloudinary', (req, res) => {
   const videoURL = req.body.video;
   videoUploader(videoURL, { resource_type: 'video' }, (error, result) => {
-    res.end();
+    if (error) {
+      res.status(500).send(error);
+    }
+    res.status(200).json(result);
   });
+});
+
+app.post('/api/interviews', (req, res) => {
+  const intObj = req.body.intObj;
+  interviewData.addInterview(intObj)
+    .then((interview) => {
+      const intId = interview.dataValues.id;
+      const qAndA = Object.entries(intObj.qAndA);
+      interviewData.bulkAnswers(intId, qAndA)
+        .then(() => {
+          res.status(200).json(interview);
+        });
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
 });
 
 module.exports = app;

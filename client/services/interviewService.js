@@ -1,30 +1,67 @@
 angular.module('app')
-  .service('interviewService', function ($http, broadcastService) {
+  .service('interviewService', function ($http, broadcastService, Interview, QandA, userService) {
     this.prompts = [];
     this.currentPromptsIndex = -1;
     this.currentPrompt = this.prompts[this.currentPromptsIndex];
     this.selectedPrompt = {};
+    this.curInt = {};
+    this.qAndA = {};
+    this.userService = userService;
+    this.userId = this.userService.userData.id;
 
-    this.interviewID = 0; //set this equal to the interview ID returned from the database on start
+    // Create new Interview instance
+    this.createInterview = () => {
+      this.curInt = new Interview(this.userId);
+      console.log('LATEST INTERVIEW:', this.curInt);
+    };
 
-    this.queryPrompts = (tag, callback) => {
-      $http.get('/api/prompts', {
+    // Create new QandA instance
+    this.createQandA = (question) => {
+      this.qAndA = new QandA(this.userId, question);
+      console.log('Q and A:', this.qAndA);
+    };
+
+    // Add analysis to current interview instance
+    this.updateEachAnswer = (promptID, answer, analysisName, analysis) => {
+      const qAndA = this.curInt.qAndA[promptID];
+      qAndA.answer = answer;
+      qAndA[analysisName] = analysis;
+    };
+
+    // Add overall interview analysis to current interview instance
+    this.updateOverall = (interview, analysisName, analysis) => {
+      if (interview) {
+        this.curInt.fullTranscript = interview;
+      }
+      this.curInt[analysisName] = analysis;
+    };
+
+    // Returns array of prompts matching input tag
+    this.queryPrompts = (tag) => {
+      return $http.get('/api/prompts', {
         headers: {
           'Content-Type': 'application/json'
         },
         params: {
           tags: tag
         }
-      })
-        .then(({ data }) => {
-          if (callback) {
-            callback(null, data);
-          }
-        }, ({ data }) => {
-          if (callback) {
-            callback(data, null);
-          }
-        });
+      });
+    };
+
+    // Add Interview to DB
+    this.addInterview = (intObj) => {
+      return $http.post('/api/interviews', {
+        intObj: intObj
+      });
+    };
+
+    // Get interviews of user
+    this.getInterviews = (userId) => {
+      return $http.get('/api/interviews', {
+        params: {
+          userId: userId
+        }
+      });
     };
 
     this.beginInterview = (callback) => {
