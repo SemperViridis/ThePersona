@@ -50,7 +50,10 @@ exports.getUserAnswers = (userId) => {
   return db.Answer.findAll({
     where: {
       userId: userId
-    }
+    },
+    include: [{
+      model: db.Prompt
+    }]
   });
 };
 

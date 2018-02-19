@@ -12,13 +12,11 @@ angular.module('app')
     // Create new Interview instance
     this.createInterview = () => {
       this.curInt = new Interview(this.userId);
-      console.log('LATEST INTERVIEW:', this.curInt);
     };
 
     // Create new QandA instance
     this.createQandA = (question) => {
       this.qAndA = new QandA(this.userId, question);
-      console.log('Q and A:', this.qAndA);
     };
 
     // Add analysis to current interview instance
@@ -58,6 +56,15 @@ angular.module('app')
     // Get interviews of user
     this.getInterviews = (userId) => {
       return $http.get('/api/interviews', {
+        params: {
+          userId: userId
+        }
+      });
+    };
+
+    // Get Answers
+    this.getAnswers = (userId) => {
+      return $http.get('/api/answers', {
         params: {
           userId: userId
         }
