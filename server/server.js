@@ -49,6 +49,7 @@ app.get('/data/user', checkAuthentication, (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
+      console.log(results);
       res.status(200).json(results);
     }
   });

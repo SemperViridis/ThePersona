@@ -46,7 +46,7 @@ angular.module('app')
       });
     };
 
-    this.toneAnalysis = (transcription, promptID, overall, callback) => {
+    this.toneAnalysis = (transcription, promptID, overall, callback) => { // add interviewID parameter
       $http.post('/api/ibmtone', {
         data: {
           text: transcription,
