@@ -1,10 +1,10 @@
 angular.module('app')
   .controller('resultsCtrl', function (interviewService, watsonService, $scope) {
-    this.interviewService = interviewService;
-    this.watsonService = watsonService;
 
     // Broadcasts
     $scope.$on('analysis Done', (event) => {
+      this.interviewService = interviewService;
+      this.watsonService = watsonService;
       console.log('analysis done, organizing results');
       //Analysis for whole interview
       this.interviewTones = watsonService.interviewAnalysis;
@@ -20,6 +20,7 @@ angular.module('app')
 
       //Arrange analysis into object per question
       this.arranged = [];
+      console.log('preloop:', this.arranged)
 
       this.arrangeAnswers = () => {
         for (let i = 0; i < this.answers.length; i += 1) {
@@ -56,7 +57,7 @@ angular.module('app')
 
       console.log(this.overall);
       this.resultsLoaded = true;
-      // $scope.$apply();
+      $scope.$apply();
     });
   })
   .component('results', {

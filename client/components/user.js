@@ -23,6 +23,25 @@ angular
       this.interviewService.getAnswers(this.userData.id)
         .then(({ data }) => {
           this.answers = data;
+        })
+        .then(() => {
+          this.answers.forEach((answer) => {
+            let maxScore = 0.50;
+            let maxTone = '';
+            console.log(answer.toneAnalysis);
+            if (answer.toneAnalysis.tone_categories) {
+              answer.toneAnalysis.tone_categories.forEach((category) => {
+                category.tones.forEach((tone) => {
+                  console.log('new tone score:', tone.tone_name, tone.score);
+                  if (tone.score > maxScore) {
+                    maxScore = tone.score;
+                    maxTone = tone.tone_name;
+                    answer.dominantTone = { maxTone: maxTone, maxScore: Math.round(maxScore * 100) };
+                  }
+                });
+              });
+            }
+          });
           console.log('USER ANSWERS IN CLIENT: ', this.answers);
         });
     };
