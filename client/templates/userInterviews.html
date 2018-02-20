@@ -16,7 +16,7 @@
         <td class="center aligned"><a href="">{{ answer.promptId }}</a></td>
         <td>{{ answer.prompt.question }}</td>
         <td>{{ answer.answer }}</td>
-        <td>{{ answer.toneAnalysis.tones[1].tone_name }}</td>
+        <td class="right aligned"> {{ answer.dominantTone.maxTone + ': ' + answer.dominantTone.maxScore }}</td>
         <td class="right aligned">
             <button type="button"><i class="large remove circle icon"></i></button>
         </td>

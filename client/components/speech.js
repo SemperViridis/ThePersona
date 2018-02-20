@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('speechController', function ($scope, $animate, interviewService, watsonService, recordingService) {
+  .controller('speechController', function ($scope, $animate, interviewService, watsonService, recordingService, broadcastService) {
     $animate.enabled(false, 'speech');
 
     // services
@@ -95,6 +95,7 @@ angular.module('app')
     };
 
     this.startInterview = () => {
+      broadcastService.send('start');
       this.interviewService.createInterview();
       this.interviewStarted = true;
       this.recordingService.startRecording();
