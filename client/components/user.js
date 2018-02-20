@@ -60,49 +60,6 @@ angular
       }
     ];
 
-    this.userAnswers = [
-      {
-        id: 1,
-        response:
-          'My favorite data structure is a hash table because of its constant time insertion and lookup.',
-        prompt: 'What is your favorite data structure and why?',
-        toneAnalysis: {
-          tones: [
-            {
-              score: 0.576521,
-              tone_id: 'confident',
-              tone_name: 'confident'
-            },
-            {
-              score: 0.829888,
-              tone_id: 'analytical',
-              tone_name: 'Analytical'
-            }
-          ]
-        },
-        interviewId: 1,
-        createdAt: '2018-02-01 13:59:55'
-      },
-      {
-        id: 3,
-        createdAt: '2018-02-10',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518723667/hbkt8dpj8vh2sxoxtzqj.mkv'
-      },
-      {
-        id: 4,
-        createdAt: '2018-02-13',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
-      },
-      {
-        id: 5,
-        createdAt: '2018-02-16',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
-      }
-    ];
-
     this.analysis = [
       {
         language: [
