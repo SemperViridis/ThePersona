@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .controller('userCtrl', function($location, userService, interviewService, $scope) {
+  .controller('userCtrl', function ($location, userService, interviewService, $scope) {
     this.userService = userService;
     this.isLoggedIn = this.userService.isLoggedIn;
     this.userData = this.userService.userData;
@@ -15,10 +15,14 @@ angular
       this.interviewService.getInterviews(this.userData.id)
         .then(({ data }) => {
           this.interviews = data;
-          debugger;
-          this.getOverallLanguage().tone;
+          this.getOverallLanguage();
           this.getOverallTone();
           this.getOverallPersonality();
+          this.historyGraphData = this.interviews.map(interview => (
+            interview.overallTones.tone_categories[1].tones
+          ));
+          this.dataLoaded = true;
+          console.log(this.historyGraphData);
           console.log('USER INTERVIEWS IN CLIENT: ', this.interviews);
         });
     };
@@ -63,7 +67,6 @@ angular
           'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
       }
     ];
-
 
     this.getOverallTone = () => {
       this.overallTone = this.interviews
@@ -122,47 +125,6 @@ angular
           { tone_id: 'emotional_range_big5', tone_name: 'Emotional Range' }
         ]);
     };
-
-    this.analysis = [
-      {
-        language: [
-          { score: 0.920175, tone_id: 'analytical', tone_name: 'Analytical' },
-          { score: 0.85, tone_id: 'confident', tone_name: 'Confident' },
-          { score: 0.462727, tone_id: 'tentative', tone_name: 'Tentative' }
-        ],
-        social: [
-          { score: 0.746622, tone_id: 'openness_big5', tone_name: 'Openness' },
-          {
-            score: 0.357534,
-            tone_id: 'conscientiousness_big5',
-            tone_name: 'Conscientiousness'
-          },
-          {
-            score: 0.627449,
-            tone_id: 'extraversion_big5',
-            tone_name: 'Extraversion'
-          },
-          {
-            score: 0.889633,
-            tone_id: 'agreeableness_big5',
-            tone_name: 'Agreeableness'
-          },
-          {
-            score: 0.596624,
-            tone_id: 'emotional_range_big5',
-            tone_name: 'Emotional Range'
-          }
-        ],
-
-        tones: [
-          { score: 0.081541, tone_id: 'anger', tone_name: 'Anger' },
-          { score: 0.0168, tone_id: 'disgust', tone_name: 'Disgust' },
-          { score: 0.334638, tone_id: 'fear', tone_name: 'Fear' },
-          { score: 0.740808, tone_id: 'joy', tone_name: 'Joy' },
-          { score: 0.1278, tone_id: 'sadness', tone_name: 'Sadness' }
-        ]
-      }
-    ];
 
     this.removeActiveSub = e => {
       const activeElem = document.getElementsByClassName('activeSub')[0];
