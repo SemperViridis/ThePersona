@@ -30,14 +30,6 @@ exports.bulkAnswers = (intId, answers) => {
   });
 };
 
-exports.matchAnswers = (interviewId) => {
-  return db.Answer.findAll({
-    where: {
-      interviewId: interviewId
-    }
-  });
-};
-
 exports.getUserInterviews = (userId) => {
   return db.Interview.findAll({
     where: {
@@ -53,7 +45,17 @@ exports.getUserAnswers = (userId) => {
     },
     include: [{
       model: db.Prompt
+    }, {
+      model: db.Interview
     }]
+  });
+};
+
+exports.matchAnswers = (interview) => {
+  return db.Answer.findAll({
+    where: {
+      interviewId: interview.id
+    }
   });
 };
 
@@ -64,10 +66,15 @@ exports.getUserAnswers = (userId) => {
 //     }
 //   })
 //     .then((interviews) => {
-//       console.log('DB INTERVIEWS: ', interviews);
 //       return bluebird.mapSeries(interviews, (interview) => {
-//         exports.matchAnswers(interview.dataValues.id);
+//         exports.matchAnswers(interview.dataValues)
+//           .then((answer) => {
+//             interview.dataValues.qAndA = answer;
+//             console.log('INTERVIEW AFTER MATCH: ', interview);
+//           });
 //       });
+//     })
+//     .catch((err) => {
+//       console.log('ERROR GETTING INTERVIEWS: ', err);
 //     });
-
 // };

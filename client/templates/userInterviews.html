@@ -2,17 +2,21 @@
   <table class="ui padded selectable column table">
     <thead>
       <tr>
-        <th class="one wide">Interview Date</th>
-        <th class="three wide">Question</th>
-        <th class="four wide">Answer</th>
-        <th class="right aligned one wide"></th>
+        <th class="center aligned one wide">Interview Date</th>
+        <th class="center aligned one wide">Interview ID</th>
+        <th class="center aligned three wide">Question</th>
+        <th class="center aligned three wide">Answer</th>
+        <th class="center aligned one wide">Dominant Tone</th>
+        <th class="center aligned right aligned one wide"></th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="answer in $ctrl.answers track by answer.id">
-        <td>{{ answer.createdAt.slice(0, 10) }}</td>
+        <td class="center aligned">{{ answer.createdAt.slice(0, 10) }}</td>
+        <td class="center aligned"><a href="">{{ answer.promptId }}</a></td>
         <td>{{ answer.prompt.question }}</td>
         <td>{{ answer.answer }}</td>
+        <td>{{ answer.toneAnalysis.tones[1].tone_name }}</td>
         <td class="right aligned">
             <button type="button"><i class="large remove circle icon"></i></button>
         </td>
@@ -24,8 +28,12 @@
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
+        <th></th>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
