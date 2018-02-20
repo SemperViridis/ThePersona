@@ -5,7 +5,6 @@
         <th class="center aligned one wide">Interview Date</th>
         <th class="center aligned one wide">Interview ID</th>
         <th class="center aligned two wide">Video Link</th>
-        <th class="center aligned right aligned one wide"></th>
       </tr>
     </thead>
     <tbody>
@@ -14,9 +13,6 @@
         <td class="center aligned"><a href="">{{ interview.id }}</a></td>
         <td ng-if="!interview.videoUrl"><a ng-href="" target="blank">Sorry, the video did not upload.</a></td>
         <td ng-if="interview.videoUrl"><a ng-href="{{ interview.videoUrl }}" target="blank">Interview recording</a></td>
-        <td class="right aligned">
-          <button type="button"><i class="large remove circle icon"></i></button>
-        </td>
       </tr>
     </tbody>
     <tfoot>
@@ -24,11 +20,9 @@
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
       </tr>
       <tr>
         <th>Total Interviews: {{ $ctrl.interviews.length }}</th>
-        <th></th>
         <th></th>
         <th></th>
       </tr>

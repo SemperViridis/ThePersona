@@ -7,7 +7,6 @@
         <th class="center aligned three wide">Question</th>
         <th class="center aligned three wide">Answer</th>
         <th class="center aligned one wide">Dominant Tone</th>
-        <th class="center aligned right aligned one wide"></th>
       </tr>
     </thead>
     <tbody>
@@ -17,9 +16,7 @@
         <td>{{ answer.prompt.question }}</td>
         <td>{{ answer.answer }}</td>
         <td>{{ answer.toneAnalysis.tones[1].tone_name }}</td>
-        <td class="right aligned">
-            <button type="button"><i class="large remove circle icon"></i></button>
-        </td>
+
       </tr>
     </tbody>
     <tfoot>
@@ -29,10 +26,8 @@
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
       </tr>
       <tr>
-        <th></th>
         <th></th>
         <th></th>
         <th></th>
