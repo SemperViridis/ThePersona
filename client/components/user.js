@@ -46,39 +46,6 @@ angular
         });
     };
 
-    this.userVideos = [
-      {
-        id: 1,
-        createdAt: '2018-02-08',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518723667/hbkt8dpj8vh2sxoxtzqj.mkv'
-      },
-      {
-        id: 2,
-        createdAt: '2018-02-09',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
-      },
-      {
-        id: 3,
-        createdAt: '2018-02-10',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518723667/hbkt8dpj8vh2sxoxtzqj.mkv'
-      },
-      {
-        id: 4,
-        createdAt: '2018-02-13',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
-      },
-      {
-        id: 5,
-        createdAt: '2018-02-16',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
-      }
-    ];
-
     this.analysis = [
       {
         language: [
@@ -119,6 +86,16 @@ angular
         ]
       }
     ];
+
+    this.refreshInterviews = (e) => {
+      this.removeActiveSub(e);
+      this.getInterviews();
+    };
+
+    this.refreshAnswers = (e) => {
+      this.removeActiveSub(e);
+      this.getAnswers();
+    };
 
     this.removeActiveSub = e => {
       const activeElem = document.getElementsByClassName('activeSub')[0];
