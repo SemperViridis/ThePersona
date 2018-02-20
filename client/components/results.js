@@ -1,8 +1,7 @@
 angular.module('app')
-  .controller('resultsCtrl', function ($scope, interviewService, watsonService, storageService) {
+  .controller('resultsCtrl', function ($scope, interviewService, watsonService) {
     this.interviewService = interviewService;
     this.watsonService = watsonService;
-    this.storageService = storageService;
 
     // Broadcasts
     $scope.$on('analysis Done', (event) => {
@@ -33,7 +32,6 @@ angular.module('app')
           }
           output.fillers = this.fillers[i];
           this.arranged.push(output);
-          this.storageService.currentResults.arranged = this.arranged;
         }
       };
       this.arrangeAnswers();
@@ -50,7 +48,6 @@ angular.module('app')
         output.fillers = this.interviewFillers[0];
         output.overall = true;
         this.overall.push(output);
-        this.storageService.currentResults.overall = this.overall;
       };
       this.arrangeOverall();
 

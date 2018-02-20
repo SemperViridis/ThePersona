@@ -4,7 +4,6 @@ angular.module('app')
     this.interviewService = interviewService;
     this.recordingService = recordingService;
     this.videoUploader = videoUploader;
-    this.storageService = storageService;
 
     // state properties
     this.recordedBlobs = [...this.recordingService.recording];

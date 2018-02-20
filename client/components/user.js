@@ -15,6 +15,8 @@ angular
       this.interviewService.getInterviews(this.userData.id)
         .then(({ data }) => {
           this.interviews = data;
+          debugger;
+          this.getOverallLanguage();
           console.log('USER INTERVIEWS IN CLIENT: ', this.interviews);
         });
     };
@@ -59,6 +61,24 @@ angular
           'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
       }
     ];
+
+    this.getOverallLanguage = () => {
+      this.overallLanguage = this.interviews.map((interview) => {
+        return interview.overallTones.tone_categories[1];
+      });
+    };
+
+    this.getOverallTone = () => {
+      this.overallTone = this.interviews.map((interview) => {
+        return interview.overallTones.tone_categories[0];
+      });
+    };
+
+    this.getOverallPersonality = () => {
+      this.overallTone = this.interviews.map((interview) => {
+        return interview.overallTones.tone_categories[2];
+      });
+    };
 
     this.analysis = [
       {
