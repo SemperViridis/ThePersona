@@ -2,17 +2,18 @@
   <table class="ui padded selectable column table">
     <thead>
       <tr>
-        <th>Interview Date</th>
-        <th>Interview ID</th>
-        <th>Video Link</th>
-        <th></th>
+        <th class="center aligned one wide">Interview Date</th>
+        <th class="center aligned one wide">Interview ID</th>
+        <th class="center aligned two wide">Video Link</th>
+        <th class="center aligned right aligned one wide"></th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="video in $ctrl.userVideos track by video.id">
-        <td>{{ video.createdAt }}</td>
-        <td>{{ video.id }}</td>
-        <td><a ng-href="{{ video.url }}" target="blank">Interview recording</a></td>
+      <tr ng-repeat="interview in $ctrl.interviews track by interview.id">
+        <td class="center aligned">{{ interview.createdAt.slice(0, 10) }}</td>
+        <td class="center aligned"><a href="">{{ interview.id }}</a></td>
+        <td ng-if="!interview.videoUrl"><a ng-href="" target="blank">Sorry, the video did not upload.</a></td>
+        <td ng-if="interview.videoUrl"><a ng-href="{{ interview.videoUrl }}" target="blank">Interview recording</a></td>
         <td class="right aligned">
           <button type="button"><i class="large remove circle icon"></i></button>
         </td>
@@ -26,7 +27,7 @@
         <td></td>
       </tr>
       <tr>
-        <th>Total Interviews: {{ $ctrl.userVideos.length }}</th>
+        <th>Total Interviews: {{ $ctrl.interviews.length }}</th>
         <th></th>
         <th></th>
         <th></th>
