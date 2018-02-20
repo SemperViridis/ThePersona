@@ -16,7 +16,9 @@ angular
         .then(({ data }) => {
           this.interviews = data;
           debugger;
-          this.getOverallLanguage();
+          this.getOverallLanguage().tone;
+          this.getOverallTone();
+          this.getOverallPersonality();
           console.log('USER INTERVIEWS IN CLIENT: ', this.interviews);
         });
     };
@@ -62,22 +64,36 @@ angular
       }
     ];
 
-    this.getOverallLanguage = () => {
-      this.overallLanguage = this.interviews.map((interview) => {
-        return interview.overallTones.tone_categories[1];
-      });
-    };
 
     this.getOverallTone = () => {
-      this.overallTone = this.interviews.map((interview) => {
-        return interview.overallTones.tone_categories[0];
-      });
+      this.overallTone = this.interviews
+        .map(interview => (
+          interview.overallTones.tone_categories[0].tones
+        ));
+    };
+
+    this.getOverallLanguage = () => {
+      this.overallLanguage = this.interviews
+        .map(interview => (
+          interview.overallTones.tone_categories[1].tones
+        ))
+        .reduce((output, interview) => {
+          for (let i = 0; i < interview.length; i += 1) {
+            const averageScore = (output[i].score + interview[i].score) / 2 || interview[i].score;
+            output[i].score = averageScore;
+          }
+          return output;
+        }, [
+          { tone_id: 'analytical', tone_name: 'Analytical' },
+          { tone_id: 'confident', tone_name: 'Confident' },
+          { tone_id: 'tentative', tone_name: 'Tentative' }
+        ]);
     };
 
     this.getOverallPersonality = () => {
-      this.overallTone = this.interviews.map((interview) => {
-        return interview.overallTones.tone_categories[2];
-      });
+      this.overallPersonality = this.interviews.map(interview => (
+        interview.overallTones.tone_categories[1].tones
+      ));
     };
 
     this.analysis = [
