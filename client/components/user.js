@@ -104,9 +104,23 @@ angular
     };
 
     this.getOverallPersonality = () => {
-      this.overallPersonality = this.interviews.map(interview => (
-        interview.overallTones.tone_categories[1].tones
-      ));
+      this.overallPersonality = this.interviews
+        .map(interview => (
+          interview.overallTones.tone_categories[1].tones
+        ))
+        .reduce((output, interview) => {
+          for (let i = 0; i < interview.length; i += 1) {
+            const averageScore = (output[i].score + interview[i].score) / 2 || interview[i].score;
+            output[i].score = averageScore;
+          }
+          return output;
+        }, [
+          { tone_id: 'openness_big5', tone_name: 'Openness' },
+          { tone_id: 'conscientiousness_big5', tone_name: 'Conscientiousness' },
+          { tone_id: 'extraversion_big5', tone_name: 'Extraversion' },
+          { tone_id: 'agreeableness_big5', tone_name: 'Agreeableness' },
+          { tone_id: 'emotional_range_big5', tone_name: 'Emotional Range' }
+        ]);
     };
 
     this.analysis = [
