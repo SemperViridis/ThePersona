@@ -1,10 +1,9 @@
 angular
   .module('app')
-  .controller('lineCtrl', function($scope) {
+  .controller('lineCtrl', function ($scope) {
+
     $scope.labels = ['1', '2', '3', '4', '5'];
-    // $scope.onClick = function (points, evt) {
-    // console.log(points, evt);
-    // };
+
     $scope.series = ['Analytical', 'Confident', 'Tentative'];
 
     $scope.data = [
@@ -40,7 +39,7 @@ angular
         }
       }
     };
-
+    
     if ($scope.$ctrl.output) {
       for (let i = 0; i < $scope.labels.length; i += 1) {
         for (let k = 0; k < $scope.$ctrl.output.length; k += 1) {

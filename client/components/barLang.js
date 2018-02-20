@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .controller('barLangCtrl', function($scope) {
+  .controller('barLangCtrl', function ($scope) {
     $scope.labels = ['Analytical', 'Confident', 'Tentative'];
 
     $scope.series = ['Language'];

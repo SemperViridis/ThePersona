@@ -1,22 +1,24 @@
-<div id="dashboard" class="nine wide column" style="height: auto">
-  <h2 class="Language Analysis History" style="text-align: center"> Interview History - Past 5 Interviews</h2>
+<div ng-if="$ctrl.dataLoaded" id="dashboard" class="nine wide column" style="height: auto">
+  <h2 class="Language Analysis History" style="text-align: center">
+    Interview History - Past 5 Interviews
+  </h2>
   <div>
-    <line></line>
+    <line output="$ctrl.historyGraphData"></line>
 </div>
 </div>
-<div class="ui three column stackable row">
+<div ng-if="$ctrl.dataLoaded"class="ui three column stackable row">
   <div class="column">
     <div class="columnContainer">
       <h3 class="ui header">Overall Language Analysis</h3>
-      <barlang output="$ctrl.analysis[0].language"></barlang>
+      <barlang output="$ctrl.overallLanguage"></barlang>
     </div>
   </div>
   <div class="column">
     <h3 class="ui header">Overall Tone Analysis</h3>
-    <bar output="$ctrl.analysis[0].tones"></bar>
+    <bar output="$ctrl.overallTone"></bar>
   </div>
   <div class="column">
     <h3 class="ui header">Overall Personality Analysis</h3>
-    <radar output="$ctrl.analysis[0].social"></radar>
+    <radar output="$ctrl.overallPersonality"></radar>
   </div>
 </div>
