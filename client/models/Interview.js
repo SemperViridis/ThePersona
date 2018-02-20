@@ -1,10 +1,10 @@
 angular.module('app')
   .factory('Interview', function () {
     // Interview Constructor
-    function Interview(userId, qAndA, videUrl, fullTranscript, overallTones, overallPersonality, overallWords) {
+    function Interview(userId, qAndA, videoUrl, fullTranscript, overallTones, overallPersonality, overallWords) {
       this.userId = userId || null;
       this.qAndA = fullTranscript || {};
-      this.videoUrl = videUrl || '';
+      this.videoUrl = videoUrl || null;
       this.fullTranscript = fullTranscript || '';
       this.overallTones = overallTones || [];
       this.overallPersonality = overallPersonality || [];
