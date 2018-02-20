@@ -69,7 +69,20 @@ angular
       this.overallTone = this.interviews
         .map(interview => (
           interview.overallTones.tone_categories[0].tones
-        ));
+        ))
+        .reduce((output, interview) => {
+          for (let i = 0; i < interview.length; i += 1) {
+            const averageScore = (output[i].score + interview[i].score) / 2 || interview[i].score;
+            output[i].score = averageScore;
+          }
+          return output;
+        }, [
+          { tone_id: 'anger', tone_name: 'Anger' },
+          { tone_id: 'disgust', tone_name: 'Disgust' },
+          { tone_id: 'fear', tone_name: 'Fear' },
+          { tone_id: 'joy', tone_name: 'Joy' },
+          { tone_id: 'sadness', tone_name: 'Sadness' }
+        ]);
     };
 
     this.getOverallLanguage = () => {
