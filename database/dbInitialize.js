@@ -3,7 +3,7 @@ const db = require('./index.js');
 const seedPrompts = require('./prompts');
 
 db.sequelize
-  .authenticate()
+  .authenticate();
   // .then(() => {
   //   console.log('Database successfully connected!');
   //   return db.sequelize.sync({ force: true });

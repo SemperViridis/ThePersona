@@ -1,13 +1,9 @@
 angular.module('app')
-  .controller('playbackController', function (recordingService, videoUploader, interviewService) {
+  .controller('playbackController', function (recordingService, videoUploader, interviewService, broadcastService) {
     // services
     this.interviewService = interviewService;
     this.recordingService = recordingService;
     this.videoUploader = videoUploader;
-
-    // state properties
-    this.recordedBlobs = [...this.recordingService.recording];
-    this.recordingBlob = new Blob(this.recordedBlobs, { type: 'video/webm' });
 
     // cache DOM elements
     this.recordedVideo = document.querySelector('video#recorded');
@@ -30,42 +26,44 @@ angular.module('app')
         }
       });
     };
-    this.play();
 
     // method to turn video data into a URL
     this.generateVideoURL = () => {
       const reader = new FileReader();
       reader.addEventListener('loadend', () => {
-        this.uploadVideo(reader.result);
+        if (reader.result) {
+          this.uploadVideo(reader.result);
+        }
       });
       reader.readAsDataURL(this.recordingBlob);
     };
-    this.generateVideoURL();
+
+    this.updateInterviewData = () => {
+      const intObj = this.interviewService.curInt;
+      if (intObj.userId) {
+        this.interviewService.addInterview(intObj)
+          .then(({ data }) => {
+            console.log('INTERVIEW ADDED: ', data);
+          });
+      } else {
+        console.log('You must be logged in to save the results.');
+      }
+    };
 
     // method that utilizes service to send video to the server
     // once a response is received, the current interview instance
     // is added to the DB if the user is logged in
+
     this.uploadVideo = (videoURL) => {
       this.videoUploader.upload(videoURL, (err, upload) => {
-        if (err) {
-          console.log('ERROR UPLOADING VIDEO: ', err);
-        } else if (upload.data) {
+          if (upload.data) {
           const url = upload.data.url;
           console.log('Video successfully uploaded', upload);
           this.interviewService.updateOverall(null, 'videoUrl', url);
         } else {
           console.log('Video could not be uploaded', err);
         }
-        const intObj = this.interviewService.curInt;
-        console.log('LATEST INT: ', intObj);
-        if (intObj.userId) {
-          this.interviewService.addInterview(intObj)
-            .then(({ data }) => {
-              console.log('INTERVIEW ADDED: ', data);
-            });
-        } else {
-          console.log('You must be logged in to save the results.');
-        }
+        this.updateInterviewData();
       });
     };
 
@@ -83,6 +81,18 @@ angular.module('app')
         window.URL.revokeObjectURL(url);
       }, 100);
     };
+
+    this.init = () => {
+      if (this.recordingService.recording.length) {
+        this.recordedBlobs = [...this.recordingService.recording];
+        this.recordingBlob = new Blob(this.recordedBlobs, { type: 'video/webm' });
+        this.play();
+        this.generateVideoURL();
+      } else {
+        this.updateInterviewData();
+      }
+    };
+    this.init();
   })
   .component('playback', {
     controller: 'playbackController',

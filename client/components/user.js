@@ -31,42 +31,28 @@ angular
       this.interviewService.getAnswers(this.userData.id)
         .then(({ data }) => {
           this.answers = data;
+        })
+        .then(() => {
+          this.answers.forEach((answer) => {
+            let maxScore = 0.50;
+            let maxTone = '';
+            console.log(answer.toneAnalysis);
+            if (answer.toneAnalysis.tone_categories) {
+              answer.toneAnalysis.tone_categories.forEach((category) => {
+                category.tones.forEach((tone) => {
+                  console.log('new tone score:', tone.tone_name, tone.score);
+                  if (tone.score > maxScore) {
+                    maxScore = tone.score;
+                    maxTone = tone.tone_name;
+                    answer.dominantTone = { maxTone: maxTone, maxScore: Math.round(maxScore * 100) };
+                  }
+                });
+              });
+            }
+          });
           console.log('USER ANSWERS IN CLIENT: ', this.answers);
         });
     };
-
-    this.userVideos = [
-      {
-        id: 1,
-        createdAt: '2018-02-08',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518723667/hbkt8dpj8vh2sxoxtzqj.mkv'
-      },
-      {
-        id: 2,
-        createdAt: '2018-02-09',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
-      },
-      {
-        id: 3,
-        createdAt: '2018-02-10',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518723667/hbkt8dpj8vh2sxoxtzqj.mkv'
-      },
-      {
-        id: 4,
-        createdAt: '2018-02-13',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
-      },
-      {
-        id: 5,
-        createdAt: '2018-02-16',
-        url:
-          'http://res.cloudinary.com/dinoa/video/upload/v1518750845/lh0hkcx7hjpnizvlpw6o.mkv'
-      }
-    ];
 
     this.getOverallTone = () => {
       this.overallTone = this.interviews
@@ -124,6 +110,16 @@ angular
           { tone_id: 'agreeableness_big5', tone_name: 'Agreeableness' },
           { tone_id: 'emotional_range_big5', tone_name: 'Emotional Range' }
         ]);
+    };
+
+    this.refreshInterviews = (e) => {
+      this.removeActiveSub(e);
+      this.getInterviews();
+    };
+
+    this.refreshAnswers = (e) => {
+      this.removeActiveSub(e);
+      this.getAnswers();
     };
 
     this.removeActiveSub = e => {

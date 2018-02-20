@@ -25,19 +25,7 @@ angular.module('app')
 
     // initialize stream
     navigator.mediaDevices.getUserMedia({ audio: true, video: true })
-      .then(stream => this.handleSuccess(stream));
-
-    this.handleSuccess = (stream) => {
-      this.stream = stream;
-      // this.recorderVideo.srcObject = stream;
-      // this.recorderVideo.onloadedmetadata = () => {
-      //   this.recorderVideo.play();
-      // };
-    };
-
-    // this.handleSourceOpen = () => {
-    //   this.sourceBuffer = mediaSource.addSourceBuffer('video/webm');
-    // };
+      .then((stream) => { this.stream = stream; });
 
     // state methods
     this.handleDataAvailable = (event) => {
@@ -47,17 +35,20 @@ angular.module('app')
     };
 
     this.startRecording = () => {
-      this.mediaRecorder = new MediaRecorder(this.stream);
-      this.mediaRecorder.ondataavailable = this.handleDataAvailable;
-      this.mediaRecorder.start(10);
-      this.recordButton.textContent = 'Stop';
+      if (this.stream) {
+        this.mediaRecorder = new MediaRecorder(this.stream);
+        this.mediaRecorder.ondataavailable = this.handleDataAvailable;
+        this.mediaRecorder.start(10);
+        this.recordButton.textContent = 'Stop';
+      }
     };
 
     this.toggleRecording = () => {
       if (this.recordButton.textContent === 'Record') {
         this.startRecording();
-      } else {
+      } else if (this.mediaRecorder) {
         this.mediaRecorder.stop();
+        debugger;
         this.recordButton.textContent = 'Record';
         this.recordingService.recording = this.recordedBlobs;
       }

@@ -5,8 +5,8 @@
         <div class="image">
           <img src="../images/user.png">
         </div>
-        <h3>{{$ctrl.userData.name}}</h3>
-        <h3>{{$ctrl.userData.email}}</h3>
+        <h3>{{ $ctrl.userData.username }}</h3>
+        <h3>{{ $ctrl.userData.email }}</h3>
       </div>
       <a
         id="/user/dashboard"
@@ -20,15 +20,15 @@
         id="/user/interviews"
         ui-sref="app.user.interviews"
         class="item"
-        ng-click="$ctrl.removeActiveSub($event)">
+        ng-click="$ctrl.refreshAnswers($event)">
         <i class="block layout icon"></i>
-        Interviews
+        Q &amp; A
       </a>
       <a
         id="/user/videos"
         class="item"
         ui-sref="app.user.videos"
-        ng-click="$ctrl.removeActiveSub($event)">
+        ng-click="$ctrl.refreshInterviews($event)">
         <i class="record icon"></i>
         Videos
       </a>

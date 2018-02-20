@@ -1,12 +1,20 @@
 angular.module('app')
-  .service('watsonService', function ($http, broadcastService, interviewService, userService) {
-    this.responses = [];
-    this.answerAnalysis = [];
-    this.answerFillers = [];
-    this.interviewAnalysis = [];
-    this.interviewFillers = [];
-    this.interviewService = interviewService;
-    this.userService = userService;
+  .service('watsonService', function ($http, $rootScope, broadcastService, interviewService, userService) {
+
+    var scope = $rootScope.$new();
+
+    //reset when interview begins
+    scope.$on('start', (event) => {
+      console.log('from watson: interview started');
+      this.responses = [];
+      this.answerAnalysis = [];
+      this.answerFillers = [];
+      this.interviewAnalysis = [];
+      this.interviewFillers = [];
+      this.interviewService = interviewService;
+      this.userService = userService;
+    });
+
 
     this.analyzeAnswer = (answer, promptID) => {
       this.responses.push(answer);
