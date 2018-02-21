@@ -54,7 +54,6 @@ angular.module('app')
       this.arrangeOverall();
 
       this.resultsLoaded = true;
-      $scope.$apply();
     });
   })
   .component('results', {

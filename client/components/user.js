@@ -22,9 +22,9 @@ angular
             interview.overallTones.tone_categories[1].tones
           ));
           this.dataLoaded = true;
-          console.log(this.historyGraphData);
           console.log('USER INTERVIEWS IN CLIENT: ', this.interviews);
-        });
+        })
+        .catch();
     };
 
     this.getAnswers = () => {
@@ -95,7 +95,7 @@ angular
     this.getOverallPersonality = () => {
       this.overallPersonality = this.interviews
         .map(interview => (
-          interview.overallTones.tone_categories[1].tones
+          interview.overallTones.tone_categories[2].tones
         ))
         .reduce((output, interview) => {
           for (let i = 0; i < interview.length; i += 1) {
