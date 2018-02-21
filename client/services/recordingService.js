@@ -3,7 +3,7 @@ angular.module('app')
     this.recording = [];
 
     this.startRecording = () => {
-      broadcastService.send('recording');
+      broadcastService.send('start');
     };
 
     this.submitRecording = () => {

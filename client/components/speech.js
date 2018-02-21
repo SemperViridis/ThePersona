@@ -95,7 +95,6 @@ angular.module('app')
     };
 
     this.startInterview = () => {
-      broadcastService.send('start');
       this.interviewService.createInterview();
       this.interviewStarted = true;
       this.recordingService.startRecording();

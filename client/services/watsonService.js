@@ -1,10 +1,10 @@
 angular.module('app')
   .service('watsonService', function ($http, $rootScope, broadcastService, interviewService, userService) {
 
-    var scope = $rootScope.$new();
+    const scope = $rootScope.$new();
 
-    //reset when interview begins
-    scope.$on('start', (event) => {
+    // reset when interview begins
+    scope.$on('start', () => {
       console.log('from watson: interview started');
       this.responses = [];
       this.answerAnalysis = [];

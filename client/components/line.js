@@ -6,6 +6,8 @@ angular
 
     $scope.series = ['Analytical', 'Confident', 'Tentative'];
 
+    console.log('testing', $scope.$ctrl.output);
+
     $scope.data = [
       [55, 70, 65, 88, 95],
       [60, 25, 50, 75, 89],

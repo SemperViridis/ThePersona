@@ -5,7 +5,7 @@ angular.module('app')
     this.interviewService = interviewService;
 
     // broadcast listeners
-    $scope.$on('recording', () => {
+    $scope.$on('start', () => {
       this.startRecording();
     });
     $scope.$on('submit', () => {
@@ -48,7 +48,6 @@ angular.module('app')
         this.startRecording();
       } else if (this.mediaRecorder) {
         this.mediaRecorder.stop();
-        debugger;
         this.recordButton.textContent = 'Record';
         this.recordingService.recording = this.recordedBlobs;
       }
