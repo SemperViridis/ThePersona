@@ -7,6 +7,7 @@
         <th class="center aligned three wide">Question</th>
         <th class="center aligned three wide">Answer</th>
         <th class="center aligned one wide">Dominant Tone</th>
+        <th class="center aligned one wide"></th>
       </tr>
     </thead>
     <tbody>
@@ -17,7 +18,7 @@
         <td>{{ answer.answer }}</td>
         <td class="right aligned"> {{ answer.dominantTone.maxTone + ': ' + answer.dominantTone.maxScore }}</td>
         <td class="right aligned">
-            <button type="button"><i class="large remove circle icon"></i></button>
+          <button ng-click="$ctrl.removeInterview(answer.id)" type="button"><i class="large remove circle icon"></i></button>
         </td>
       </tr>
     </tbody>
@@ -28,8 +29,10 @@
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
       </tr>
       <tr>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>

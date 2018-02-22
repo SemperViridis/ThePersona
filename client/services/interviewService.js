@@ -24,6 +24,7 @@ angular.module('app')
       const qAndA = this.curInt.qAndA[promptID];
       qAndA.answer = answer;
       qAndA[analysisName] = analysis;
+      console.log('INT AFTER UPDATE IND: ', this.curInt);
     };
 
     // Add overall interview analysis to current interview instance
@@ -32,6 +33,7 @@ angular.module('app')
         this.curInt.fullTranscript = interview;
       }
       this.curInt[analysisName] = analysis;
+      console.log('INT AFTER UPDATE OVERALL: ', this.curInt);
     };
 
     // Returns array of prompts matching input tag

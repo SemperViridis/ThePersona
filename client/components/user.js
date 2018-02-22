@@ -27,6 +27,11 @@ angular
         .catch();
     };
 
+    this.removeInterview = (answerId) => {
+      console.log('ANSWER ID: ', answerId);
+      console.log('THIS: ', this);
+    };
+
     this.getAnswers = () => {
       this.interviewService.getAnswers(this.userData.id)
         .then(({ data }) => {
@@ -75,6 +80,7 @@ angular
     };
 
     this.getOverallLanguage = () => {
+      console.log('INTERVIEWS: ', this.interviews);
       this.overallLanguage = this.interviews
         .map(interview => (
           interview.overallTones.tone_categories[1].tones

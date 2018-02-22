@@ -1,10 +1,12 @@
-#interviewContainer {
-  height: calc(100vh);
-  background: url("../images/interviewBackground3.jpg") no-repeat;
+div.interviewContainer {
+  height: 100%;
+  background: url("../images/interviewBackground3.jpg") repeat-y;
   width: 100%;
   background-size: cover;
   background-position: 50% 50%;
-  position: relative;
+  position: absolute;
+  overflow: visible;
+  margin-bottom: 0;
 }
 
 button.massive.ui.inverted.button.start,
@@ -22,30 +24,35 @@ button.massive.ui.right.floated.inverted.button.submit {
 
 }
 
-button.massive.ui.right.labeled.icon.inverted.button.forward,
+button.massive.ui.inverted.button.start {
+  margin-bottom: 10%;
+}
+
+button.massive.ui.inverted.button.forward,
 button.massive.ui.right.floated.inverted.button.submit {
   margin-top: 0;
   width: 12%;
 }
 
-button.massive.ui.right.labeled.icon.inverted.button.forward {
-  margin-left: 40px;
-}
-
-button:focus.massive.ui.right.labeled.icon.inverted.button.forward {
+button:focus.massive.ui.inverted.button.forward {
   color: #fff;
 }
 
 button.massive.ui.right.floated.inverted.button.submit {
   background: #1ed992;
   color: #fff;
-  margin-top: 10px;
   margin-right: 10%;
+  margin-left: 0;
   border: none;
 }
 
+button.massive.ui.inverted.button.forward.adjustPadding {
+  margin-right: 0;
+  margin-left: 22%;
+}
+
 button:hover.massive.ui.inverted.button.start,
-button:hover.massive.ui.right.labeled.icon.inverted.button.forward,
+button:hover.massive.ui.inverted.button.forward,
 button:hover.massive.ui.right.floated.inverted.button.submit {
   background: #fff;
   color: #6c6b6b;
@@ -56,8 +63,10 @@ button:hover.massive.ui.right.floated.inverted.button.submit {
   color: #fff;
 }
 
-button.circular.ui.massive.red.icon.button.flashing {
-  display: inline-block;
+button.circular.ui.large.red.icon.button.flashing {
+  margin: auto;
+  margin-top: 2%;
+  display: block;
   /*margin-right: 45px;*/
   animation-name: flash;
   animation-duration: 1.75s;
@@ -103,62 +112,19 @@ button.circular.ui.massive.red.icon.button.flashing {
   100% { opacity: 0.9 }
 }
 
-i.large.record.icon.flashing {
+i.record.icon.flashing {
   color: #fff;
-}
-
-#speech div.ui.container.content.features {
-  width: 80%;
-  margin: auto;
-}
-
-#speech {
-  width: 100%;
-  position: absolute;
-  text-align: center;
-}
-
-#speech div.ui.three.column.stackable.row {
-  margin: 15% auto auto auto;
-  vertical-align: top;
-}
-
-#speech .three.column.row div.column.instructions {
-  width: 25%;
-  height: calc(35vh);
-  border-radius: 5px;
-}
-
-#speech div.ui.container.content.features p {
-  text-align: left;
-  margin-bottom: 3%;
-  color: #4a4a4a;
-  padding-left: 1%;
-}
-
-#prompts .header-message {
-  margin-top: 0;
-}
-
-@media (min-width: 1000px) {
-  #speech .three.column.row .column {
-    min-height: calc(30vh);
-  }
 }
 
 /* Promps */
 #prompts {
-  margin: 10% auto 5% auto;
+  margin: 18% auto 5% auto;
   text-align: center;
   width: 90%;
 }
 
-div.promptsScreen {
-  background: transparent;
-  min-height: 500px;
-  margin: 70px auto 0 auto;
-  text-align: center;
-  list-style: none;
+#prompts .header-message {
+  margin-top: 0;
 }
 
 #prompts h1 {
@@ -184,5 +150,178 @@ p.prompt {
 }
 
 .interviewFix {
-  height: calc(15vh);
+  height: 20%;
+}
+
+
+/*==========================================*/
+#speech {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+}
+
+#speech div.ui.container.content.features {
+  width: 80%;
+  margin: auto;
+}
+
+#speech div.ui.container.content.features p {
+  text-align: left;
+  margin-bottom: 3%;
+  color: #4a4a4a;
+  padding-left: 1%;
+}
+
+#speech div.box {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  overflow: visible;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 15% auto auto auto;
+}
+
+#speech div.box div.boxColumn {
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 3% 3% 4.5% 3%;
+  text-align: center;
+  font: 400 1em 'Nunito Sans', sans-serif;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, .85);
+}
+
+#speech div.box div:nth-child(1).boxColumn {
+  margin-right: 2.5%;
+}
+
+#speech div.box div:nth-child(3).boxColumn {
+  margin-left: 2.5%;
+}
+
+/*=================*/
+/* MEDIA QUERY     */
+/*=================*/
+@media screen and (max-height:1300px) and (max-width: 800px){
+  #prompts {
+    margin-top: 50%;
+  }
+}
+
+@media screen and (max-width:1500px) {
+  #speech div.box {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:1300px) {
+  #prompts {
+    margin-top: 20%;
+  }
+
+  #prompts h1 {
+    font-size: 4em;
+  }
+}
+
+@media screen and (max-width: 1300px) and (max-height: 900px) {
+  #prompts {
+    margin-top: 18%;
+  }
+}
+
+@media screen and (max-width: 1300px) and (max-height: 800px) {
+
+  #speech div.box {
+    margin-top: 8%;
+  }
+
+  button.massive.ui.inverted.button.start {
+    margin-top: 6%;
+  }
+
+  #prompts {
+    margin-top: 11%;
+  }
+
+  #prompts h1 {
+    font-size: 4em;
+  }
+
+  button.circular.ui.large.red.icon.button.flashing {
+    margin-top: 3%;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  button.massive.ui.inverted.button.forward,
+  button.massive.ui.inverted.button.start,
+  button.massive.ui.right.floated.inverted.button.submit {
+    font-size: 1.1em;
+    width: 20%;
+  }
+}
+
+@media screen and (max-width:900px) {
+  #speech div.box {
+    flex-direction: column;
+    font-size: 1em;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #speech div.box div.boxColumn {
+    margin: 2% 0 3% 0;
+    padding: 4%;
+    width: 80%;
+  }
+
+  #speech div.box div:nth-child(1).boxColumn {
+    margin-right: 0;
+  }
+
+  #speech div.box div:nth-child(3).boxColumn {
+    margin-left: 0;
+  }
+
+  #speech div.box div.boxColumn h2.ui.icon.header {
+    font-size: 1.4em;
+  }
+
+  #speech div.box div.boxColumn i.icon {
+    font-size: 1.3em;
+  }
+
+  #speech div.ui.container.content.features p {
+    font-size: 1.3em;
+  }
+
+  #speech button.massive.ui.right.labeled.icon.inverted.button.start {
+      margin-bottom: 10%;
+    }
+
+  #prompts h1 {
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width:800px) {
+  #prompts {
+    margin-top: 20%;
+  }
+
+  #prompts h1 {
+    font-size: 3em;
+  }
+
+  #speech {
+    margin-top: 6%;
+  }
+
+  button.circular.ui.large.red.icon.button.flashing {
+    margin-top: 5%;
+  }
 }

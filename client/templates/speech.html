@@ -1,7 +1,7 @@
 <div id="speech">
     <div ng-if="!$ctrl.interviewStarted" class="ui container content features">
-      <div class="ui three column stackable row">
-        <div class="column instructions">
+      <div class="box">
+        <div class="boxColumn">
           <h2 class="ui icon header">
             <i class="circular icon">1</i>
             Start Interview
@@ -9,14 +9,14 @@
           <p>To start the interview, click the start button below. The video and audio will start recording.</p>
 
         </div>
-        <div class="column instructions">
+        <div class="boxColumn">
           <h2 class="ui icon header">
             <i class="circular icon">2</i>
             Questions
           </h2>
           <p>Click the next button for the following question.</p>
         </div>
-        <div class="column instructions">
+        <div class="boxColumn">
           <h2 class="ui icon header">
             <i class="circular icon">3</i>
             Submit
@@ -31,23 +31,26 @@
         Start
       </button>
     </div>
-    <button
-      class="circular ui massive red icon button flashing"
-      ng-if="$ctrl.recognizing">
-      <i class="large record icon flashing"></i>
-    </button>
-    <button
-      ng-if="$ctrl.interviewStarted && !$ctrl.reachedLastQuestion"
-      ng-click="$ctrl.getNextPrompt()"
-      class="massive ui right labeled icon inverted button forward">
-      <i class="step forward inverted icon"></i>
-      Next
-    </button>
-    <button
-      ng-if="$ctrl.reachedLastQuestion"
-      ng-click="$ctrl.handleSubmission()"
-      ui-sref="app.analysis"
-      class="massive ui right floated inverted button submit">
-      Submit
-    </button>
+    <div class="promptButtons">
+      <button
+        ng-if="$ctrl.interviewStarted"
+        ng-disabled="$ctrl.reachedLastQuestion"
+        ng-click="$ctrl.getNextPrompt()"
+        ng-class="{'adjustPadding': $ctrl.reachedLastQuestion}"
+        class="massive ui inverted button forward">
+        Next
+      </button>
+      <button
+        ng-if="$ctrl.reachedLastQuestion"
+        ng-click="$ctrl.handleSubmission()"
+        ui-sref="app.analysis"
+        class="massive ui right floated inverted button submit">
+        Submit
+      </button>
+      <button
+        class="circular ui large red icon button flashing"
+        ng-if="$ctrl.recognizing">
+        <i class="record icon flashing"></i>
+      </button>
+    </div>
 </div>

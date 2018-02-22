@@ -56,7 +56,7 @@ angular.module('app')
 
     this.uploadVideo = (videoURL) => {
       this.videoUploader.upload(videoURL, (err, upload) => {
-          if (upload.data) {
+          if (upload) {
           const url = upload.data.url;
           console.log('Video successfully uploaded', upload);
           this.interviewService.updateOverall(null, 'videoUrl', url);
